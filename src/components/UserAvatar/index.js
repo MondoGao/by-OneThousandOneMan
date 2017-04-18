@@ -10,8 +10,8 @@ class UserAvatar extends React.Component {
       targetElement: this.avatarDiv,
       width        : e.target.clientWidth,
       height       : e.target.clientHeight,
-      tileHeight   : 7,
-      tileWidth    : 7,
+      tileHeight   : this.props.blurLevel * 5,
+      tileWidth    : this.props.blurLevel * 5,
       tileShape    : 'rectangle',
       opacity      : 1,
       defaultBackground: '#fffbcb'
@@ -20,9 +20,9 @@ class UserAvatar extends React.Component {
   
   render() {
     return (
-      <span className={`${styles['avatar-wrapper']} ${this.props.bordered ? styles['bordered'] : ''} ${this.props.className}`}>
+      <span className={`${styles['avatar-wrapper']} ${this.props.bordered ? styles['bordered'] : ''} ${this.props.blurLevel < 1 ? styles['no-blur'] : ''} ${this.props.className}`}>
       <div className={styles['avatar']} ref={el => this.avatarDiv = el}>
-        <img className={styles[`blur-${this.props.blurLevel}`]} src={this.props.src} alt="Avatar" onLoad={this.handleImgLoad}/>
+        <img src={this.props.src} alt="Avatar" onLoad={this.handleImgLoad}/>
       </div>
         {this.props.bordered ? <span className={styles['border-wrapper']}/> : null}
     </span>

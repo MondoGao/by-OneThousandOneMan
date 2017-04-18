@@ -5,10 +5,18 @@ import styles from './RecentVisitor.scss'
 import TitleOrnament from 'components/TitleOrnament'
 import UserAvatar from 'components/UserAvatar'
 
-const RecentVisitor = ({ visitorAvatarSrcs = [require('assets/airship@2x.png'), require('assets/airship@2x.png'),require('assets/airship@2x.png'),require('assets/airship@2x.png'),require('assets/airship@2x.png'),require('assets/airship@2x.png')] }) => {
+const RecentVisitor = ({ visitorAvatarSrcs = [require('assets/airship@2x.png'), require('assets/airship@2x.png'),require('assets/airship@2x.png'),require('assets/airship@2x.png'),require('assets/airship@2x.png'), require('assets/airship@2x.png'),] }) => {
   const hasVisitor = visitorAvatarSrcs.length > 0
+  let blurLevel = 6 - Math.ceil(visitorAvatarSrcs.length / 2)
+  if (blurLevel < 0) {
+    blurLevel = 0
+  }
+  
   const visitorAvatars = visitorAvatarSrcs.map(src => (
-    <UserAvatar className={styles['avatar']} src={src} blurLevel={6 - visitorAvatarSrcs.length}/>
+    <UserAvatar
+      className={styles['avatar']}
+      src={src}
+      blurLevel={blurLevel}/>
   ))
   
   return (

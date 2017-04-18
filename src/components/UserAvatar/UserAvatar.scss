@@ -8,12 +8,24 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    transition: opacity .5s;
   }
-  
+  img {
+    opacity: 0;
+  }
   canvas {
     position: absolute;
     top: 0;
     left: 0;
+  }
+}
+
+.no-blur {
+  img {
+    opacity: 1;
+  }
+  canvas {
+    opacity: 0;
   }
 }
 
@@ -38,11 +50,4 @@
   width: 102px;
   height: 102px;
   padding: 4px;
-}
-
-@for $i from 0 through 6 {
-  .blur-#{$i} {
-    filter: blur(4px * $i);
-    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=(4 * $i), MakeShadow=false);
-  }
 }

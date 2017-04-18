@@ -10,7 +10,7 @@
 }
 
 .empty-tip {
-  height: 161px;
+  display: block;
   padding-top: 132px;
   background: url("assets/sad-face@2x.png") no-repeat center top / 102px 102px;
   color: #414141;
@@ -27,6 +27,8 @@
 
 .avatar-list {
   margin-right: -14px;
+  height: 100px;
+  overflow-y: hidden;
 }
 
 .avatar {
