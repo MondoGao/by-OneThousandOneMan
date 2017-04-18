@@ -7,8 +7,10 @@
 }
 
 .wall-content {
+  position: relative;
   height: 100%;
   background: #f9f5c0 no-repeat;
+  overflow: hidden;
   
   &.empty {
     padding-top: 285px;
@@ -22,4 +24,26 @@
       font-weight: bold;
     }
   }
+}
+
+@keyframes slide {
+  from {
+    left: 100%;
+    transform: translateX(0);
+  }
+  to {
+    left: 0;
+    transform: translateX(-100%);
+  }
+}
+
+.label {
+  position: absolute;
+  left: 100%;
+  display: inline-block;
+  color: #ed5485;
+  font-size: 30px;
+  font-weight: bold;
+  animation: slide 5s linear both;
+  white-space: nowrap;
 }
