@@ -2,6 +2,8 @@ import React from 'react'
 
 import styles from './UserPage.scss'
 
+import LabelWall from 'components/LabelWall'
+
 class UserPage extends React.Component {
   render() {
     return (
@@ -10,24 +12,6 @@ class UserPage extends React.Component {
       </div>
     )
   }
-}
-
-class LabelWall extends React.Component {
-  render() {
-    const hasLabel = this.props.labelIds.length > 0
-  
-    return (
-      <div className={styles['wall-container']}>
-        <div className={`${styles['wall-content']} ${hasLabel ? '' : styles['empty']}`}>
-      
-        </div>
-      </div>
-    )
-  }
-}
-
-LabelWall.defaultProps = {
-  labelIds: []
 }
 
 export default UserPage
