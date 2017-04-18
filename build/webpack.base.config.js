@@ -45,6 +45,7 @@ module.exports = {
       'actions': resolve(__dirname, '../src/actions'),
       'reducers': resolve(__dirname, '../src/reducers/'),
       'styles': resolve(__dirname, '../src/styles'),
+      'scripts': resolve(__dirname, '../src/scripts'),
       'sources': resolve(__dirname, '../src/sources')
     }
   },

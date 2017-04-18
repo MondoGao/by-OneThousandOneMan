@@ -10,5 +10,6 @@
 .avatar {
   position: absolute !important;
   top: 14px;
-  left: 324px;
+  left: 50%;
+  transform: translateX(-50%);
 }

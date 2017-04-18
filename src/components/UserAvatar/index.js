@@ -2,15 +2,24 @@ import React from 'react'
 
 import styles from './UserAvatar.scss'
 
-const UserAvatar = ({ src = '#', bordered = false, className = '' }) => {
-  return (
-    <span className={`${styles['avatar-wrapper']} ${bordered ? styles['bordered'] : ''} ${className}`}>
+class UserAvatar extends React.Component{
+  render() {
+    return (
+      <span className={`${styles['avatar-wrapper']} ${this.props.bordered ? styles['bordered'] : ''} ${this.props.className}`}>
       <div className={styles['avatar']}>
-        <img src={src} alt="Avatar"/>
+        <img className={styles[`blur-${this.props.blurLevel}`]} src={this.props.src} alt="Avatar"/>
       </div>
-      {bordered ? <span className={styles['border-wrapper']}/> : null}
+        {this.props.bordered ? <span className={styles['border-wrapper']}/> : null}
     </span>
-  )
+    )
+  }
+}
+
+UserAvatar.defaultProps = {
+  src: '#',
+  bordered: false,
+  className: '',
+  blurLevel: 0
 }
 
 export default UserAvatar
