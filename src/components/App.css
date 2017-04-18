@@ -1,0 +1,9 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: #57bdb6 url("~assets/decoration@2x.png") no-repeat center / cover;
+}
