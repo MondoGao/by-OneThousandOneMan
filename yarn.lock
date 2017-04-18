@@ -3925,6 +3925,10 @@ performance-now@^0.2.0:
   version "0.2.0"
   resolved "http://registry.npm.taobao.org/performance-now/download/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
 
+photomosaic.js@^1.4.1:
+  version "1.4.1"
+  resolved "http://registry.npm.taobao.org/photomosaic.js/download/photomosaic.js-1.4.1.tgz#520265784ee82ec675d05b43f5fcf7ce95856ef5"
+
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
   resolved "http://registry.npm.taobao.org/pify/download/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
