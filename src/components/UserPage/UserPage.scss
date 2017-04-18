@@ -1,7 +1,14 @@
 .user-page {
+  position: relative;
   text-align: center;
 }
 
 .button {
   margin: 128px 0 142px;
+}
+
+.avatar {
+  position: absolute !important;
+  top: 14px;
+  left: 324px;
 }

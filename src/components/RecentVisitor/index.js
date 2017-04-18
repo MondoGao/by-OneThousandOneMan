@@ -3,10 +3,13 @@ import React from 'react'
 import styles from './RecentVisitor.scss'
 
 import TitleOrnament from 'components/TitleOrnament'
+import UserAvatar from 'components/UserAvatar'
 
-const RecentVisitor = ({ visitorIds = [] }) => {
-  const hasVisitor = visitorIds.length > 0
-  let visitorAvatars = []
+const RecentVisitor = ({ visitorAvatarSrcs = [require('assets/airship@2x.png')] }) => {
+  const hasVisitor = visitorAvatarSrcs.length > 0
+  const visitorAvatars = visitorAvatarSrcs.map(src => (
+    <UserAvatar src={src}/>
+  ))
   
   return (
     <div className={`${styles['recent-visitor']} ${hasVisitor ? '' : styles['empty']}`}>
