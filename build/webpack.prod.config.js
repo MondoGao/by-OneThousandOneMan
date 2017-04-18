@@ -35,6 +35,7 @@ module.exports = WebpackMerge(baseConfig, {
             use: [
               'style-loader',
               'css-loader',
+              'postcss-loader'
             ]
           })
       }

@@ -1,0 +1,10 @@
+.title-ornament {
+  display: inline-block;
+  width: 61px;
+  height: 20px;
+  background: url("assets/title-ornament@2x.png") no-repeat center / contain;
+}
+
+.reversed {
+  transform: scaleX(-1);
+}

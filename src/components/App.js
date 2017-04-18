@@ -8,6 +8,7 @@ import UserPage from 'components/UserPage'
 const App = (props) => (
   <div>
     <Route path="/" component={UserPage}/>
+    <p className="copyright">2017© Powered by Bingyan Studio</p>
   </div>
 )
 
