@@ -51,9 +51,7 @@ class LabelWall extends React.Component {
   removeLabel = (label, timer) => {
     clearTimeout(+label.key)
     clearTimeout(timer)
-  
-    console.log(this.isLabelFinished(label))
-  
+    
     if (this.isLabelFinished(label)) {
       this.setState(prevState => ({
         existLabels: removeFromArray(prevState.existLabels, label),
@@ -114,6 +112,15 @@ class LabelWall extends React.Component {
     requestAnimationFrame(this.createLabel)
   }
   
+  handleResize = e => {
+    setTimeout(() => {
+      this.setState({
+        wallRight: this.wall.getBoundingClientRect().right,
+        wallLeft: this.wall.getBoundingClientRect().left
+      })
+    }, 1000)
+  }
+  
   render() {
     const hasLabel = this.props.labelIds.length > 0
     
@@ -134,22 +141,21 @@ class LabelWall extends React.Component {
       wallRight: this.wall.getBoundingClientRect().right,
       wallLeft: this.wall.getBoundingClientRect().left
     })
+    
+    window.addEventListener('resize', this.handleResize)
   }
   
   componentWillUnmount() {
     clearTimeout(this.state.addTimer)
     this.state.clearTimers.map(timer => clearTimeout(timer))
+    
+    window.removeEventListener('resize', this.handleResize)
   }
 }
 
-const Label = ({ text }) => {
-  return (
-    <span className={styles['label']}>{text}</span>
-  )
-}
 
 LabelWall.defaultProps = {
-  labelIds: ['要求太高了', '心疼我家的傻儿子！！！', '没有选择我', '单身2017', '等着我脱单后你再脱']
+  labelIds: ['要求太高了', '心疼我家的傻儿子！！！', '没有选择我', '单身2017', '等着我脱单后你再脱', '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊']
 }
 
 export default LabelWall
