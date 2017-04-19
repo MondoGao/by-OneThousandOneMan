@@ -5,7 +5,8 @@
 body {
     position: relative;
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
+    padding-bottom: 60px;
     background: #57bdb6 url("~assets/decoration@2x.png") no-repeat center / cover;
     font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
     user-select: none;
