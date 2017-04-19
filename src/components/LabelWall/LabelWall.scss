@@ -2,7 +2,7 @@
   margin: 0 auto;
   width: 706px;
   height: 508px;
-  padding: 83px 37px 34px;
+  padding: 83px 37px 33px;
   background: url("assets/wall@2x.png") no-repeat center / cover;
 }
 
@@ -46,4 +46,10 @@
   font-weight: bold;
   animation: slide 5s linear both;
   white-space: nowrap;
+}
+
+@for $i from 1 through 6 {
+  .track-#{$i} {
+    top: 40px + 58px * ($i - 1);
+  }
 }

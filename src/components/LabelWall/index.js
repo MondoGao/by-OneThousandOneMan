@@ -8,9 +8,9 @@ class LabelWall extends React.Component {
     
     this.state = {
       existLabels: [],
+      clearTimers: [],
       labelPointer: 0,
       addTimer: null,
-      clearTimers: []
     }
   }
   
@@ -25,21 +25,22 @@ class LabelWall extends React.Component {
       })
     }
     
-    const top = Math.random() * 320 + 33
+    const trackNum = Math.round(Math.random() * 5) + 1
   
     let timer = setTimeout(() => {
       clearTimeout(timer)
-    
+
       this.setState({
         existLabels: this.state.existLabels.filter(existLabel => existLabel !== label),
         clearTimers: this.state.clearTimers.filter(clearTimer => clearTimer !== timer)
       })
     }, 5000)
     
-    let label = <span key={timer} className={styles['label']} style={{top}}>
+    let label = <span
+      key={timer}
+      className={`${styles['label']} ${styles[`track-${trackNum}`]}`}>
       {this.props.labelIds[labelPointer]}
     </span>
-
     
     this.setState({
       existLabels: [
@@ -77,6 +78,7 @@ class LabelWall extends React.Component {
   
   componentWillUnmount() {
     clearTimeout(this.state.addTimer)
+    this.state.clearTimers.map(timer => clearTimeout(timer))
   }
 }
 
