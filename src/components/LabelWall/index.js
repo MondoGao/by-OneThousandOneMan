@@ -51,7 +51,7 @@ class LabelWall extends React.Component {
   removeLabel = (label, timer) => {
     clearTimeout(label.key)
     clearTimeout(timer)
-  
+    
     if (this.isLabelFinished(label)) {
       this.setState({
         existLabels: removeFromArray(this.state.existLabels, label),
@@ -77,7 +77,7 @@ class LabelWall extends React.Component {
     for(let i = 0; i < 6 && this.isTrackOccupied(trackNum); i++) {
       if (i >= 5) {
         this.setState({
-          addTimer: setTimeout(this.createTableWrapper, Math.random() * 500 + 500)
+          addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 500)
         })
         return
       }
@@ -102,13 +102,13 @@ class LabelWall extends React.Component {
     </span>
     
     this.setState({
-      addTimer: setTimeout(this.createTableWrapper, Math.random() * 500 + 500),
+      addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 500),
       existLabels: this.state.existLabels.concat(label),
       clearTimers: this.state.clearTimers.concat(timer)
     })
   }
   
-  createTableWrapper = () => {
+  createLabelWrapper = () => {
     requestAnimationFrame(this.createLabel)
   }
   
@@ -128,7 +128,7 @@ class LabelWall extends React.Component {
   
   componentDidMount() {
     this.setState({
-      addTimer: setTimeout(this.createTableWrapper, Math.random() * 500 + 500),
+      addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 500),
       wallRight: this.wall.getBoundingClientRect().right,
       wallLeft: this.wall.getBoundingClientRect().left
     })
