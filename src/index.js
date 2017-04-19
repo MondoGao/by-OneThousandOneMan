@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -10,6 +10,8 @@ import { AppContainer } from 'react-hot-loader'
 import reducers from 'reducers/index'
 
 import App from 'components/App';
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 let middlewares = [
   thunk
@@ -21,7 +23,9 @@ if (process.env.NODE_ENV === 'develop') {
 
 let store = createStore(
   reducers,
-  applyMiddleware(...middlewares)
+  composeEnhancers(
+    applyMiddleware(...middlewares)
+  )
 )
 
 const render = (Component) => {

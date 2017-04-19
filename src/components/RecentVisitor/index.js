@@ -12,8 +12,9 @@ const RecentVisitor = ({ visitorAvatarSrcs = [require('assets/airship@2x.png'), 
     blurLevel = 0
   }
   
-  const visitorAvatars = visitorAvatarSrcs.map(src => (
+  const visitorAvatars = visitorAvatarSrcs.map((src, index) => (
     <UserAvatar
+      key={index}
       className={styles['avatar']}
       src={src}
       blurLevel={blurLevel}/>
