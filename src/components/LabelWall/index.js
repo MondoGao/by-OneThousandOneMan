@@ -40,7 +40,7 @@ class LabelWall extends React.Component {
    * @return {boolean}
    */
   isLabelFinished = label => {
-    return document.getElementById('label-' + label.key).getBoundingClientRect().right - this.state.wallLeft < Number.EPSILON
+    return document.getElementById('label-' + label.key).getBoundingClientRect().right - this.state.wallLeft < 2
   }
   
   /**
@@ -49,19 +49,21 @@ class LabelWall extends React.Component {
    * @param timer 多次调用时的 timer
    */
   removeLabel = (label, timer) => {
-    clearTimeout(label.key)
+    clearTimeout(+label.key)
     clearTimeout(timer)
-    
+  
+    console.log(this.isLabelFinished(label))
+  
     if (this.isLabelFinished(label)) {
-      this.setState({
-        existLabels: removeFromArray(this.state.existLabels, label),
-        clearTimers: removeFromArray(this.state.clearTimers, label.key, timer)
-      })
+      this.setState(prevState => ({
+        existLabels: removeFromArray(prevState.existLabels, label),
+        clearTimers: removeFromArray(prevState.clearTimers, +label.key, timer)
+      }))
     } else {
       const newTimer = setTimeout(() => this.removeLabel(label, newTimer), 5000, label)
-      this.setState({
-        clearTimers: this.state.clearTimers.concat(newTimer)
-      })
+      this.setState(prevState => ({
+        clearTimers: prevState.clearTimers.concat(newTimer)
+      }))
     }
   }
   
@@ -101,11 +103,11 @@ class LabelWall extends React.Component {
       {this.props.labelIds[labelPointer]}
     </span>
     
-    this.setState({
+    this.setState(prevState => ({
       addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 500),
-      existLabels: this.state.existLabels.concat(label),
-      clearTimers: this.state.clearTimers.concat(timer)
-    })
+      existLabels: prevState.existLabels.concat(label),
+      clearTimers: prevState.clearTimers.concat(timer)
+    }))
   }
   
   createLabelWrapper = () => {
