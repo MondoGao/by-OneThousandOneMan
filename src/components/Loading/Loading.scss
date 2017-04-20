@@ -41,10 +41,18 @@
 }
 
 .hand {
+  display: inline-block;
   margin-top: 20px;
-  width: 112px;
+  margin-left: -45px;
+  width: 149px;
   height: 152px;
+  background: url("assets/gesture-1@2x.png") no-repeat center / contain;
   animation: swing .6s infinite;
+}
+
+.rock {
+  margin-left: -6px;
+  background-image: url("assets/gesture-2@2x.png");
 }
 
 .tip {
