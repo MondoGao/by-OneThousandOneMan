@@ -11,6 +11,10 @@ const LabelInput = () => {
         <AlternativeLabel>没有选择我</AlternativeLabel>
         <AlternativeLabel>高冷</AlternativeLabel>
       </p>
+      <div className={styles['input-wrapper']}>
+        <input className={styles['label-input']} type="text"/>
+        <span/>
+      </div>
     </div>
   )
 }

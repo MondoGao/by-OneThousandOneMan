@@ -19,3 +19,34 @@
   font-size: 22px;
   background: url("assets/alter-label-bg@2x.png") no-repeat center / contain;
 }
+
+.input-wrapper {
+  position: relative;
+  margin: 20px auto 0;
+  width: 512px;
+  height: 79px;
+  padding: 10px;
+  padding-right: 83px;
+  font-size: 30px;
+  color: #5f5f5f;
+  background: url("assets/input-bg@2x.png") no-repeat center / contain;
+  span {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 9px;
+    width: 73px;
+    height: 61px;
+    background: url("assets/btn-ok@2x.png") no-repeat center / 100% 100%;
+  }
+}
+
+.label-input {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 35px;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
