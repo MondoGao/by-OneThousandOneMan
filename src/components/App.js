@@ -7,8 +7,14 @@ import UserPage from 'components/UserPage'
 import Loading from 'components/Loading'
 
 const App = ({location, isLoading = true}) => {
+  
   if (isLoading) {
-    return       <Loading/>
+    return (
+      <div>
+      <Loading/>
+      <p className="copyright">2017© Powered by Bingyan Studio</p>
+    </div>
+    )
   }
   
   return (
