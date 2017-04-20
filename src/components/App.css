@@ -25,3 +25,27 @@ p, h2, h3, h4, h5, h6 {
     font-size: 20px;
     color: #3b3b3b;
 }
+
+.fade-appear {
+    opacity: 0;
+}
+.fade-appear.fade-appear-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.fade-leave {
+    opacity: 1;
+}
+.fade-leave.fade-leave-active {
+    opacity: 0;
+    transition: opacity 500ms;
+}
