@@ -1,0 +1,54 @@
+.loading {
+  padding-top: 485px;
+  text-align: center;
+}
+
+.heart-wrapper {
+  margin-right: -8px;
+}
+
+@keyframes flyup {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
+.float-heart {
+  display: inline-block;
+  margin-right: 8px;
+  width: 32px;
+  height: 26px;
+  background: url("assets/love@2x.png") no-repeat center / contain;
+  animation: flyup 1.2s infinite;
+  opacity: 0;
+}
+
+@keyframes swing {
+  from {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  from {
+    transform: translateY(0);
+  }
+}
+
+.hand {
+  margin-top: 20px;
+  width: 112px;
+  height: 152px;
+  animation: swing .6s infinite;
+}
+
+.tip {
+  margin-top: 42px;
+  color: #f8f5c1;
+  font-size: 30px;
+}
