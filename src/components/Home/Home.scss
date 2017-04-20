@@ -1,0 +1,65 @@
+.home {
+  padding-top: 245px;
+  text-align: center;
+}
+
+.text-container {
+  display: inline-block;
+  position: relative;
+  width: 468px;
+  height: 437px;
+}
+
+.text, .top-tip, .bottom-tip {
+  display: inline-block;
+  position: absolute;
+  background: no-repeat center / contain;
+}
+
+.top-tip, .bottom-tip {
+  width: 161px;
+  height: 110px;
+}
+.top-tip {
+  top: 71px;
+  right: 0;
+  background-image: url("assets/top-tip@2x.png");
+}
+
+.bottom-tip {
+  left: 0;
+  top: 261px;
+  background-image: url("assets/bottom-tip@2x.png");
+}
+
+$textArr: 'yi', 'qian', 'ge', 'dan', 'shen', 'li', 'you';
+$widthArr: 52px, 70px, 137px, 120px, 144px, 124px, 106px;
+$heightArr: 16px, 99px, 93px, 223px, 214px, 101px, 98px;
+$topArr: 325px, 277px, 389px, 245px, 468px, 466px, 579px;
+$leftArr: 145px, 231px, 153px, 319px, 298px, 452px, 462px;
+
+@for $i from 1 through length($textArr) {
+  .text-#{nth($textArr, $i)} {
+    width: nth($widthArr, $i);
+    height: nth($heightArr, $i);
+    top: nth($topArr, $i) - 245px;
+    left: nth($leftArr, $i) - 145px;
+    background-image: url("assets/text-#{nth($textArr, $i)}@2x.png");
+  }
+}
+
+.button-container {
+  margin-top: 268px;
+  h4 span {
+    vertical-align: middle;
+  }
+  p {
+    margin-top: 20px;
+    color: #fffbcb;
+    font-size: 26px;
+  }
+}
+
+.btn {
+  margin: 0 10px;
+}

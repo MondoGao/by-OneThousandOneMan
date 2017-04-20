@@ -6,6 +6,7 @@ import './App.css'
 
 import UserPage from 'components/UserPage'
 import Loading from 'components/Loading'
+import Home from 'components/Home'
 
 const App = ({location, isLoading = false}) => {
   return (
@@ -18,7 +19,7 @@ const App = ({location, isLoading = false}) => {
       transitionLeaveTimeout={500}>
       {isLoading ?
         <Loading/> :
-        <Route path="/" component={UserPage}/>}
+        <Route path="/" component={Home}/>}
       <p className="copyright">2017© Powered by Bingyan Studio</p>
     </CSSTransitionGroup>
   )
