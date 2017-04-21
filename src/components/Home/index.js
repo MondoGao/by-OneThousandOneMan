@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import styles from './Home.scss'
 
 import Button from 'components/Button'
 import TitleOrnament from 'components/TitleOrnament'
 
-const Title = () => {
+const Home = () => {
   const textArr = ['yi', 'qian', 'ge', 'dan', 'shen', 'li', 'you']
   const texts = textArr.map(text => <span
     key={text}
@@ -23,7 +24,9 @@ const Title = () => {
           <TitleOrnament/>
           <Button
             className={styles['btn']}
-            type="flatten">生成标签墙</Button>
+            type="flatten">
+            <Link to={`/users`}>生成标签墙</Link>
+          </Button>
           <TitleOrnament isReversed/>
         </h4>
         <p>让朋友告诉我单身的原因</p>
@@ -32,4 +35,4 @@ const Title = () => {
   )
 }
 
-export default Title
+export default Home
