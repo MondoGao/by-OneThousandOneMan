@@ -6,6 +6,7 @@
   "author": "Mondo <mondogao@gmail.com>",
   "license": "GPL",
   "dependencies": {
+    "animate.css": "^3.5.2",
     "normalize.css": "^6.0.0",
     "normalizr": "^3.2.2",
     "photomosaic.js": "^1.4.1",

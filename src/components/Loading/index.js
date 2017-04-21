@@ -1,4 +1,5 @@
 import React from 'react'
+import { CSSTransitionFirstChild } from 'components/FirstChild'
 
 import styles from './Loading.scss'
 
