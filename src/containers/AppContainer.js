@@ -8,7 +8,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   loadingComplete() {
-    dispatch(actions.loadingComplete())
+    dispatch(actions.toggleLoading(false))
   }
 })
 

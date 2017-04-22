@@ -3,8 +3,8 @@ import * as consts from 'actions/consts'
 
 const isLoading = (state = true, action) => {
   switch (action.type) {
-    case consts.LOADING_COMPLETE:
-      return false
+    case consts.TOGGLE_LOADING:
+      return action.payload
     default:
       return state
   }

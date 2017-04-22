@@ -1,6 +1,10 @@
 import * as consts from 'actions/consts'
 
-export const loadingComplete = () => ({
-  type: consts.LOADING_COMPLETE,
-  payload: true
+/**
+ *
+ * @param {boolean} state
+ */
+export const toggleLoading = state => ({
+  type: consts.TOGGLE_LOADING,
+  payload: state
 })
