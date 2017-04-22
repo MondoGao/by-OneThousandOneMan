@@ -1,12 +1,8 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
-import { CSSTransitionGroup } from 'react-transition-group'
 import 'normalize.css'
 import './App.css'
 import 'styles/transitions.css'
 import 'styles/animations.css'
-
-import styles from './App.scss'
 
 import UserPage from 'components/UserPage'
 import Loading from 'components/Loading'
@@ -14,7 +10,7 @@ import Home from 'components/Home'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
 import TransitionRoute from 'components/TransitionRoute'
 
-const App = ({location, isLoading = false}) => {
+const App = ({ isLoading = true, loadingComplete }) => {
   const transitionSettings = {
     transitionName         : {
       appear      : 'fadeIn',
@@ -33,7 +29,7 @@ const App = ({location, isLoading = false}) => {
   return (
     <div>
       <CSSTransitionFirstChild {...transitionSettings}>
-        {isLoading ? <Loading key="loading"/> : null}
+        {isLoading ? <Loading key="loading" loadingComplete={loadingComplete}/> : null}
       </CSSTransitionFirstChild>
       {isLoading ? null :
         <div>

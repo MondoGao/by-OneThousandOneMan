@@ -2,6 +2,9 @@ import React from 'react'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
 
 import styles from './Loading.scss'
+import { loadingAssets } from 'scripts/utils'
+
+import loadingList from 'assets/loadingList'
 
 class Loading extends React.Component {
   constructor(props) {
@@ -24,6 +27,13 @@ class Loading extends React.Component {
     this.setState(prevState => ({
       ellipsisNum: (prevState.ellipsisNum + 1) % 4
     }))
+  }
+  
+  loadAssets = () => {
+    loadingAssets(loadingList)
+      .then(() => {
+        this.props.loadingComplete()
+      })
   }
   
   render() {
@@ -55,6 +65,7 @@ class Loading extends React.Component {
     this.setState({
       timer: setInterval(this.toggleLoadingEllipsis, 300)
     })
+    this.loadAssets()
   }
   
   componentWillUnmount() {

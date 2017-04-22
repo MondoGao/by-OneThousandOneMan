@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 import myself from 'reducers/myself'
+import ui from 'reducers/ui'
 
 const combinedReducer = combineReducers({
-  myself
+  myself,
+  ui
 })
 
 export default combinedReducer

@@ -9,7 +9,7 @@ import { AppContainer } from 'react-hot-loader'
 
 import reducers from 'reducers/index'
 
-import App from 'components/App';
+import App from 'containers/AppContainer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
