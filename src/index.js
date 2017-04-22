@@ -53,4 +53,11 @@ if (module.hot) {
       </Router>
     )
   })
+  module.hot.accept('containers/AppContainer', () => {
+    render(
+      <Router>
+        <Route path="/" component={App}/>
+      </Router>
+    )
+  })
 }
