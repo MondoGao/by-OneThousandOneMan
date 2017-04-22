@@ -14,16 +14,19 @@ const App = ({ isLoading = true, loadingComplete }) => {
   const transitionSettings = {
     transitionName         : {
       appear      : 'fadeIn',
-      appearActive: 'animated-500-ms',
+      appearActive: 'animated',
       enter       : 'fadeIn',
-      enterActive : 'animated-500-ms',
+      enterActive : 'animated',
       leave       : 'fade-out-absolute',
-      leaveActive : 'animated-500-ms'
+      leaveActive : 'animated'
     },
     transitionAppear       : true,
     transitionAppearTimeout: 500,
     transitionEnterTimeout : 500,
     transitionLeaveTimeout : 500,
+    style: {
+      animationDuration: '500ms'
+    }
   }
   
   return (
@@ -36,13 +39,13 @@ const App = ({ isLoading = true, loadingComplete }) => {
           <TransitionRoute
             path="/users"
             key="/users"
-            transitionChildren={<UserPage/>}
+            transitionChildren={<UserPage style={transitionSettings.style}/>}
             {...transitionSettings}/>
           <TransitionRoute
             exact={true}
             path="/"
             key="/home"
-            transitionChildren={<Home/>}
+            transitionChildren={<Home style={transitionSettings.style}/>}
             {...transitionSettings}/>
         </div>}
       <p className="copyright">2017© Powered by Bingyan Studio</p>

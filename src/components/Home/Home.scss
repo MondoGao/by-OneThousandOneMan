@@ -10,23 +10,23 @@
   height: 437px;
 }
 
-.text, .top-tip, .bottom-tip {
+.text {
   display: inline-block;
   position: absolute;
   background: no-repeat center / contain;
 }
 
-.top-tip, .bottom-tip {
+.text-top-tip, .text-bottom-tip {
   width: 161px;
   height: 110px;
 }
-.top-tip {
+.text-top-tip {
   top: 71px;
   right: 0;
   background-image: url("assets/top-tip@2x.png");
 }
 
-.bottom-tip {
+.text-bottom-tip {
   left: 0;
   top: 261px;
   background-image: url("assets/bottom-tip@2x.png");

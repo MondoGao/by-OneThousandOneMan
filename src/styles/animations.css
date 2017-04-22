@@ -1,10 +1,5 @@
 @import "~animate.css";
 
-.animated-500-ms {
-    animation-duration: .5s;
-    animation-fill-mode: both;
-}
-
 .fade-out-absolute {
     position: absolute !important;
     width: 100%;

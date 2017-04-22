@@ -13,7 +13,7 @@ class UserPage extends React.Component {
     let isMyself = false
     
     return (
-      <div className={styles['user-page']}>
+      <div className={styles['user-page']} style={this.props.style}>
         <UserAvatar className={styles['avatar']} bordered/>
         <LabelWall/>
         {isMyself ?
