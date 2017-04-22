@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import styles from './UserPage.scss'
 
@@ -36,7 +37,7 @@ class UserPage extends React.Component {
         <CSSTransitionFirstChild
           {...transitionSettings}
           transitionName={{
-            appear: 'bounceInUp',
+            appear: 'zoomIn',
             appearActive: 'animated'
           }}>
           <section>
@@ -44,7 +45,9 @@ class UserPage extends React.Component {
               <Button className={styles['btn-myself']}>呼朋唤友求标签</Button> :
               [
                 <LabelInput key="input"/>,
-                <Button key="btn" className={styles['btn-other']}>我也要建标签墙</Button>
+                <Button key="btn" className={styles['btn-other']}>
+                  <Link to={`/`}>我也要建标签墙</Link>
+                </Button>
               ]
             }
             <RecentVisitor/>
