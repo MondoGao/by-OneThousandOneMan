@@ -2,6 +2,7 @@
 
 .fade-out-absolute {
     position: absolute !important;
+    top: 0;
     width: 100%;
     animation-name: fadeOut;
 }
