@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { CSSTransitionGroup } from 'react-transition-group'
 import 'normalize.css'
 import './App.css'
 import 'styles/transitions.css'
@@ -9,8 +10,9 @@ import UserPage from 'components/UserPage'
 import Loading from 'components/Loading'
 import Home from 'components/Home'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
+import TransitionRoute from 'components/TransitionRoute'
 
-const App = ({location, isLoading = true}) => {
+const App = ({location, isLoading = false}) => {
   return (
     <div>
       <CSSTransitionFirstChild
@@ -29,17 +31,41 @@ const App = ({location, isLoading = true}) => {
         {isLoading ? <Loading key="loading"/> : null}
       </CSSTransitionFirstChild>
       {isLoading ? null :
-        <Switch>
-          <Route
-            location={location}
+        <div>
+          <TransitionRoute
             path="/users"
-            component={UserPage}/>
-          <Route
-            location={location}
+            key="/users"
+            transitionChildren={<UserPage/>}
+            transitionName={{
+              appear: 'fadeIn',
+              appearActive: 'animated-500-ms',
+              enter: 'fadeIn',
+              enterActive: 'animated-500-ms',
+              leave: 'fadeOut',
+              leaveActive: 'animated-500-ms'
+            }}
+            transitionAppear={true}
+            transitionAppearTimeout={500}
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}/>
+          <TransitionRoute
             exact={true}
             path="/"
-            component={Home}/>
-        </Switch>}
+            key="/home"
+            transitionChildren={<Home/>}
+            transitionName={{
+              appear: 'fadeIn',
+              appearActive: 'animated-500-ms',
+              enter: 'fadeIn',
+              enterActive: 'animated-500-ms',
+              leave: 'fadeOut',
+              leaveActive: 'animated-500-ms'
+            }}
+            transitionAppear={true}
+            transitionAppearTimeout={500}
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}/>
+        </div>}
       <p className="copyright">2017© Powered by Bingyan Studio</p>
     </div>
   )
