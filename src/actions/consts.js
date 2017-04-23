@@ -1,2 +1,4 @@
 export const TOGGLE_LOADING = 'TOGGLE_LOADING'
 export const REFRESH_USER = 'REFRESH_USER'
+export const APPEND_LABEL = 'APPEND_LABEL'
+export const NEW_LABEL_SHOWED = 'NEW_LABEL_SHOWED'

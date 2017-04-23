@@ -3,6 +3,32 @@ import * as consts from 'actions/consts'
 
 const users = (state = {}, action) => {
   switch (action.type) {
+    case consts.APPEND_LABEL: {
+      const user = state.entities.users[action.payload.userId]
+      const newLabels = user.newLabels ? user.newLabels : []
+      
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...user,
+          newLabels: [
+            ...newLabels,
+            action.payload.labelText
+          ]
+        }
+      }
+    }
+    case consts.NEW_LABEL_SHOWED: {
+      const user = state.entities.users[action.payload.userId]
+  
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...user,
+          newLabels: []
+        }
+      }
+    }
     case consts.REFRESH_USER:
       return {
         ...state,

@@ -2,7 +2,7 @@ import * as consts from 'actions/consts'
 import * as sources from 'sources'
 
 /**
- * 切换加载状态
+ * {creator} 切换加载状态
  * @param {boolean} state
  */
 export const toggleLoading = state => ({
@@ -11,7 +11,7 @@ export const toggleLoading = state => ({
 })
 
 /**
- * 获取用户信息
+ * {thunk} 获取用户信息
  * @param {string} id
  * @return {Promise}
  */
@@ -24,3 +24,36 @@ export const refreshUser = id => (dispatch, getState) => {
       })
     })
 }
+
+/**
+ * {thunk} 增加新标签
+ * @param {string} userId
+ * @param {string} labelText
+ * @return {Promise}
+ */
+export const appendLabel = (userId, labelText) => dispatch => {
+  /*Todo: Fake Operate*/
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, 2000)
+  })
+    .then(() => {
+      dispatch({
+        type: consts.APPEND_LABEL,
+        payload: {
+          userId,
+          labelText
+        }
+      })
+    })
+}
+
+/**
+ * {creator} 完成显示新添加的标签
+ * @param {string} userId
+ */
+export const showedNewLabel = userId => ({
+  type: consts.NEW_LABEL_SHOWED,
+  payload: {
+    userId
+  }
+})
