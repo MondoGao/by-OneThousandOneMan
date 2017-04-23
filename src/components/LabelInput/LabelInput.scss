@@ -7,6 +7,18 @@
   padding-left: 29px;
 }
 
+@keyframes bling {
+  from {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
 .alter-label {
   display: inline-block;
   margin-right: 29px;
@@ -19,7 +31,7 @@
   background: url("assets/alter-label-bg@2x.png") no-repeat center / contain;
   transition: transform .3s;
   &.active {
-    transform: translateY(-10px);
+    animation: bling .425s ease;
   }
 }
 

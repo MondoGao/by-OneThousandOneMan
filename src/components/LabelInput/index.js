@@ -12,7 +12,7 @@ class LabelInput extends React.Component {
   }
   
   handleChange = e => {
-    if (e.target.value.length < 11) {
+    if (e.target.value.length < 16) {
       this.setState({
         inputValue: e.target.value
       })
@@ -25,21 +25,27 @@ class LabelInput extends React.Component {
     })
   }
   
+  handleKeyPress = e => {
+    if (e.key === 'Enter' && this.state.inputValue.length > 0) {
+      this.handleSubmit()
+    }
+  }
+  
+  handleSubmit = () => {
+    alert(this.state.inputValue)
+  }
+  
   render() {
     const alterLabelTexts = ['家穷人丑', '要求太高', '没有选择我', '高冷']
-    const alterLabels = alterLabelTexts.map((text, input) => {
-      console.log(text === this.state.inputValue)
-  
-      return (
-        <AlternativeLabel
-          active={text === this.state.inputValue}
-          onClick={this.handleLabelClick}
-          key={input}
-        >
-          {text}
-        </AlternativeLabel>
-      )
-    })
+    const alterLabels = alterLabelTexts.map((text, input) => (
+      <AlternativeLabel
+        active={text === this.state.inputValue}
+        onClick={this.handleLabelClick}
+        key={input}
+      >
+        {text}
+      </AlternativeLabel>
+    ))
     
     return (
       <div className={styles['label-input-container']}>
@@ -52,8 +58,10 @@ class LabelInput extends React.Component {
             type="text"
             placeholder="来啊！输入标签啊！"
             value={this.state.inputValue}
-            onChange={this.handleChange}/>
-          <span/>
+            onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
+          />
+          <span onClick={this.handleSubmit}/>
         </div>
       </div>
     )
