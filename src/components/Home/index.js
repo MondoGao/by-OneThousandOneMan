@@ -7,7 +7,7 @@ import Button from 'components/Button'
 import TitleOrnament from 'components/TitleOrnament'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
 
-const Home = ({ style }) => {
+const Home = ({ style = {}, myself = {} }) => {
   const transitionSettings = {
     transitionAppear: true,
     transitionAppearTimeout: 1600,
@@ -60,7 +60,9 @@ const Home = ({ style }) => {
             <Button
               className={styles['btn']}
               type="flatten">
-              <Link to={`/users`}>生成标签墙</Link>
+              <Link to={`/users/${myself.id}`}>
+                {myself.hasWall ? '查看标签墙' : '生成标签墙'}
+              </Link>
             </Button>
             <TitleOrnament isReversed/>
           </h4>

@@ -6,7 +6,7 @@ import 'styles/animations.css'
 
 import UserPage from 'components/UserPage'
 import Loading from 'components/Loading'
-import Home from 'components/Home'
+import HomeContainer from 'containers/HomeContainer'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
 import TransitionRoute from 'components/TransitionRoute'
 
@@ -45,7 +45,7 @@ const App = ({ isLoading = true, loadingComplete }) => {
             exact={true}
             path="/"
             key="/home"
-            transitionChildren={Home}
+            transitionChildren={HomeContainer}
             {...transitionSettings}/>
         </div>}
       <p className="copyright">2017© Powered by Bingyan Studio</p>
