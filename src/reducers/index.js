@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import myself from 'reducers/myself'
 import ui from 'reducers/ui'
+import entities from 'reducers/entities'
 
-const combinedReducer = combineReducers({
+export default combineReducers({
+  entities,
   myself,
   ui
 })
-
-export default combinedReducer

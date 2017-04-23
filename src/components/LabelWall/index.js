@@ -88,7 +88,7 @@ class LabelWall extends React.Component {
   
     const labelPointer = this.state.labelPointer++
   
-    if (this.state.labelPointer >= this.props.labelIds.length) {
+    if (this.state.labelPointer >= this.props.labels.length) {
       this.setState({
         labelPointer: 0
       })
@@ -98,7 +98,7 @@ class LabelWall extends React.Component {
       key={timer}
       id={'label-' + timer}
       className={`${styles['label']} ${styles[`track-${trackNum}`]}`}>
-      {this.props.labelIds[labelPointer]}
+      {this.props.labels[labelPointer]}
     </span>
     
     this.setState(prevState => ({
@@ -122,7 +122,7 @@ class LabelWall extends React.Component {
   }
   
   render() {
-    const hasLabel = this.props.labelIds.length > 0
+    const hasLabel = this.props.labels.length > 0
     
     return (
       <div className={styles['wall-container']}>
@@ -155,7 +155,7 @@ class LabelWall extends React.Component {
 
 
 LabelWall.defaultProps = {
-  labelIds: ['要求太高了', '心疼我家的傻儿子！！！', '没有选择我', '单身2017', '等着我脱单后你再脱', '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊']
+  labels: ['要求太高了', '心疼我家的傻儿子！！！', '没有选择我', '单身2017', '等着我脱单后你再脱', '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊']
 }
 
 export default LabelWall
