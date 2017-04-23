@@ -13,12 +13,12 @@ import { CSSTransitionFirstChild } from 'components/FirstChild'
 
 class UserPage extends React.Component {
   render() {
-    if (!this.props.user.id) {
+    if (!this.props.user) {
       return null
     }
     
     let isMyself = this.props.myself.id === this.props.user.id
-  
+    
     const transitionSettings = {
       transitionAppear: true,
       transitionAppearTimeout: 1300,
@@ -28,7 +28,7 @@ class UserPage extends React.Component {
         animationDelay: '300ms'
       }
     }
-  
+    
     return (
       <CSSTransitionGroup
         transitionName={{
@@ -73,18 +73,29 @@ class UserPage extends React.Component {
                   </Button>
                 ]
               }
-              <RecentVisitor visitorAvatarSrcs={this.props.user.visitorAvatars} visitorNum={this.props.user.visitorNum}/>
+              <RecentVisitor visitorAvatarSrcs={this.props.user.visitorAvatars}
+                             visitorNum={this.props.user.visitorNum}/>
             </section>
           </CSSTransitionFirstChild>
         </div>
       </CSSTransitionGroup>
     )
   }
+  
+  componentDidMount() {
+    if (!this.props.user) {
+      this.props.loadUser()
+        .catch(err => {
+          alert('加载失败，请刷新重试')
+        })
+    }
+  }
 }
 
 UserPage.defaultProps = {
-  user: {},
-  myself:{}
+  user: null,
+  myself: null,
+  loadUser() {}
 }
 
 export default UserPage
