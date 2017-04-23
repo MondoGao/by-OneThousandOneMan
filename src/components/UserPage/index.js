@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 import styles from './UserPage.scss'
 
@@ -29,38 +30,53 @@ class UserPage extends React.Component {
     }
   
     return (
-      <div className={styles['user-page']} style={this.props.style}>
-        <CSSTransitionFirstChild
-          {...transitionSettings}
-          transitionName={{
-            appear: 'bounceInDown',
-            appearActive: 'animated'
-          }}>
-          <section style={transitionSettings.style}>
-            <UserAvatar className={styles['avatar']} src={this.props.user.avatar} bordered/>
-            <LabelWall labels={this.props.user.labels}/>
-          </section>
-        </CSSTransitionFirstChild>
-        <CSSTransitionFirstChild
-          {...transitionSettings}
-          transitionName={{
-            appear: 'zoomIn',
-            appearActive: 'animated'
-          }}>
-          <section style={transitionSettings.style}>
-            {isMyself ?
-              <Button className={styles['btn-myself']}>呼朋唤友求标签</Button> :
-              [
-                <LabelInput key="input"/>,
-                <Button key="btn" className={styles['btn-other']}>
-                  <Link to={`/`}>我也要建标签墙</Link>
-                </Button>
-              ]
-            }
-            <RecentVisitor visitorAvatarSrcs={this.props.user.visitorAvatars} visitorNum={this.props.user.visitorNum}/>
-          </section>
-        </CSSTransitionFirstChild>
-      </div>
+      <CSSTransitionGroup
+        transitionName={{
+          leave: 'fade-out-absolute',
+          leaveActive: 'animated'
+        }}
+        transitionEnter={false}
+        transitionLeaveTimeout={500}
+        component="div"
+        className={styles['user-page']}
+        style={this.props.style}>
+        <div key={this.props.user.id} style={{
+          animationDuration: '500ms'
+        }}>
+          <CSSTransitionFirstChild
+            {...transitionSettings}
+            transitionName={{
+              appear: 'bounceInDown',
+              appearActive: 'animated'
+            }}>
+            <section style={transitionSettings.style}>
+              <UserAvatar className={styles['avatar']} src={this.props.user.avatar} bordered/>
+              <LabelWall labels={this.props.user.labels}/>
+            </section>
+          </CSSTransitionFirstChild>
+          <CSSTransitionFirstChild
+            {...transitionSettings}
+            transitionName={{
+              appear: 'zoomIn',
+              appearActive: 'animated'
+            }}>
+            <section style={transitionSettings.style}>
+              {isMyself ?
+                <Button className={styles['btn-myself']}>呼朋唤友求标签</Button> :
+                [
+                  <LabelInput key="input"/>,
+                  <Button key="btn" className={styles['btn-other']}>
+                    {this.props.myself.hasWall ?
+                      <Link to={`/users/${this.props.myself.id}`}>查看我的标签墙</Link> :
+                      <Link to={'/'}>我也要建标签墙</Link>}
+                  </Button>
+                ]
+              }
+              <RecentVisitor visitorAvatarSrcs={this.props.user.visitorAvatars} visitorNum={this.props.user.visitorNum}/>
+            </section>
+          </CSSTransitionFirstChild>
+        </div>
+      </CSSTransitionGroup>
     )
   }
 }

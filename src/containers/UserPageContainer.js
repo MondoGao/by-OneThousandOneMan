@@ -3,7 +3,7 @@ import UserPage from 'components/UserPage'
 
 const mapState = (state, ownProps) => ({
   user: state.entities.users[ownProps.match.params.id],
-  myself: state.myself
+  myself: state.entities.users[state.myself.id]
 })
 
 const mapDispatch = dispatch => ({})
