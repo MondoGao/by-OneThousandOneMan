@@ -13,7 +13,7 @@ import { CSSTransitionFirstChild } from 'components/FirstChild'
 
 class UserPage extends React.Component {
   render() {
-    if (!this.props.user) {
+    if (!this.props.user.id) {
       return null
     }
     
