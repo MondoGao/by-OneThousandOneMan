@@ -13,10 +13,10 @@
       "visitorAvatars": [
         "/assets/avatar.jpg",
         "/assets/avatar2.jpg",
-        "/assets/avatar3.jpg",
+        "/assets/avatar3.png",
         "/assets/avatar.jpg",
         "/assets/avatar2.jpg",
-        "/assets/avatar3.jpg"
+        "/assets/avatar3.png"
       ],
       "visitorNum": 12,
       "avatar": "/assets/avatar.jpg",
@@ -33,11 +33,11 @@
         "喵喵喵？你不是脱了吗"
       ],
       "visitorAvatars": [
-        "/assets/avatar3.jpg",
+        "/assets/avatar3.png",
         "/assets/avatar.jpg",
-        "/assets/avatar3.jpg",
+        "/assets/avatar3.png",
         "/assets/avatar.jpg",
-        "/assets/avatar3.jpg",
+        "/assets/avatar3.png",
         "/assets/avatar.jpg"
       ],
       "visitorNum": 6,

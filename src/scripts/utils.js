@@ -21,6 +21,9 @@ export const loadingAssets = assetsArr => {
       img.addEventListener('load', e => {
         resolve()
       })
+      img.addEventListener('error', e => {
+        reject(e)
+      })
     })
   )
   

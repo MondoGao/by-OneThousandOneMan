@@ -1,1 +1,2 @@
 export const TOGGLE_LOADING = 'TOGGLE_LOADING'
+export const REFRESH_USER = 'REFRESH_USER'

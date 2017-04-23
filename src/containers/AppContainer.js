@@ -3,12 +3,16 @@ import App from 'components/App'
 import * as actions from 'actions'
 
 const mapState = state => ({
-  isLoading: state.ui.isLoading
+  isLoading: state.ui.isLoading,
+  myself: state.myself
 })
 
 const mapDispatch = dispatch => ({
   loadingComplete() {
     dispatch(actions.toggleLoading(false))
+  },
+  loadMyself(id) {
+    return dispatch(actions.refreshUser(id))
   }
 })
 
