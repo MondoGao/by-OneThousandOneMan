@@ -39,7 +39,8 @@ class UserPage extends React.Component {
         transitionLeaveTimeout={500}
         component="div"
         className={styles['user-page']}
-        style={this.props.style}>
+        style={this.props.style}
+      >
         <div key={this.props.user.id} style={{
           animationDuration: '500ms'
         }}>

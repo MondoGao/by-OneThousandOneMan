@@ -48,6 +48,17 @@ module.exports = WebpackMerge(baseConfig, {
     publicPath: '/',
     port: 8080,
     host: '0.0.0.0',
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8081',
+        pathRewrite: {
+          '/api': ''
+        }
+      },
+      '/assets': {
+        target: 'http://localhost:8081'
+      }
+    },
     compress: true,
     historyApiFallback: true
   }
