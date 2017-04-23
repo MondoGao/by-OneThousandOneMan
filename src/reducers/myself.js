@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
-const id = (state = -1, action) => {
+/*Todo: Fake Data*/
+const id = (state = 'myself', action) => {
   switch (action.type) {
     default:
       return state

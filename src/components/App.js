@@ -39,13 +39,13 @@ const App = ({ isLoading = true, loadingComplete }) => {
           <TransitionRoute
             path="/users"
             key="/users"
-            transitionChildren={<UserPage style={transitionSettings.style}/>}
+            transitionChildren={UserPage}
             {...transitionSettings}/>
           <TransitionRoute
             exact={true}
             path="/"
             key="/home"
-            transitionChildren={<Home style={transitionSettings.style}/>}
+            transitionChildren={Home}
             {...transitionSettings}/>
         </div>}
       <p className="copyright">2017© Powered by Bingyan Studio</p>

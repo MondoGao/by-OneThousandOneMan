@@ -4,15 +4,20 @@ import { CSSTransitionFirstChild } from 'components/FirstChild'
 
 const TransitionRoute = props => (
   <Route
-    {...props}
-    children={({ match }) => (
-      <CSSTransitionFirstChild {...props}>
-        {match ? (
-          props.exact ? (
-            match.isExact ?
-              props.transitionChildren : null) : props.transitionChildren) : null}
-      </CSSTransitionFirstChild>
-    )}
+    path={props.path}
+    children={(route) => {
+      const Child = props.transitionChildren
+      const ChildNode = <Child style={props.style} {...route}/>
+      
+      return (
+        <CSSTransitionFirstChild {...props}>
+          {route.match ? (
+            props.exact ? (
+              route.match.isExact ?
+                ChildNode : null) : ChildNode) : null}
+        </CSSTransitionFirstChild>
+      )
+    }}
   />
 )
 
