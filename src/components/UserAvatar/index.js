@@ -4,18 +4,20 @@ import PhotoMosaic from 'scripts/photomosaic'
 import styles from './UserAvatar.scss'
 
 class UserAvatar extends React.Component {
-  handleImgLoad = (e) => {
-    new PhotoMosaic({
-      image        : e.target,
-      targetElement: this.avatarDiv,
-      width        : e.target.clientWidth,
-      height       : e.target.clientHeight,
-      tileHeight   : this.props.blurLevel * 5,
-      tileWidth    : this.props.blurLevel * 5,
-      tileShape    : 'rectangle',
-      opacity      : 1,
-      defaultBackground: '#fffbcb'
-    })
+  handleImgLoad = e => {
+    if (this.props.blurLevel > 0) {
+      new PhotoMosaic({
+        image        : e.target,
+        targetElement: this.avatarDiv,
+        width        : e.target.clientWidth,
+        height       : e.target.clientHeight,
+        tileHeight   : this.props.blurLevel * 5,
+        tileWidth    : this.props.blurLevel * 5,
+        tileShape    : 'rectangle',
+        opacity      : 1,
+        defaultBackground: '#fffbcb'
+      })
+    }
   }
   
   render() {

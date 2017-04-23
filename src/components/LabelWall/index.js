@@ -155,7 +155,7 @@ class LabelWall extends React.Component {
 
 
 LabelWall.defaultProps = {
-  labels: ['要求太高了', '心疼我家的傻儿子！！！', '没有选择我', '单身2017', '等着我脱单后你再脱', '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊']
+  labels: []
 }
 
 export default LabelWall

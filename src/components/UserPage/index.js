@@ -12,7 +12,11 @@ import { CSSTransitionFirstChild } from 'components/FirstChild'
 
 class UserPage extends React.Component {
   render() {
-    let isMyself = false
+    if (!this.props.user) {
+      return null
+    }
+    
+    let isMyself = this.props.myself.id === this.props.user.id
   
     const transitionSettings = {
       transitionAppear: true,
@@ -30,8 +34,8 @@ class UserPage extends React.Component {
             appearActive: 'animated'
           }}>
           <section>
-            <UserAvatar className={styles['avatar']} bordered/>
-            <LabelWall/>
+            <UserAvatar className={styles['avatar']} src={this.props.user.avatar} bordered/>
+            <LabelWall labels={this.props.user.labels}/>
           </section>
         </CSSTransitionFirstChild>
         <CSSTransitionFirstChild
@@ -50,12 +54,17 @@ class UserPage extends React.Component {
                 </Button>
               ]
             }
-            <RecentVisitor/>
+            <RecentVisitor visitorAvatarSrcs={this.props.user.visitorAvatars} visitorNum={this.props.user.visitorNum}/>
           </section>
         </CSSTransitionFirstChild>
       </div>
     )
   }
+}
+
+UserPage.defaultProps = {
+  user: {},
+  myself:{}
 }
 
 export default UserPage

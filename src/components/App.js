@@ -4,7 +4,7 @@ import './App.css'
 import 'styles/transitions.css'
 import 'styles/animations.css'
 
-import UserPage from 'components/UserPage'
+import UserPageContainer from 'containers/UserPageContainer'
 import Loading from 'components/Loading'
 import HomeContainer from 'containers/HomeContainer'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
@@ -37,9 +37,9 @@ const App = ({ isLoading = true, loadingComplete }) => {
       {isLoading ? null :
         <div>
           <TransitionRoute
-            path="/users"
+            path="/users/:id"
             key="/users"
-            transitionChildren={UserPage}
+            transitionChildren={UserPageContainer}
             {...transitionSettings}/>
           <TransitionRoute
             exact={true}
