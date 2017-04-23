@@ -27,9 +27,19 @@ class LabelInput extends React.Component {
   
   render() {
     const alterLabelTexts = ['家穷人丑', '要求太高', '没有选择我', '高冷']
-    const alterLabels = alterLabelTexts.map((text, input) => (
-      <AlternativeLabel onClick={this.handleLabelClick} key={input}>{text}</AlternativeLabel>
-    ))
+    const alterLabels = alterLabelTexts.map((text, input) => {
+      console.log(text === this.state.inputValue)
+  
+      return (
+        <AlternativeLabel
+          active={text === this.state.inputValue}
+          onClick={this.handleLabelClick}
+          key={input}
+        >
+          {text}
+        </AlternativeLabel>
+      )
+    })
     
     return (
       <div className={styles['label-input-container']}>
@@ -50,9 +60,9 @@ class LabelInput extends React.Component {
   }
 }
 
-const AlternativeLabel = ({ animationDelay, children, onClick }) => {
+const AlternativeLabel = ({ animationDelay, children = null, onClick, active = false }) => {
   return (
-    <span className={styles['alter-label']} onClick={onClick}>
+    <span className={`${styles['alter-label']} ${active ? styles['active'] : ''}`} onClick={onClick}>
       {children}
     </span>
   )

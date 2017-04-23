@@ -1,11 +1,10 @@
 .label-input-container {
   margin-top: 56px;
   width: 100%;
-  overflow-x: hidden;
 }
 
 .alter-label-container {
-  margin-right: -29px;
+  padding-left: 29px;
 }
 
 .alter-label {
@@ -18,6 +17,10 @@
   font-weight: bold;
   font-size: 22px;
   background: url("assets/alter-label-bg@2x.png") no-repeat center / contain;
+  transition: transform .3s;
+  &.active {
+    transform: translateY(-10px);
+  }
 }
 
 .input-wrapper {
