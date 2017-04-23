@@ -7,10 +7,11 @@ class LabelWall extends React.Component {
   constructor(props) {
     super(props)
     
+    this.labelQueue = []
+    
     this.state = {
       existLabels: [],
       clearTimers: [],
-      labelPointer: 0,
       addTimer: null,
       wallRight: 0,
       wallLeft: 0
@@ -65,6 +66,13 @@ class LabelWall extends React.Component {
     }
   }
   
+  appendLabels = () => {
+    this.labelQueue = [
+      ...this.labelQueue,
+      ...this.props.labels
+    ]
+  }
+  
   /**
    * 创建并插入 label
    */
@@ -73,12 +81,15 @@ class LabelWall extends React.Component {
     
     let trackNum = Math.round(Math.random() * 5) + 1
     let label = null
+    const again = () => {
+      this.setState({
+        addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 500)
+      })
+    }
     
     for(let i = 0; i < 6 && this.isTrackOccupied(trackNum); i++) {
       if (i >= 5) {
-        this.setState({
-          addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 500)
-        })
+        again()
         return
       }
       trackNum = Math.round(Math.random() * 5) + 1
@@ -86,23 +97,21 @@ class LabelWall extends React.Component {
   
     let timer = setTimeout(() => this.removeLabel(label), 5000)
   
-    const labelPointer = this.state.labelPointer++
-  
-    if (this.state.labelPointer >= this.props.labels.length) {
-      this.setState({
-        labelPointer: 0
-      })
+    const labelText = this.labelQueue.shift()
+    
+    if (!labelText) {
+      this.appendLabels()
     }
     
     label = <span
       key={timer}
       id={'label-' + timer}
       className={`${styles['label']} ${styles[`track-${trackNum}`]}`}>
-      {this.props.labels[labelPointer]}
+      {labelText}
     </span>
-    
+  
+    again()
     this.setState(prevState => ({
-      addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 500),
       existLabels: prevState.existLabels.concat(label),
       clearTimers: prevState.clearTimers.concat(timer)
     }))
