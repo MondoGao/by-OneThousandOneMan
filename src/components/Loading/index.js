@@ -43,7 +43,7 @@ class Loading extends React.Component {
     }
     
     return (
-      <div className={styles['loading']}>
+      <div className={styles['loading']} style={this.props.style}>
         <section className={styles['heart-wrapper']}>
           <FloatHeart animationDelay={100}/>
           <FloatHeart animationDelay={750}/>

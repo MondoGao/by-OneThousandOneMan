@@ -20,9 +20,12 @@ class UserPage extends React.Component {
   
     const transitionSettings = {
       transitionAppear: true,
-      transitionAppearTimeout: 1000,
+      transitionAppearTimeout: 1300,
       transitionEnter: false,
-      transitionLeave: false
+      transitionLeave: false,
+      style: {
+        animationDelay: '300ms'
+      }
     }
   
     return (
@@ -33,7 +36,7 @@ class UserPage extends React.Component {
             appear: 'bounceInDown',
             appearActive: 'animated'
           }}>
-          <section>
+          <section style={transitionSettings.style}>
             <UserAvatar className={styles['avatar']} src={this.props.user.avatar} bordered/>
             <LabelWall labels={this.props.user.labels}/>
           </section>
@@ -44,7 +47,7 @@ class UserPage extends React.Component {
             appear: 'zoomIn',
             appearActive: 'animated'
           }}>
-          <section>
+          <section style={transitionSettings.style}>
             {isMyself ?
               <Button className={styles['btn-myself']}>呼朋唤友求标签</Button> :
               [

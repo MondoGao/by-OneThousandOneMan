@@ -32,7 +32,7 @@ const App = ({ isLoading = true, loadingComplete }) => {
   return (
     <div>
       <CSSTransitionFirstChild {...transitionSettings}>
-        {isLoading ? <Loading key="loading" loadingComplete={loadingComplete}/> : null}
+        {isLoading ? <Loading key="loading" loadingComplete={loadingComplete} style={transitionSettings.style}/> : null}
       </CSSTransitionFirstChild>
       {isLoading ? null :
         <div>
