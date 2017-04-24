@@ -37,6 +37,33 @@
   }
 }
 
+@keyframes changeColor {
+  from {
+    color: #ff2400;
+  }
+  14.3% {
+    color: #e81d1d;
+  }
+  28.6% {
+    color: #e8b71d;
+  }
+  42.9% {
+    color: #e3e81d;
+  }
+  57.1% {
+    color: #1de840;
+  }
+  71.4% {
+    color:  #1ddde8;
+  }
+  85.7% {
+    color: #2b1de8;
+  }
+  to {
+    color: #dd00f3;
+  }
+}
+
 .label {
   position: absolute;
   left: 100%;
@@ -47,8 +74,7 @@
   animation: slide 5s linear both;
   white-space: nowrap;
   &.new {
-    padding: 3px;
-    border: 2px solid #ed5485;
+    animation: slide 5s linear both, changeColor 5s linear infinite;
   }
 }
 

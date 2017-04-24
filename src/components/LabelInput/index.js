@@ -21,9 +21,11 @@ class LabelInput extends React.Component {
   }
   
   handleLabelClick = e => {
-    this.setState({
-      inputValue: e.target.innerText
-    })
+    if (!this.state.isDisabled) {
+      this.setState({
+        inputValue: e.target.innerText
+      })
+    }
   }
   
   handleKeyPress = e => {
@@ -33,16 +35,21 @@ class LabelInput extends React.Component {
   }
   
   handleSubmit = () => {
-    this.setState({
-      isDisabled: true
-    })
-    this.props.appendNewLabel(this.props.userId, this.state.inputValue)
-      .then(() => {
-        this.setState(prevState => ({
-          inputValue: '',
-          isDisabled: false
-        }))
+    if (this.state.inputValue.length <= 0) {
+      alert('不要发空气炮啦输一点标签吧！')
+    }
+    else if (!this.state.isDisabled) {
+      this.setState({
+        isDisabled: true
       })
+      this.props.appendNewLabel(this.props.userId, this.state.inputValue)
+        .then(() => {
+          this.setState(prevState => ({
+            inputValue: '',
+            isDisabled: false
+          }))
+        })
+    }
   }
   
   render() {
