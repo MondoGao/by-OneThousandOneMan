@@ -7,9 +7,9 @@ const mapState = (state, ownProps) => ({
   myself: state.entities.users[state.myself.id]
 })
 
-const mapDispatch = (dispatch, ownProps) => ({
-  loadUser() {
-    return dispatch(actions.refreshUser(ownProps.match.params.id))
+const mapDispatch = dispatch => ({
+  loadUser(userId) {
+    return dispatch(actions.refreshUser(userId))
   }
 })
 

@@ -12,6 +12,15 @@ import LabelInputContainer from 'containers/LabelInputContainer'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
 
 class UserPage extends React.Component {
+  loadUser = () => {
+    if (!this.props.user) {
+      this.props.loadUser(this.props.match.params.id)
+        .catch(err => {
+          alert('加载失败，请刷新重试')
+        })
+    }
+  }
+  
   render() {
     if (!this.props.user) {
       return null
@@ -82,13 +91,12 @@ class UserPage extends React.Component {
     )
   }
   
+  componentDidUpdate() {
+    this.loadUser()
+  }
+  
   componentDidMount() {
-    if (!this.props.user) {
-      this.props.loadUser()
-        .catch(err => {
-          alert('加载失败，请刷新重试')
-        })
-    }
+    this.loadUser()
   }
 }
 
