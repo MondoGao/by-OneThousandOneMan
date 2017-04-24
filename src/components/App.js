@@ -16,14 +16,21 @@ import TransitionRoute from 'components/TransitionRoute'
 class App extends React.Component {
   
   loadAssets = () => {
-    this.props.loadMyself(this.props.myself.id)
-      .then(() =>{
+    this.props.loadUser(this.props.myself.id)
+      .then(() => {
+        let params = this.props.location.pathname.match(/\/users\/(\w+)/)
+        if (params && params[1]) {
+          return this.props.loadUser(params[1])
+        }
+      })
+      .then(() => {
         return loadingAssets(loadingList)
       })
       .then(() => {
         this.props.loadingComplete()
       })
       .catch(err => {
+        console.log(err)
         alert('加载失败，请刷新重试')
       })
   }
@@ -81,7 +88,7 @@ App.defaultProps = {
   isLoading: true,
   myself: {},
   loadingComplete() {},
-  loadMyself() {}
+  loadUser() {}
 }
 
 export default App

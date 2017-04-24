@@ -11,7 +11,7 @@ const mapDispatch = dispatch => ({
   loadingComplete() {
     dispatch(actions.toggleLoading(false))
   },
-  loadMyself(id) {
+  loadUser(id) {
     return dispatch(actions.refreshUser(id))
   }
 })
