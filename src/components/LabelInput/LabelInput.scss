@@ -4,14 +4,6 @@
   transition: opacity .3s;
   &.loading {
     opacity: .85;
-    .alter-label {
-      animation: bling .8s ease both infinite;
-      @for $i from 1 to 5 {
-        &:nth-of-type(#{$i}) {
-          animation-delay: -.5s + $i * 0.1;
-        }
-      }
-    }
     .ok-loading {
       background-image: none;
       .circle {
