@@ -32,14 +32,15 @@ class LabelWall extends React.Component {
   
   /**
    * 检测轨道是否被占用
-   * @param trackNum
+   * @param {number} trackNum 分配的轨道
+   * @param {number} textLength 被分配轨道标签的文字长度
    * @return {boolean}
    */
-  isTrackOccupied = trackNum => {
+  isTrackOccupied = (trackNum, textLength) => {
     let flag = false
     
     Array.from(document.getElementsByClassName(styles[`track-${trackNum}`])).map(el => {
-      if (el && this.state.wallRight - el.getBoundingClientRect().right < 100) {
+      if (el && this.state.wallRight - el.getBoundingClientRect().right < textLength * 28) {
         flag = true
       }
     })
@@ -105,16 +106,6 @@ class LabelWall extends React.Component {
       })
     }
     
-    for(let i = 0; i < 6 && this.isTrackOccupied(trackNum); i++) {
-      if (i >= 5) {
-        again()
-        return
-      }
-      trackNum = Math.round(Math.random() * 5) + 1
-    }
-  
-    timer = setTimeout(() => this.removeLabel(label), 5000)
-  
     if (this.state.newLabelQueue.length > 0) {
       labelText = this.state.newLabelQueue[0]
       newLabelQueueFlag = true
@@ -124,7 +115,19 @@ class LabelWall extends React.Component {
     
     if (!labelText) {
       this.appendLabels()
+      again()
+      return
     }
+    
+    for(let i = 0; i < 6 && this.isTrackOccupied(trackNum, labelText.length); i++) {
+      if (i >= 5) {
+        again()
+        return
+      }
+      trackNum = Math.round(Math.random() * 5) + 1
+    }
+  
+    timer = setTimeout(() => this.removeLabel(label), 5000)
     
     label = <span
       key={timer}
