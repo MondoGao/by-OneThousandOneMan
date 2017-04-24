@@ -14,6 +14,20 @@ import { CSSTransitionFirstChild } from 'components/FirstChild'
 import TransitionRoute from 'components/TransitionRoute'
 
 class App extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.pathname !== this.props.location.pathname) {
+      this.configWechat()
+    }
+  }
+  
+  componentDidMount() {
+    this.configWechat()
+    this.loadAssets()
+  }
+  
+  configWechat() {
+    console.log('reconfig wx')
+  }
   
   loadAssets = () => {
     this.props.loadUser(this.props.myself.id)
@@ -78,15 +92,13 @@ class App extends React.Component {
       </div>
     )
   }
-  
-  componentDidMount() {
-    this.loadAssets()
-  }
 }
 
 App.defaultProps = {
   isLoading: true,
-  myself: {},
+  myself: null,
+  match: null,
+  location: null,
   loadingComplete() {},
   loadUser() {}
 }
