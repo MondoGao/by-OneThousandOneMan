@@ -34,7 +34,7 @@ export const refreshUser = id => (dispatch, getState) => {
 export const appendLabel = (userId, labelText) => dispatch => {
   /*Todo: Fake Operate*/
   return new Promise((resolve, reject) => {
-    setTimeout(resolve, 2000)
+    setTimeout(resolve, 500)
   })
     .then(() => {
       dispatch({

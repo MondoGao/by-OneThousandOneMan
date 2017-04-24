@@ -67,8 +67,8 @@ class LabelWall extends React.Component {
     
     if (this.isLabelFinished(label)) {
       this.setState(prevState => ({
-        existLabels: removeFromArray(prevState.existLabels, label),
-        clearTimers: removeFromArray(prevState.clearTimers, +label.key, timer)
+        existLabels: removeFromArray(prevState.existLabels, false, label),
+        clearTimers: removeFromArray(prevState.clearTimers, false, +label.key, timer)
       }))
     } else {
       const newTimer = setTimeout(() => this.removeLabel(label, newTimer), 5000, label)
@@ -137,17 +137,16 @@ class LabelWall extends React.Component {
     
     if (newLabelQueueFlag) {
       this.setState({
-        newLabelQueue: removeFromArray(this.state.newLabelQueue, labelText)
+        newLabelQueue: removeFromArray(this.state.newLabelQueue, true, labelText)
       })
     } else {
       this.setState({
-        labelQueue: removeFromArray(this.state.labelQueue, labelText)
+        labelQueue: removeFromArray(this.state.labelQueue, true, labelText)
       })
     }
     this.setState({
       existLabels: this.state.existLabels.concat(label),
       clearTimers: this.state.clearTimers.concat(timer),
-      labelQueue: removeFromArray(this.state.labelQueue, labelText)
     })
   }
   

@@ -1,11 +1,29 @@
 /**
  * 删除数组中存在的元素，返回新数组
  * @param {Array} arr
+ * @param {boolean} deleteOnce 是否只删除一次元素而不删除重复元素
  * @param {...any} els
  * @return {Array}
  */
-export const removeFromArray = (arr, ...els) => {
-  return arr.filter(el => !els.includes(el))
+export const removeFromArray = (arr, deleteOnce, ...els) => {
+  let deletedEls = []
+  
+  const result =  arr.filter(el => {
+    if (els.includes(el)) {
+      if (deleteOnce) {
+        
+        if (!deletedEls.includes(el)) {
+          deletedEls.push(el)
+          return false
+        }
+      } else {
+        return false
+      }
+    }
+    return true
+  })
+  
+  return result
 }
 
 /**
