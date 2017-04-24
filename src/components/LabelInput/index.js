@@ -8,7 +8,8 @@ class LabelInput extends React.Component {
     
     this.state = {
       inputValue: '',
-      isDisabled: false
+      isLoading: false,
+      timer: null
     }
   }
   
@@ -21,7 +22,7 @@ class LabelInput extends React.Component {
   }
   
   handleLabelClick = e => {
-    if (!this.state.isDisabled) {
+    if (!this.state.isLoading) {
       this.setState({
         inputValue: e.target.innerText
       })
@@ -38,15 +39,15 @@ class LabelInput extends React.Component {
     if (this.state.inputValue.length <= 0) {
       alert('不要发空气炮啦输一点标签吧！')
     }
-    else if (!this.state.isDisabled) {
+    else if (!this.state.isLoading) {
       this.setState({
-        isDisabled: true
+        isLoading: true
       })
       this.props.appendNewLabel(this.props.userId, this.state.inputValue)
         .then(() => {
           this.setState(prevState => ({
             inputValue: '',
-            isDisabled: false
+            isLoading: false
           }))
         })
     }
@@ -64,8 +65,13 @@ class LabelInput extends React.Component {
       </AlternativeLabel>
     ))
     
+    let loadingSpinArr = []
+    for (let i = 1; i <= 12; ++i) {
+      loadingSpinArr.push(<div key={i} className={`${styles['circle']} ${styles['circle' + i] ? styles['circle' + i] : ''}`}/>)
+    }
+    
     return (
-      <div className={`${styles['label-input-container']} ${this.state.isDisabled ? styles['disabled'] : ''}`}>
+      <div className={`${styles['label-input-container']} ${this.state.isLoading ? styles['loading'] : ''}`}>
         <p className={styles['alter-label-container']}>
           {alterLabels}
         </p>
@@ -77,9 +83,13 @@ class LabelInput extends React.Component {
             value={this.state.inputValue}
             onChange={this.handleChange}
             onKeyPress={this.handleKeyPress}
-            disabled={this.state.isDisabled}
+            disabled={this.state.isLoading}
           />
-          <span onClick={this.handleSubmit}/>
+          <span onClick={this.handleSubmit}>
+            <span className={`${styles['ok-loading']}`}>
+              {loadingSpinArr}
+            </span>
+          </span>
         </div>
       </div>
     )
