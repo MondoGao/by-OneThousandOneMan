@@ -4,7 +4,7 @@ import * as consts from 'actions/consts'
 const users = (state = {}, action) => {
   switch (action.type) {
     case consts.APPEND_LABEL: {
-      const user = state.entities.users[action.payload.userId]
+      const user = state[action.payload.userId]
       const newLabels = user.newLabels ? user.newLabels : []
       
       return {
@@ -19,7 +19,7 @@ const users = (state = {}, action) => {
       }
     }
     case consts.NEW_LABEL_SHOWED: {
-      const user = state.entities.users[action.payload.userId]
+      const user = state[action.payload.userId]
   
       return {
         ...state,

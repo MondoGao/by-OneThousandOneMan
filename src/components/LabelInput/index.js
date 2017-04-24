@@ -7,7 +7,8 @@ class LabelInput extends React.Component {
     super(props)
     
     this.state = {
-      inputValue: ''
+      inputValue: '',
+      isDisabled: false
     }
   }
   
@@ -32,7 +33,16 @@ class LabelInput extends React.Component {
   }
   
   handleSubmit = () => {
-    alert(this.state.inputValue)
+    this.setState({
+      isDisabled: true
+    })
+    this.props.appendNewLabel(this.props.user.id, this.state.inputValue)
+      .then(() => {
+        this.setState(prevState => ({
+          inputValue: '',
+          isDisabled: false
+        }))
+      })
   }
   
   render() {
@@ -48,7 +58,7 @@ class LabelInput extends React.Component {
     ))
     
     return (
-      <div className={styles['label-input-container']}>
+      <div className={`${styles['label-input-container']} ${this.state.isDisabled ? styles['disabled'] : ''}`}>
         <p className={styles['alter-label-container']}>
           {alterLabels}
         </p>
@@ -60,12 +70,17 @@ class LabelInput extends React.Component {
             value={this.state.inputValue}
             onChange={this.handleChange}
             onKeyPress={this.handleKeyPress}
+            disabled={this.state.isDisabled}
           />
           <span onClick={this.handleSubmit}/>
         </div>
       </div>
     )
   }
+}
+
+LabelInput.defaultProps = {
+  user: null
 }
 
 const AlternativeLabel = ({ animationDelay, children = null, onClick, active = false }) => {

@@ -8,7 +8,7 @@ import LabelWall from 'components/LabelWall'
 import Button from 'components/Button'
 import RecentVisitor from 'components/RecentVisitor'
 import UserAvatar from 'components/UserAvatar'
-import LabelInput from 'components/LabelInput'
+import LabelInputContainer from 'containers/LabelInputContainer'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
 
 class UserPage extends React.Component {
@@ -65,7 +65,7 @@ class UserPage extends React.Component {
               {isMyself ?
                 <Button className={styles['btn-myself']}>呼朋唤友求标签</Button> :
                 [
-                  <LabelInput key="input"/>,
+                  <LabelInputContainer key="input" user={this.props.user}/>,
                   <Button key="btn" className={styles['btn-other']}>
                     {this.props.myself.hasWall ?
                       <Link to={`/users/${this.props.myself.id}`}>查看我的标签墙</Link> :

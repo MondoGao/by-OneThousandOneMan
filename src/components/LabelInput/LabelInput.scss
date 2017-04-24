@@ -1,6 +1,10 @@
 .label-input-container {
   margin-top: 56px;
   width: 100%;
+  transition: opacity .3s;
+  &.disabled {
+    opacity: .7;
+  }
 }
 
 .alter-label-container {
