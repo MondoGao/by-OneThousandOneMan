@@ -7,14 +7,26 @@ class LabelWall extends React.Component {
   constructor(props) {
     super(props)
     
-    this.labelQueue = []
-    
     this.state = {
       existLabels: [],
       clearTimers: [],
+      labelQueue: [],
+      newLabelQueue: [],
       addTimer: null,
       wallRight: 0,
       wallLeft: 0
+    }
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user.newLabels && nextProps.user.newLabels.length > 0) {
+      this.setState({
+        newLabelQueue: [
+          ...this.state.newLabelQueue,
+          ...nextProps.user.newLabels
+        ]
+      })
+      this.props.finishShowNewLabel(nextProps.user.id)
     }
   }
   
@@ -67,10 +79,12 @@ class LabelWall extends React.Component {
   }
   
   appendLabels = () => {
-    this.labelQueue = [
-      ...this.labelQueue,
-      ...this.props.labels
-    ]
+    this.setState({
+      labelQueue: [
+        ...this.state.labelQueue,
+        ...this.props.user.labels
+      ]
+    })
   }
   
   /**
@@ -81,6 +95,10 @@ class LabelWall extends React.Component {
     
     let trackNum = Math.round(Math.random() * 5) + 1
     let label = null
+    let timer = null
+    let labelText = null
+    let newLabelQueueFlag = false
+    
     const again = () => {
       this.setState({
         addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 500)
@@ -95,9 +113,14 @@ class LabelWall extends React.Component {
       trackNum = Math.round(Math.random() * 5) + 1
     }
   
-    let timer = setTimeout(() => this.removeLabel(label), 5000)
+    timer = setTimeout(() => this.removeLabel(label), 5000)
   
-    const labelText = this.labelQueue.shift()
+    if (this.state.newLabelQueue.length > 0) {
+      labelText = this.state.newLabelQueue[0]
+      newLabelQueueFlag = true
+    } else {
+      labelText = this.state.labelQueue[0]
+    }
     
     if (!labelText) {
       this.appendLabels()
@@ -106,15 +129,26 @@ class LabelWall extends React.Component {
     label = <span
       key={timer}
       id={'label-' + timer}
-      className={`${styles['label']} ${styles[`track-${trackNum}`]}`}>
+      className={`${styles['label']} ${styles[`track-${trackNum}`]} ${newLabelQueueFlag ? styles['new'] : ''}`}>
       {labelText}
     </span>
   
     again()
-    this.setState(prevState => ({
-      existLabels: prevState.existLabels.concat(label),
-      clearTimers: prevState.clearTimers.concat(timer)
-    }))
+    
+    if (newLabelQueueFlag) {
+      this.setState({
+        newLabelQueue: removeFromArray(this.state.newLabelQueue, labelText)
+      })
+    } else {
+      this.setState({
+        labelQueue: removeFromArray(this.state.labelQueue, labelText)
+      })
+    }
+    this.setState({
+      existLabels: this.state.existLabels.concat(label),
+      clearTimers: this.state.clearTimers.concat(timer),
+      labelQueue: removeFromArray(this.state.labelQueue, labelText)
+    })
   }
   
   createLabelWrapper = () => {
@@ -131,7 +165,7 @@ class LabelWall extends React.Component {
   }
   
   render() {
-    const hasLabel = this.props.labels.length > 0
+    const hasLabel = this.props.user.labels.length > 0
     
     return (
       <div className={styles['wall-container']}>
@@ -164,7 +198,8 @@ class LabelWall extends React.Component {
 
 
 LabelWall.defaultProps = {
-  labels: []
+  user: null,
+  finishShowNewLabel(userId) {}
 }
 
 export default LabelWall

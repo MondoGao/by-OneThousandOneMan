@@ -25,6 +25,10 @@ const users = (state = {}, action) => {
         ...state,
         [action.payload.userId]: {
           ...user,
+          labels: [
+            ...user.labels,
+            ...user.newLabels
+          ],
           newLabels: []
         }
       }

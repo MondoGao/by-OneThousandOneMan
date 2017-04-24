@@ -4,7 +4,7 @@ import { CSSTransitionGroup } from 'react-transition-group'
 
 import styles from './UserPage.scss'
 
-import LabelWall from 'components/LabelWall'
+import LabelWallContainer from 'containers/LabelWallContainer'
 import Button from 'components/Button'
 import RecentVisitor from 'components/RecentVisitor'
 import UserAvatar from 'components/UserAvatar'
@@ -52,7 +52,7 @@ class UserPage extends React.Component {
             }}>
             <section style={transitionSettings.style}>
               <UserAvatar className={styles['avatar']} src={this.props.user.avatar} bordered/>
-              <LabelWall labels={this.props.user.labels}/>
+              <LabelWallContainer user={this.props.user}/>
             </section>
           </CSSTransitionFirstChild>
           <CSSTransitionFirstChild
@@ -65,7 +65,7 @@ class UserPage extends React.Component {
               {isMyself ?
                 <Button className={styles['btn-myself']}>呼朋唤友求标签</Button> :
                 [
-                  <LabelInputContainer key="input" user={this.props.user}/>,
+                  <LabelInputContainer key="input" userId={this.props.user.id}/>,
                   <Button key="btn" className={styles['btn-other']}>
                     {this.props.myself.hasWall ?
                       <Link to={`/users/${this.props.myself.id}`}>查看我的标签墙</Link> :

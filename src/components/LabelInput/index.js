@@ -36,7 +36,7 @@ class LabelInput extends React.Component {
     this.setState({
       isDisabled: true
     })
-    this.props.appendNewLabel(this.props.user.id, this.state.inputValue)
+    this.props.appendNewLabel(this.props.userId, this.state.inputValue)
       .then(() => {
         this.setState(prevState => ({
           inputValue: '',
@@ -80,7 +80,7 @@ class LabelInput extends React.Component {
 }
 
 LabelInput.defaultProps = {
-  user: null
+  userId: null
 }
 
 const AlternativeLabel = ({ animationDelay, children = null, onClick, active = false }) => {

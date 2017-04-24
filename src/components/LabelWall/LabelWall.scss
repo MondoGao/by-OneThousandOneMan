@@ -46,6 +46,10 @@
   font-weight: bold;
   animation: slide 5s linear both;
   white-space: nowrap;
+  &.new {
+    padding: 3px;
+    border: 2px solid #ed5485;
+  }
 }
 
 @for $i from 1 through 6 {
