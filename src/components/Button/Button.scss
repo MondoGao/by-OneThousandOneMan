@@ -7,6 +7,25 @@
   white-space: nowrap;
   background: no-repeat center / cover;
   font-weight: bold;
+  
+  .cheat-link {
+    position: absolute;
+    right: -1px;
+    width: 56px;
+    padding: 0 26px;
+    height: 104px;
+    line-height: 104px;
+    font-size: 20px;
+    color: #ed5485;
+    white-space: normal;
+    background: url("assets/cheat-bg@2x.png") no-repeat center / contain;
+    &::before {
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+      content: '脱单秘籍';
+    }
+  }
 }
 
 .normal {
