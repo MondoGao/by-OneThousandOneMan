@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
+import * as consts from 'actions/consts'
 
-let myselfId = document.cookie.split(/[=;]/)[1]
-console.log(myselfId)
-const id = (state = myselfId, action) => {
+const id = (state = '', action) => {
   switch (action.type) {
+    case consts.REFRESH_MYSELF:
+      return action.payload.id
     default:
       return state
   }

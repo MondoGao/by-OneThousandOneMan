@@ -13,6 +13,9 @@ const mapDispatch = dispatch => ({
   },
   loadUser(id) {
     return dispatch(actions.refreshUser(id))
+  },
+  refreshMyself() {
+    dispatch(actions.refreshMyself())
   }
 })
 
