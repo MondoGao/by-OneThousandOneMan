@@ -7,6 +7,9 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
+  createWall(userId) {
+    return dispatch(actions.createWall(userId))
+  }
 })
 
 export default connect(mapState, mapDispatch)(Home)

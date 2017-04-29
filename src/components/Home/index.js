@@ -7,7 +7,7 @@ import Button from 'components/Button'
 import TitleOrnament from 'components/TitleOrnament'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
 
-const Home = ({ style = {}, myself = {} }) => {
+const Home = ({ style = {}, myself = {}, createWall }) => {
   const transitionSettings = {
     transitionAppear: true,
     transitionAppearTimeout: 1600,
@@ -59,7 +59,9 @@ const Home = ({ style = {}, myself = {} }) => {
             <TitleOrnament/>
             <Button
               className={styles['btn']}
-              type="flatten">
+              type="flatten"
+              onClick={() => createWall(myself.id)}
+            >
               <Link to={`/users/${myself.id}`}>
                 {myself.hasWall ? '查看标签墙' : '生成标签墙'}
               </Link>

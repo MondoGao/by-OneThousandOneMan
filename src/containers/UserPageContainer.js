@@ -10,6 +10,9 @@ const mapState = (state, ownProps) => ({
 const mapDispatch = dispatch => ({
   loadUser(userId) {
     return dispatch(actions.refreshUser(userId))
+  },
+  appendVisitor(visitorId) {
+    return dispatch(actions.appendVisitor(visitorId))
   }
 })
 

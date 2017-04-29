@@ -93,17 +93,24 @@ class UserPage extends React.Component {
   
   componentDidUpdate() {
     this.loadUser()
+    if (this.props.myself.id !== this.props.user.id) {
+      this.props.appendVisitor(this.props.user.id)
+    }
   }
   
   componentDidMount() {
     this.loadUser()
+    if (this.props.myself.id !== this.props.user.id) {
+      this.props.appendVisitor(this.props.user.id)
+    }
   }
 }
 
 UserPage.defaultProps = {
   user: null,
   myself: null,
-  loadUser() {}
+  loadUser() {},
+  appendVisitor() {}
 }
 
 export default UserPage
