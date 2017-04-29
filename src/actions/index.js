@@ -62,7 +62,9 @@ export const createWall = userId => dispatch => {
     .then(() => {
       dispatch({
         type: consts.CREATE_WALL,
-        payload: true
+        payload: {
+          userId
+        }
       })
     })
 }

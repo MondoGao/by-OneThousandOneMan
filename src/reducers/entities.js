@@ -18,6 +18,32 @@ const users = (state = {}, action) => {
         }
       }
     }
+    case consts.APPEND_VISITOR: {
+      const user = state[action.payload.userId]
+      const visitor = state[action.payload.visitorId]
+  
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...user,
+          visitorAvatars: [
+            visitor.avatar,
+            ...user[visitorAvatars].slice(0, 5)
+          ]
+        }
+      }
+    }
+    case consts.CREATE_WALL: {
+      const user = state[action.payload.userId]
+  
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...user,
+          hasWall: true
+        }
+      }
+    }
     case consts.NEW_LABEL_SHOWED: {
       const user = state[action.payload.userId]
   
