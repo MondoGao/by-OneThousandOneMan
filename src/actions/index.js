@@ -32,10 +32,7 @@ export const refreshUser = id => (dispatch, getState) => {
  * @return {Promise}
  */
 export const appendLabel = (userId, labelText) => dispatch => {
-  /*Todo: Fake Operate*/
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, 500)
-  })
+  return sources.addLabel(userId, labelText)
     .then(() => {
       dispatch({
         type: consts.APPEND_LABEL,
@@ -43,6 +40,29 @@ export const appendLabel = (userId, labelText) => dispatch => {
           userId,
           labelText
         }
+      })
+    })
+}
+
+export const appendVisitor = (userId, visitorId) => (dispatch, getState) => {
+  return sources.addVisitor(userId, visitorId)
+    .then(() => {
+      dispatch({
+        type: consts.APPEND_VISITOR,
+        payload: {
+          userId,
+          visitorId
+        }
+      })
+    })
+}
+
+export const createWall = userId => dispatch => {
+  return sources.createWall(userId)
+    .then(() => {
+      dispatch({
+        type: consts.CREATE_WALL,
+        payload: true
       })
     })
 }

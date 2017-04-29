@@ -36,3 +36,17 @@ export const addVisitor = (userId, visitorId) => {
   })
     .then(checkStatus)
 }
+
+export const createWall = userId => {
+  return fetch(`/api/users/${userId}`, {
+    method: 'PUT',
+    credentials: 'same-origin',
+    header: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      type: 1
+    })
+  })
+    .then(checkStatus)
+}

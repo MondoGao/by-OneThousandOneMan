@@ -50,13 +50,8 @@ module.exports = WebpackMerge(baseConfig, {
     host: '0.0.0.0',
     proxy: {
       '/api': {
-        target: 'http://localhost:8081',
-        pathRewrite: {
-          '/api': ''
-        }
-      },
-      '/assets': {
-        target: 'http://localhost:8081'
+        target: 'http://single.bingyan.net',
+        changeOrigin: true
       }
     },
     compress: true,
