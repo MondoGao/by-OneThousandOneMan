@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
 
-/*Todo: Fake Data*/
-const id = (state = 'myself', action) => {
+let myselfId = document.cookie.split(/[=;]/)[1]
+console.log(myselfId)
+const id = (state = "owA1hxBSL-qH31mtemFiLWLuxR-M", action) => {
   switch (action.type) {
     default:
       return state
