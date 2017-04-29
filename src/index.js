@@ -17,9 +17,9 @@ let middlewares = [
   thunk
 ]
 
-if (process.env.NODE_ENV === 'develop') {
+// if (process.env.NODE_ENV === 'develop') {
   middlewares.push(logger)
-}
+// }
 
 let store = createStore(
   reducers,
