@@ -1,5 +1,6 @@
 import * as consts from 'actions/consts'
 import * as sources from 'sources'
+import { getCookie } from 'scripts/utils'
 
 /**
  * {creator} 切换加载状态
@@ -68,6 +69,13 @@ export const createWall = userId => dispatch => {
       })
     })
 }
+
+export const refreshMyself = () => ({
+  type: consts.REFRESH_MYSELF,
+  payload: {
+    id: getCookie(user)
+  }
+})
 
 /**
  * {creator} 完成显示新添加的标签

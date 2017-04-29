@@ -22,7 +22,17 @@ class App extends React.Component {
   
   componentDidMount() {
     this.configWechat()
-    this.loadAssets()
+    if (this.props.myself.id) {
+      this.loadAssets()
+    } else {
+      this.props.refreshMyself()
+    }
+  }
+  
+  componentDidUpdate(prevProps) {
+    if (prevProps.myself.id !== this.props.myself.id && this.props.myself.id) {
+      this.loadAssets()
+    }
   }
   
   configWechat() {
@@ -50,6 +60,10 @@ class App extends React.Component {
   }
   
   render() {
+    if (!this.props.myself.id) {
+      return null
+    }
+    
     const transitionSettings = {
       transitionName: {
         appear: 'fadeIn',
@@ -100,7 +114,8 @@ App.defaultProps = {
   match: null,
   location: null,
   loadingComplete() {},
-  loadUser() {}
+  loadUser() {},
+  refreshMyself() {}
 }
 
 export default App
