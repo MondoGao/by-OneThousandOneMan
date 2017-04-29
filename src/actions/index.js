@@ -70,12 +70,19 @@ export const createWall = userId => dispatch => {
     })
 }
 
-export const refreshMyself = () => ({
-  type: consts.REFRESH_MYSELF,
-  payload: {
-    id: getCookie(user)
-  }
-})
+/**
+ * 登陆并获取用户信息
+ * @type {thunk}
+ * @param {string} code 微信登陆 code
+ */
+export const login = code => (dispatch, getState) => {
+  return sources.login(code)
+    .then(normalizedData => {
+      dispatch(asyncActionsCreator(consts.LOGIN_IN, normalizedData))
+      
+      return dispatch(refreshUser(normalizedData.id))
+    })
+}
 
 /**
  * {creator} 完成显示新添加的标签

@@ -4,8 +4,9 @@ import './App.css'
 import 'styles/transitions.css'
 import 'styles/animations.css'
 
-import { loadingAssets } from 'scripts/utils'
+import { loadingAssets, getParameterByName } from 'scripts/utils'
 import loadingList from 'assets/loadingList'
+import { settings } from 'sources/index'
 
 import UserPageContainer from 'containers/UserPageContainer'
 import Loading from 'components/Loading'
@@ -22,10 +23,15 @@ class App extends React.Component {
   
   componentDidMount() {
     this.configWechat()
-    if (this.props.myself.id) {
-      this.loadAssets()
+    if (!this.props.myself.id) {
+      let code = getParameterByName('code')
+      if (!code) {
+        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(settings.redirectUri)}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
+      } else {
+        this.props.login(code)
+      }
     } else {
-      this.props.refreshMyself()
+      this.loadAssets()
     }
   }
   

@@ -50,3 +50,23 @@ export const createWall = userId => {
   })
     .then(checkStatus)
 }
+
+/**
+ * 登陆并获取用户信息
+ * @param {string} code 微信登陆代码
+ * @return {Promise}
+ */
+export const login = code => (
+  fetch(`/api/weixin/authorize`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    credentials: 'same-origin',
+    body: JSON.stringify({
+      code
+    })
+  })
+    .then(checkStatus)
+    .then(data => data.json())
+)
