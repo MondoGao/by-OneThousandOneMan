@@ -71,7 +71,7 @@ class UserPage extends React.Component {
               appearActive: 'animated'
             }}>
             <section style={transitionSettings.style}>
-              <UserAvatar className={styles['avatar']} src={this.props.user.avatar} bordered/>
+              <UserAvatar className={styles['avatar']} src={this.props.user.headimgurl} bordered/>
               <LabelWallContainer user={this.props.user}/>
             </section>
           </CSSTransitionFirstChild>
@@ -93,7 +93,7 @@ class UserPage extends React.Component {
                   </Button>
                 ]
               }
-              <RecentVisitor visitorAvatarSrcs={this.props.user.visitorAvatars}
+              <RecentVisitor visitorAvatarSrcs={this.props.user.visitorHeadimgurls}
                              visitorNum={this.props.user.visitorNum}/>
             </section>
           </CSSTransitionFirstChild>
@@ -105,14 +105,14 @@ class UserPage extends React.Component {
   componentDidUpdate() {
     this.loadUser()
     if (this.props.myself.id !== this.props.user.id) {
-      this.props.appendVisitor(this.props.user.id)
+      this.props.appendVisitor(this.props.user.id, this.props.myself.id)
     }
   }
   
   componentDidMount() {
     this.loadUser()
     if (this.props.myself.id !== this.props.user.id) {
-      this.props.appendVisitor(this.props.user.id)
+      this.props.appendVisitor(this.props.user.id, this.props.myself.id)
     }
   }
 }

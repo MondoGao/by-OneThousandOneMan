@@ -11,8 +11,8 @@ const mapDispatch = dispatch => ({
   loadUser(userId) {
     return dispatch(actions.refreshUser(userId))
   },
-  appendVisitor(visitorId) {
-    return dispatch(actions.appendVisitor(visitorId))
+  appendVisitor(userId, visitorId) {
+    return dispatch(actions.appendVisitor(userId, visitorId))
   }
 })
 
