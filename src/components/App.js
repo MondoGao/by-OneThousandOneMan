@@ -30,6 +30,12 @@ class App extends React.Component {
         window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(window.location.href)}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
       } else {
         this.props.login(code)
+          .then(() => {
+            this.props.history.replace(window.location.pathname)
+          })
+          .catch(() => {
+            window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(window.location.href.replace(/\?.*/, ''))}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
+          })
       }
     } else {
       this.loadAssets()
