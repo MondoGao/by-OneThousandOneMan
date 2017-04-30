@@ -21,6 +21,17 @@ class UserPage extends React.Component {
     }
   }
   
+  handleShare = e => {
+    wx.onMenuShareTimeline({
+      title: '请告诉我我为什么还单身好吗!!!', // 分享标题
+      link: `${window.location.origin}/users/${this.props.myself.id}`, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      imgUrl: '', // 分享图标
+      success: function () {
+        console.log('分享成功')
+      }
+    })
+  }
+  
   render() {
     if (!this.props.user) {
       return null
@@ -72,7 +83,7 @@ class UserPage extends React.Component {
             }}>
             <section style={transitionSettings.style}>
               {isMyself ?
-                <Button className={styles['btn-myself']}>呼朋唤友求标签</Button> :
+                <Button className={styles['btn-myself']} onClick={this.handleShare}>呼朋唤友求标签</Button> :
                 [
                   <LabelInputContainer key="input" userId={this.props.user.id}/>,
                   <Button key="btn" className={styles['btn-other']}>

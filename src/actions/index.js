@@ -78,9 +78,10 @@ export const createWall = userId => dispatch => {
 export const login = code => (dispatch, getState) => {
   return sources.login(code)
     .then(normalizedData => {
-      dispatch(asyncActionsCreator(consts.LOGIN_IN, normalizedData))
-      
-      return dispatch(refreshUser(normalizedData.id))
+      return dispatch({
+        type:consts.LOGIN_IN,
+        payload: normalizedData
+      })
     })
 }
 

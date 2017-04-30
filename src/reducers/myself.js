@@ -3,7 +3,7 @@ import * as consts from 'actions/consts'
 
 const id = (state = '', action) => {
   switch (action.type) {
-    case consts.REFRESH_MYSELF:
+    case consts.LOGIN_IN:
       return action.payload.id
     default:
       return state

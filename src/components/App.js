@@ -7,6 +7,7 @@ import 'styles/animations.css'
 import { loadingAssets, getParameterByName } from 'scripts/utils'
 import loadingList from 'assets/loadingList'
 import { settings } from 'sources/index'
+import * as sources from 'sources'
 
 import UserPageContainer from 'containers/UserPageContainer'
 import Loading from 'components/Loading'
@@ -26,7 +27,7 @@ class App extends React.Component {
     if (!this.props.myself.id) {
       let code = getParameterByName('code')
       if (!code) {
-        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(settings.redirectUri)}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
+        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(window.location.href)}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
       } else {
         this.props.login(code)
       }
@@ -42,13 +43,24 @@ class App extends React.Component {
   }
   
   configWechat() {
-    console.log('reconfig wx')
+    sources.jssdkConfig(window.location.href)
+      .then(data => {
+        wx.config({
+          debug: false,
+          appId: data.appid,
+          timestamp: data.timestamp,
+          nonceStr: data.noncestr,
+          signature: data.signature,
+          jsApiList: ['onMenuShareTimeline']
+        })
+      })
   }
   
   loadAssets = () => {
     this.props.loadUser(this.props.myself.id)
       .then(() => {
-        let params = this.props.location.pathname.match(/\/users\/(\w+)/)
+        let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
+        console.log(params)
         if (params && params[1]) {
           return this.props.loadUser(params[1])
         }
