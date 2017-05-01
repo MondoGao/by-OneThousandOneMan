@@ -33,8 +33,9 @@ class App extends React.Component {
           .then(() => {
             this.props.history.replace(window.location.pathname)
           })
-          .catch(() => {
-            window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(window.location.href.replace(/\?.*/, ''))}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
+          .catch((err) => {
+            console.log(err)
+            // window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(window.location.href.replace(/\?.*/, ''))}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
           })
       }
     } else {
@@ -44,11 +45,13 @@ class App extends React.Component {
   
   componentDidUpdate(prevProps) {
     if (prevProps.myself.id !== this.props.myself.id && this.props.myself.id) {
+      this.configWechat()
       this.loadAssets()
     }
   }
   
   configWechat() {
+    let self = this
     sources.jssdkConfig(window.location.href)
       .then(data => {
         wx.config({
@@ -59,6 +62,20 @@ class App extends React.Component {
           signature: data.signature,
           jsApiList: ['onMenuShareTimeline']
         })
+        wx.ready(() => {
+          if (self.props.myself.id) {
+            let link = window.location.href.match(/\/users\/[\w-]+/) ? window.location.href : `${window.location.origin}/users/${self.props.myself.id}`
+            
+            wx.onMenuShareTimeline({
+              title: '请告诉我我为什么还单身好吗!!!', // 分享标题
+              link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              imgUrl: '', // 分享图标
+              success() {
+                console.log('分享成功')
+              }
+            })
+          }
+        })
       })
   }
   
@@ -66,7 +83,6 @@ class App extends React.Component {
     this.props.loadUser(this.props.myself.id)
       .then(() => {
         let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
-        console.log(params)
         if (params && params[1]) {
           return this.props.loadUser(params[1])
         }

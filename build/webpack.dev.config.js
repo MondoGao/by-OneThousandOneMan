@@ -51,7 +51,8 @@ module.exports = WebpackMerge(baseConfig, {
     proxy: {
       '/api': {
         target: 'http://single.bingyan.net',
-        changeOrigin: true
+        changeOrigin: true,
+        logLevel: 'info'
       }
     },
     compress: true,

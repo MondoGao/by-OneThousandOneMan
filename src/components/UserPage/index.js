@@ -22,14 +22,7 @@ class UserPage extends React.Component {
   }
   
   handleShare = e => {
-    wx.onMenuShareTimeline({
-      title: '请告诉我我为什么还单身好吗!!!', // 分享标题
-      link: `${window.location.origin}/users/${this.props.myself.id}`, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-      imgUrl: '', // 分享图标
-      success: function () {
-        console.log('分享成功')
-      }
-    })
+  
   }
   
   render() {
@@ -97,6 +90,9 @@ class UserPage extends React.Component {
                              visitorNum={this.props.user.visitorNum}/>
             </section>
           </CSSTransitionFirstChild>
+        </div>
+        <div>
+        
         </div>
       </CSSTransitionGroup>
     )
