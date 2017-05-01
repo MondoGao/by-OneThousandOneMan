@@ -3898,6 +3898,44 @@ span a {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   z-index: 1;
+}
+
+.UserPage__share-sHJlS {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 10;
+  opacity: 0;
+  transition: opacity .5s;
+  pointer-events: none;
+}
+
+.UserPage__share-sHJlS.UserPage__show-10cZj {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.UserPage__share-sHJlS > div {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.533333rem;
+  width: 3.466667rem;
+  height: 4.266667rem;
+  background: url(/assets/share-bg@2x.png?e802799) no-repeat center/contain;
+  text-align: right;
+  color: #57d1c9;
+  font-weight: bold;
+  font-size: 0.373333rem;
+  line-height: 1.4;
+}
+
+.UserPage__share-sHJlS > div:before {
+  content: '';
+  display: inline-block;
+  height: 83%;
 }@charset "UTF-8";
 
 .LabelWall__wall-container-22OjM {
