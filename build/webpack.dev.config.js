@@ -45,17 +45,23 @@ module.exports = WebpackMerge(baseConfig, {
   devServer: {
     hot: true,
     contentBase: './dist',
-    publicPath: '/',
+    publicPath: '/single/',
     port: 8100,
     host: '0.0.0.0',
     proxy: {
-      '/api': {
-        target: 'http://single.bingyan.net',
+      '/single/api': {
+        target: 'http://weixin.bigtech.cc',
         changeOrigin: true,
         logLevel: 'info'
       }
     },
     compress: true,
-    historyApiFallback: true
+    historyApiFallback: {
+      rewrites: [
+        {
+          from: /.*/, to: '/single/index.html'
+        }
+      ]
+    }
   }
 })

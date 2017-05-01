@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { CSSTransitionGroup } from 'react-transition-group'
 
 import styles from './UserPage.scss'
+import { settings } from 'sources'
 
 import LabelWallContainer from 'containers/LabelWallContainer'
 import Button from 'components/Button'
@@ -83,13 +84,13 @@ class UserPage extends React.Component {
             }}>
             <section style={transitionSettings.style}>
               {isMyself ?
-                <Button className={styles['btn-myself']} onClick={this.toggleShare}>呼朋唤友求标签</Button> :
+                <Button className={styles['btn-myself']} onClick={this.toggleShare}>呼朋唤友求弹幕</Button> :
                 [
                   <LabelInputContainer key="input" userId={this.props.user.id}/>,
                   <Button key="btn" className={styles['btn-other']}>
                     {this.props.myself.hasWall ?
-                      <Link to={`/users/${this.props.myself.id}`}>查看我的标签墙</Link> :
-                      <Link to={'/'}>我也要建标签墙</Link>}
+                      <Link to={`${settings.publicPath}users/${this.props.myself.id}`}>查看我的弹幕墙</Link> :
+                      <Link to={`${settings.publicPath}`}>我也要建弹幕墙</Link>}
                   </Button>
                 ]
               }
@@ -100,7 +101,7 @@ class UserPage extends React.Component {
         </div>
         <div className={`${styles['share']} ${this.state.isShowShare ? styles['show'] : ''}`} onClick={this.toggleShare}>
           <div>
-            让朋友来这贴标签<br/>
+            让朋友来这贴弹幕<br/>
             或许他们更懂你
           </div>
         </div>
@@ -108,9 +109,9 @@ class UserPage extends React.Component {
     )
   }
   
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.loadUser()
-    if (this.props.myself.id !== this.props.user.id) {
+    if (prevProps.user.id !== this.props.user.id && this.props.myself.id !== this.props.user.id) {
       this.props.appendVisitor(this.props.user.id, this.props.myself.id)
     }
   }

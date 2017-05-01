@@ -42,6 +42,10 @@
   &.active {
     animation: bling .425s ease;
   }
+  &.long {
+    width: 272px;
+    background-image: url("assets/alter-label-big-bg@2x.png");
+  }
 }
 
 .input-wrapper {

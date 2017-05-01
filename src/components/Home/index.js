@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import styles from './Home.scss'
+import { settings } from 'sources'
 
 import Button from 'components/Button'
 import TitleOrnament from 'components/TitleOrnament'
@@ -62,8 +63,8 @@ const Home = ({ style = {}, myself = {}, createWall }) => {
               type="flatten"
               onClick={() => createWall(myself.id)}
             >
-              <Link to={`/users/${myself.id}`}>
-                {myself.hasWall ? '查看标签墙' : '生成标签墙'}
+              <Link to={`${settings.publicPath}users/${myself.id}`}>
+                {myself.hasWall ? '查看弹幕墙' : '生成弹幕墙'}
               </Link>
             </Button>
             <TitleOrnament isReversed/>

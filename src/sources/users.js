@@ -1,16 +1,17 @@
 import { commonFetchGet, checkStatus } from 'sources/utils'
 import { user } from 'sources/schemas'
+import { settings } from 'sources'
 
 export const getUser = (id) => {
   if (!id) {
     throw new Error('无效的用户id')
   }
 
-  return commonFetchGet(`/api/users/${id}`, user)
+  return commonFetchGet(`${settings.publicPath}api/users/${id}`, user)
 }
 
 export const addLabel = (userId, labelText) => {
-  return fetch(`/api/users/${userId}/labels`, {
+  return fetch(`${settings.publicPath}api/users/${userId}/labels`, {
     method: 'PUT',
     credentials: 'same-origin',
     headers: {
@@ -24,7 +25,7 @@ export const addLabel = (userId, labelText) => {
 }
 
 export const addVisitor = (userId, visitorId) => {
-  return fetch(`/api/users/${userId}/visitors`, {
+  return fetch(`${settings.publicPath}api/users/${userId}/visitors`, {
     method: 'PUT',
     credentials: 'same-origin',
     headers: {
@@ -38,7 +39,7 @@ export const addVisitor = (userId, visitorId) => {
 }
 
 export const createWall = userId => {
-  return fetch(`/api/users/${userId}`, {
+  return fetch(`${settings.publicPath}api/users/${userId}`, {
     method: 'PATCH',
     credentials: 'same-origin',
     headers: {
@@ -57,7 +58,7 @@ export const createWall = userId => {
  * @return {Promise}
  */
 export const login = code => (
-  fetch(`/api/weixin/authorize`, {
+  fetch(`${settings.publicPath}api/weixin/authorize`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

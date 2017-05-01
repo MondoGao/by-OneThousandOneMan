@@ -33,7 +33,7 @@ class LabelWall extends React.Component {
   /**
    * 检测轨道是否被占用
    * @param {number} trackNum 分配的轨道
-   * @param {number} textLength 被分配轨道标签的文字长度
+   * @param {number} textLength 被分配轨道弹幕的文字长度
    * @return {boolean}
    */
   isTrackOccupied = (trackNum, textLength) => {
@@ -80,11 +80,16 @@ class LabelWall extends React.Component {
   }
   
   appendLabels = () => {
+    let nextLabelQueue = [
+      ...this.state.labelQueue,
+      ...this.props.user.labels
+    ]
+    while (nextLabelQueue.length > 0 && nextLabelQueue.length < 6) {
+      nextLabelQueue.push('')
+    }
+    
     this.setState({
-      labelQueue: [
-        ...this.state.labelQueue,
-        ...this.props.user.labels
-      ]
+      labelQueue: nextLabelQueue
     })
   }
   
@@ -100,9 +105,9 @@ class LabelWall extends React.Component {
     let labelText = null
     let newLabelQueueFlag = false
     
-    const again = () => {
+    const again = (timeout = (Math.random() * 500 + 500)) => {
       this.setState({
-        addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 500)
+        addTimer: setTimeout(this.createLabelWrapper, timeout)
       })
     }
     
@@ -113,7 +118,7 @@ class LabelWall extends React.Component {
       labelText = this.state.labelQueue[0]
     }
     
-    if (!labelText) {
+    if (labelText !== '' && !labelText) {
       this.appendLabels()
       again()
       return
@@ -136,7 +141,11 @@ class LabelWall extends React.Component {
       {labelText}
     </span>
   
-    again()
+    if (newLabelQueueFlag && this.state.labelQueue.length < 1) {
+      again(5000)
+    } else {
+      again()
+    }
     
     if (newLabelQueueFlag) {
       this.setState({
