@@ -159,18 +159,19 @@ class App extends React.Component {
         {!this.props.myself.id || this.props.isLoading ? null :
           <div>
             <Redirect push from={`${settings.publicPath}index.html`} to={`${settings.publicPath}`}/>
-            <Redirect push from={`${settings.publicPath}users`} to={`${settings.publicPath}`}/>
             <TransitionRoute
               path={`${settings.publicPath}users/:id`}
               key="/users"
               transitionChildren={UserPageContainer}
               {...transitionSettings}/>
+            <Redirect push from={`${settings.publicPath}users`} to={`${settings.publicPath}`}/>
             <TransitionRoute
               exact={true}
               path={`${settings.publicPath}`}
               key="/home"
               transitionChildren={HomeContainer}
               {...transitionSettings}/>
+            
           </div>}
         <p className="copyright">2017© Powered by Bingyan Studio</p>
       </div>
