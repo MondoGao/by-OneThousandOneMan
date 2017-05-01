@@ -7,10 +7,7 @@ import UserAvatar from 'components/UserAvatar'
 
 const RecentVisitor = ({ visitorAvatarSrcs = [], visitorNum = 0 }) => {
   const hasVisitor = visitorAvatarSrcs.length > 0
-  let blurLevel = 6 - Math.ceil(visitorNum / 2)
-  if (blurLevel < 0) {
-    blurLevel = 0
-  }
+  let blurLevel = 0
   
   const visitorAvatars = visitorAvatarSrcs.map((src, index) => (
     <UserAvatar

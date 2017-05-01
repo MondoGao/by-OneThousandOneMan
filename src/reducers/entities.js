@@ -19,20 +19,21 @@ const users = (state = {}, action) => {
       }
     }
     case consts.APPEND_VISITOR: {
-      const user = state[action.payload.userId]
-      const visitor = state[action.payload.visitorId]
-      const tmpVisitorHeadimgurls = [...new Set([
-        visitor.headimgurl,
-        ...user.visitorHeadimgurls
-      ])]
-      
-      return {
-        ...state,
-        [action.payload.userId]: {
-          ...user,
-          visitorHeadimgurls: tmpVisitorHeadimgurls.slice(0, 6)
-        }
-      }
+      // const user = state[action.payload.userId]
+      // const visitor = state[action.payload.visitorId]
+      // const tmpVisitorHeadimgurls = [...new Set([
+      //   visitor.headimgurl,
+      //   ...user.visitorHeadimgurls
+      // ])]
+      //
+      // return {
+      //   ...state,
+      //   [action.payload.userId]: {
+      //     ...user,
+      //     visitorHeadimgurls: tmpVisitorHeadimgurls.slice(0, 6)
+      //   }
+      // }
+      return state
     }
     case consts.CREATE_WALL: {
       const user = state[action.payload.userId]
