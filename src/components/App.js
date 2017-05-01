@@ -110,6 +110,14 @@ class App extends React.Component {
       })
   }
   
+  loadUsers = () => {
+    this.props.loadUser(this.props.myself.id)
+    let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
+    if (params && params[1]) {
+      this.props.loadUser(params[1])
+    }
+  }
+  
   loadAssets = () => {
     this.props.loadUser(this.props.myself.id)
       .then(() => {
@@ -124,6 +132,7 @@ class App extends React.Component {
       })
       .then(() => {
         this.props.loadingComplete()
+        setInterval(this.loadUsers, 10000)
       })
       .catch(err => {
         console.log(err)
