@@ -1,5 +1,5 @@
 import asset0 from './airship@2x.png' 
-import asset1 from './alter-label-bg@2x.png'
+import asset1 from './alter-label-bg@2x.png' 
 import asset2 from './alter-label-big-bg@2x.png' 
 import asset3 from './avatar-border@2x.png' 
 import asset4 from './bottom-tip@2x.png' 
