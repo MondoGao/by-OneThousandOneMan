@@ -51,6 +51,12 @@ class LabelInput extends React.Component {
             isLoading: false
           }))
         })
+        .catch(() => {
+          alert("发送标签失败啦？是不是有什么奇怪的东西？？")
+          this.setState(prevState => ({
+            isLoading: false
+          }))
+        })
     }
   }
   
