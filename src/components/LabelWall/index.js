@@ -80,11 +80,18 @@ class LabelWall extends React.Component {
   }
   
   appendLabels = () => {
+    let nextLabelQueue = [
+      ...this.state.labelQueue,
+      ...this.props.user.labels
+    ]
+    while (nextLabelQueue.length < 6) {
+      nextLabelQueue.push('')
+    }
+  
+    console.log(nextLabelQueue)
+  
     this.setState({
-      labelQueue: [
-        ...this.state.labelQueue,
-        ...this.props.user.labels
-      ]
+      labelQueue: nextLabelQueue
     })
   }
   
@@ -113,7 +120,7 @@ class LabelWall extends React.Component {
       labelText = this.state.labelQueue[0]
     }
     
-    if (!labelText) {
+    if (labelText !== '' && !labelText) {
       this.appendLabels()
       again()
       return
