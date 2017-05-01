@@ -12,6 +12,10 @@ import LabelInputContainer from 'containers/LabelInputContainer'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
 
 class UserPage extends React.Component {
+  state = {
+    isShowShare: false
+  }
+  
   loadUser = () => {
     if (!this.props.user) {
       this.props.loadUser(this.props.match.params.id)
@@ -21,8 +25,11 @@ class UserPage extends React.Component {
     }
   }
   
-  handleShare = e => {
-  
+  toggleShare = () => {
+    console.log(this.state)
+    this.setState((prevState) => ({
+      isShowShare: !prevState.isShowShare
+    }))
   }
   
   render() {
@@ -76,7 +83,7 @@ class UserPage extends React.Component {
             }}>
             <section style={transitionSettings.style}>
               {isMyself ?
-                <Button className={styles['btn-myself']} onClick={this.handleShare}>呼朋唤友求标签</Button> :
+                <Button className={styles['btn-myself']} onClick={this.toggleShare}>呼朋唤友求标签</Button> :
                 [
                   <LabelInputContainer key="input" userId={this.props.user.id}/>,
                   <Button key="btn" className={styles['btn-other']}>
@@ -91,8 +98,11 @@ class UserPage extends React.Component {
             </section>
           </CSSTransitionFirstChild>
         </div>
-        <div>
-        
+        <div className={`${styles['share']} ${this.state.isShowShare ? styles['show'] : ''}`} onClick={this.toggleShare}>
+          <div>
+            让朋友来这贴标签<br/>
+            或许他们更懂你
+          </div>
         </div>
       </CSSTransitionGroup>
     )
