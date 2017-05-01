@@ -4151,6 +4151,7 @@ span a {
   background-image: url(/single/assets/btn-flatten@2x.png?8411bff);
 }.RecentVisitor__recent-visitor-w0Hfl {
   overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .RecentVisitor__recent-visitor-w0Hfl h4 {
@@ -4213,17 +4214,11 @@ span a {
 }
 
 .UserAvatar__avatar-wrapper-3bwY3 img {
-  opacity: 0;
-}
-
-.UserAvatar__avatar-wrapper-3bwY3 canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
+  opacity: 1;
 }
 
 .UserAvatar__no-blur-3wfTs img {
-  opacity: 1;
+  display: inline-block;
 }
 
 .UserAvatar__no-blur-3wfTs canvas {
@@ -4231,6 +4226,7 @@ span a {
 }
 
 .UserAvatar__avatar-1r8TO {
+  position: relative;
   height: 100%;
   background: #fffbcb;
   border-radius: 50%;
