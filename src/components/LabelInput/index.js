@@ -1,6 +1,7 @@
 import React from 'react'
 
 import styles from './LabelInput.scss'
+import labels from 'sources/labels'
 
 class LabelInput extends React.Component {
   constructor(props) {
@@ -53,13 +54,32 @@ class LabelInput extends React.Component {
     }
   }
   
+  getAlterLabels = (() => {
+    const isLong = Math.random() > .5
+    const labelNum = isLong ? 2 : 4
+    let labelIndexs = []
+    const realLabels = labels[isLong ? 'long' : 'short']
+    
+    while (labelIndexs.length < labelNum) {
+      let index = Math.round(Math.random() * (realLabels.length - 1))
+      if (!labelIndexs.includes(index)) {
+        labelIndexs.push(index)
+      }
+    }
+    
+    return () => {
+      return labelIndexs.map(index => realLabels[index])
+    }
+  })()
+  
   render() {
-    const alterLabelTexts = ['家穷人丑', '要求太高', '没有选择我', '高冷']
+    const alterLabelTexts = this.getAlterLabels()
     const alterLabels = alterLabelTexts.map((text, input) => (
       <AlternativeLabel
         active={text === this.state.inputValue}
         onClick={this.handleLabelClick}
         key={input}
+        isLong={alterLabelTexts.length < 3}
       >
         {text}
       </AlternativeLabel>
@@ -100,9 +120,9 @@ LabelInput.defaultProps = {
   userId: null
 }
 
-const AlternativeLabel = ({ animationDelay, children = null, onClick, active = false }) => {
+const AlternativeLabel = ({ animationDelay, children = null, onClick, active = false, isLong = false }) => {
   return (
-    <span className={`${styles['alter-label']} ${active ? styles['active'] : ''}`} onClick={onClick}>
+    <span className={`${styles['alter-label']} ${active ? styles['active'] : ''} ${isLong ? styles['long'] : ''}`} onClick={onClick}>
       {children}
     </span>
   )
