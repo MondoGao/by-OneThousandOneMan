@@ -4,7 +4,8 @@ import * as actions from 'actions'
 
 const mapState = state => ({
   isLoading: state.ui.isLoading,
-  myself: state.myself
+  myself: state.myself,
+  users: state.entities.users
 })
 
 const mapDispatch = dispatch => ({

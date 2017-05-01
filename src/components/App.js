@@ -60,22 +60,44 @@ class App extends React.Component {
           timestamp: data.timestamp,
           nonceStr: data.noncestr,
           signature: data.signature,
-          jsApiList: ['onMenuShareTimeline']
+          jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
         })
+        
         wx.ready(() => {
-          if (self.props.myself.id) {
-            let link = window.location.href.match(/\/users\/[\w-]+/) ? window.location.href : `${window.location.origin}/users/${self.props.myself.id}`
-            
-            wx.onMenuShareTimeline({
-              title: '请告诉我我为什么还单身好吗!!!', // 分享标题
-              link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-              imgUrl: '', // 分享图标
-              success() {
-                console.log('分享成功')
-              }
-            })
+          let params = self.props.location.pathname.match(/\/users\/([\w-]+)/)
+          let userId = params && params[1]
+          const myself = self.props.users[self.props.myself.id]
+        
+          let link = self.props.location.href
+          if (!userId && self.props.myself.id) {
+            link = `${link}/users/${self.props.myself.id}`
           }
+          
+          const title = `没想到朋友们认为${myself ? myself.nickname : '我'}单身的原因是...`
+          const imgUrl = myself ? myself.headimgurl : '#'
+    
+          wx.onMenuShareTimeline({
+            title,
+            link,
+            imgUrl,
+            success() {
+              console.log('分享成功')
+            }
+          })
+        
+          wx.onMenuShareAppMessage({
+            title,
+            desc: '快来发送弹幕，告诉Ta单身这么久究竟因为啥！',
+            link,
+            imgUrl,
+            type: 'link',
+            dataUrl: '',
+            success() {
+              console.log('分享成功')
+            }
+          })
         })
+      
       })
   }
   
