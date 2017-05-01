@@ -6,7 +6,7 @@ import 'styles/animations.css'
 
 import { loadingAssets, getParameterByName } from 'scripts/utils'
 import loadingList from 'assets/loadingList'
-import { settings } from 'sources/index'
+import { settings } from 'sources'
 import * as sources from 'sources'
 
 import UserPageContainer from 'containers/UserPageContainer'
@@ -31,7 +31,7 @@ class App extends React.Component {
       } else {
         this.props.login(code)
           .then(() => {
-            this.props.history.replace(window.location.pathname)
+            this.props.history.replace(this.props.location.pathname)
           })
           .catch((err) => {
             console.log(err)
@@ -153,13 +153,13 @@ class App extends React.Component {
         {this.props.isLoading ? null :
           <div>
             <TransitionRoute
-              path="/users/:id"
+              path={`${settings.publicPath}users/:id`}
               key="/users"
               transitionChildren={UserPageContainer}
               {...transitionSettings}/>
             <TransitionRoute
               exact={true}
-              path="/"
+              path={`${settings.publicPath}`}
               key="/home"
               transitionChildren={HomeContainer}
               {...transitionSettings}/>

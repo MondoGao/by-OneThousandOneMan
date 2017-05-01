@@ -6,7 +6,7 @@ export const settings = {
   scope: 'snsapi_userinfo',
   redirectUri: 'http://127.0.0.1:8100',
   wechatHref: 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI1NzA3NTkwNw==&scene=110#wechat_redirect',
-  publicPath: ''
+  publicPath: '/single/'
 }
 
 export const jssdkConfig = url => {

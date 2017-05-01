@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { CSSTransitionGroup } from 'react-transition-group'
 
 import styles from './UserPage.scss'
+import { settings } from 'sources'
 
 import LabelWallContainer from 'containers/LabelWallContainer'
 import Button from 'components/Button'
@@ -88,8 +89,8 @@ class UserPage extends React.Component {
                   <LabelInputContainer key="input" userId={this.props.user.id}/>,
                   <Button key="btn" className={styles['btn-other']}>
                     {this.props.myself.hasWall ?
-                      <Link to={`/users/${this.props.myself.id}`}>查看我的标签墙</Link> :
-                      <Link to={'/'}>我也要建标签墙</Link>}
+                      <Link to={`${settings.publicPath}users/${this.props.myself.id}`}>查看我的标签墙</Link> :
+                      <Link to={`${settings.publicPath}`}>我也要建标签墙</Link>}
                   </Button>
                 ]
               }

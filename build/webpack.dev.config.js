@@ -45,7 +45,7 @@ module.exports = WebpackMerge(baseConfig, {
   devServer: {
     hot: true,
     contentBase: './dist',
-    publicPath: '/',
+    publicPath: '/single/',
     port: 8100,
     host: '0.0.0.0',
     proxy: {
