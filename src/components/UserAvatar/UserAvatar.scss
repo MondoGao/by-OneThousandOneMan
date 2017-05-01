@@ -11,18 +11,19 @@
     transition: opacity .5s;
   }
   img {
-    opacity: 0;
+    opacity: 1;
   }
   canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
+    //position: absolute;
+    //top: 0;
+    //left: 0;
+    //z-index: 2;
   }
 }
 
 .no-blur {
   img {
-    opacity: 1;
+    display: inline-block;
   }
   canvas {
     opacity: 0;
@@ -30,6 +31,7 @@
 }
 
 .avatar {
+  position: relative;
   height: 100%;
   background: #fffbcb;
   border-radius: 50%;
