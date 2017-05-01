@@ -47,7 +47,7 @@ class App extends React.Component {
     if (prevProps.myself.id !== this.props.myself.id && this.props.myself.id) {
       this.loadAssets()
     }
-    if (this.props.myself.id && this.props.users[this.props.myself.id]) {
+    if (this.props.myself.id && this.props.users[this.props.myself.id] && !prevProps.users[this.props.myself.id]) {
       this.configWechat()
     }
   }

@@ -26,9 +26,9 @@ const users = (state = {}, action) => {
         ...state,
         [action.payload.userId]: {
           ...user,
-          visitorAvatars: [
-            visitor.avatar,
-            ...user[visitorAvatars].slice(0, 5)
+          visitorHeadimgurls: [
+            visitor.headimgurl,
+            ...user[visitorHeadimgurls].slice(0, 5)
           ]
         }
       }
