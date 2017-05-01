@@ -33,7 +33,7 @@ class LabelWall extends React.Component {
   /**
    * 检测轨道是否被占用
    * @param {number} trackNum 分配的轨道
-   * @param {number} textLength 被分配轨道标签的文字长度
+   * @param {number} textLength 被分配轨道弹幕的文字长度
    * @return {boolean}
    */
   isTrackOccupied = (trackNum, textLength) => {

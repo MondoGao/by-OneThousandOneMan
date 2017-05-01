@@ -64,7 +64,7 @@ const Home = ({ style = {}, myself = {}, createWall }) => {
               onClick={() => createWall(myself.id)}
             >
               <Link to={`${settings.publicPath}users/${myself.id}`}>
-                {myself.hasWall ? '查看标签墙' : '生成标签墙'}
+                {myself.hasWall ? '查看弹幕墙' : '生成弹幕墙'}
               </Link>
             </Button>
             <TitleOrnament isReversed/>

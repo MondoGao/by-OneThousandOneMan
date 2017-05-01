@@ -37,7 +37,7 @@ class LabelInput extends React.Component {
   
   handleSubmit = () => {
     if (this.state.inputValue.length <= 0) {
-      alert('不要发空气炮啦输一点标签吧！')
+      alert('不要发空气炮啦输一点弹幕吧！')
     }
     else if (!this.state.isLoading) {
       this.setState({
@@ -79,7 +79,7 @@ class LabelInput extends React.Component {
           <input
             className={styles['label-input']}
             type="text"
-            placeholder="来啊！输入标签啊！"
+            placeholder="来啊！输入弹幕啊！"
             value={this.state.inputValue}
             onChange={this.handleChange}
             onKeyPress={this.handleKeyPress}
