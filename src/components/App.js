@@ -17,6 +17,10 @@ import { CSSTransitionFirstChild } from 'components/FirstChild'
 import TransitionRoute from 'components/TransitionRoute'
 
 class App extends React.Component {
+  state = {
+    reloadTimer: null
+  }
+  
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.pathname !== this.props.location.pathname) {
       this.configWechat()
@@ -113,7 +117,7 @@ class App extends React.Component {
   loadUsers = () => {
     this.props.loadUser(this.props.myself.id)
     let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
-    if (params && params[1]) {
+    if (params && params[1] && params[1] !== this.props.myself.id) {
       this.props.loadUser(params[1])
     }
   }
@@ -132,7 +136,10 @@ class App extends React.Component {
       })
       .then(() => {
         this.props.loadingComplete()
-        setInterval(this.loadUsers, 10000)
+        clearInterval(this.state.reloadTimer)
+        this.setState({
+          reloadTimer: setInterval(this.loadUsers, 10000)
+        })
       })
       .catch(err => {
         console.log(err)
