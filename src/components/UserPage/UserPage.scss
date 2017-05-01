@@ -18,3 +18,38 @@
   transform: translateX(-50%);
   z-index: 1;
 }
+
+.share {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, .9);
+  z-index: 10;
+  opacity: 0;
+  transition: opacity .5s;
+  pointer-events: none;
+  &.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  > div {
+    position: absolute;
+    top: 15px;
+    right: 40px;
+    width: 260px;
+    height: 320px;
+    background: url("assets/share-bg@2x.png") no-repeat center / contain;
+    text-align: right;
+    color: #57d1c9;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 1.4;
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 83%;
+    }
+  }
+}

@@ -12,6 +12,10 @@ import LabelInputContainer from 'containers/LabelInputContainer'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
 
 class UserPage extends React.Component {
+  state = {
+    isShowShare: false
+  }
+  
   loadUser = () => {
     if (!this.props.user) {
       this.props.loadUser(this.props.match.params.id)
@@ -19,6 +23,13 @@ class UserPage extends React.Component {
           alert('加载失败，请刷新重试')
         })
     }
+  }
+  
+  toggleShare = () => {
+    console.log(this.state)
+    this.setState((prevState) => ({
+      isShowShare: !prevState.isShowShare
+    }))
   }
   
   render() {
@@ -60,7 +71,7 @@ class UserPage extends React.Component {
               appearActive: 'animated'
             }}>
             <section style={transitionSettings.style}>
-              <UserAvatar className={styles['avatar']} src={this.props.user.avatar} bordered/>
+              <UserAvatar className={styles['avatar']} src={this.props.user.headimgurl} bordered/>
               <LabelWallContainer user={this.props.user}/>
             </section>
           </CSSTransitionFirstChild>
@@ -72,7 +83,7 @@ class UserPage extends React.Component {
             }}>
             <section style={transitionSettings.style}>
               {isMyself ?
-                <Button className={styles['btn-myself']}>呼朋唤友求标签</Button> :
+                <Button className={styles['btn-myself']} onClick={this.toggleShare}>呼朋唤友求标签</Button> :
                 [
                   <LabelInputContainer key="input" userId={this.props.user.id}/>,
                   <Button key="btn" className={styles['btn-other']}>
@@ -82,10 +93,16 @@ class UserPage extends React.Component {
                   </Button>
                 ]
               }
-              <RecentVisitor visitorAvatarSrcs={this.props.user.visitorAvatars}
+              <RecentVisitor visitorAvatarSrcs={this.props.user.visitorHeadimgurls}
                              visitorNum={this.props.user.visitorNum}/>
             </section>
           </CSSTransitionFirstChild>
+        </div>
+        <div className={`${styles['share']} ${this.state.isShowShare ? styles['show'] : ''}`} onClick={this.toggleShare}>
+          <div>
+            让朋友来这贴标签<br/>
+            或许他们更懂你
+          </div>
         </div>
       </CSSTransitionGroup>
     )
@@ -94,14 +111,14 @@ class UserPage extends React.Component {
   componentDidUpdate() {
     this.loadUser()
     if (this.props.myself.id !== this.props.user.id) {
-      this.props.appendVisitor(this.props.user.id)
+      this.props.appendVisitor(this.props.user.id, this.props.myself.id)
     }
   }
   
   componentDidMount() {
     this.loadUser()
     if (this.props.myself.id !== this.props.user.id) {
-      this.props.appendVisitor(this.props.user.id)
+      this.props.appendVisitor(this.props.user.id, this.props.myself.id)
     }
   }
 }

@@ -7,7 +7,7 @@ module.exports = WebpackMerge(baseConfig, {
   entry: {
     index: [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:8080',
+      'webpack-dev-server/client?http://localhost:8100',
       'webpack/hot/only-dev-server',
       'whatwg-fetch',
       './src/index.js'
@@ -46,12 +46,13 @@ module.exports = WebpackMerge(baseConfig, {
     hot: true,
     contentBase: './dist',
     publicPath: '/',
-    port: 8080,
+    port: 8100,
     host: '0.0.0.0',
     proxy: {
       '/api': {
         target: 'http://single.bingyan.net',
-        changeOrigin: true
+        changeOrigin: true,
+        logLevel: 'info'
       }
     },
     compress: true,

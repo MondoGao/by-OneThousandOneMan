@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from './Button.scss'
-import settings from 'sources/settings'
+import { settings } from 'sources'
 
 const Button = ({ children, type = 'normal', className = '', onClick = null }) => {
   return (
