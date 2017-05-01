@@ -170,6 +170,17 @@ class App extends React.Component {
               transitionChildren={HomeContainer}
               {...transitionSettings}/>
             
+            <Route
+              path={`${settings.publicPath}index.html`}
+              render={() => (
+              <Redirect to={`${settings.publicPath}`}/>
+            )}/>
+            <Route
+              exact
+              path={`${settings.publicPath}users`} 
+              render={() => (
+              <Redirect to={`${settings.publicPath}`}/>
+            )}/>
           </div>}
         <p className="copyright">2017© Powered by Bingyan Studio</p>
       </div>
