@@ -45,8 +45,10 @@ class App extends React.Component {
   
   componentDidUpdate(prevProps) {
     if (prevProps.myself.id !== this.props.myself.id && this.props.myself.id) {
-      this.configWechat()
       this.loadAssets()
+    }
+    if (this.props.myself.id && this.props.users[this.props.myself.id]) {
+      this.configWechat()
     }
   }
   
@@ -67,14 +69,21 @@ class App extends React.Component {
           let params = self.props.location.pathname.match(/\/users\/([\w-]+)/)
           let userId = params && params[1]
           const myself = self.props.users[self.props.myself.id]
+          let user = null
         
-          let link = self.props.location.href
-          if (!userId && self.props.myself.id) {
-            link = `${link}/users/${self.props.myself.id}`
-          }
+          let link = window.location.href
+          let title = `没想到朋友们认为我单身的原因是...`
+          let imgUrl = ''
           
-          const title = `没想到朋友们认为${myself ? myself.nickname : '我'}单身的原因是...`
-          const imgUrl = myself ? myself.headimgurl : '#'
+          if (userId) {
+            user = self.props.users[userId]
+            title = `没想到朋友们认为${user ? user.nickname : '我'}单身的原因是...`
+            imgUrl = user.headimgurl
+          } else if (myself) {
+            link = `${link}/users/${self.props.myself.id}`.replace(/single\/{2}/, 'single\/')
+            title = `没想到朋友们认为${myself.nickname}单身的原因是...`
+            imgUrl = myself.headimgurl
+          }
     
           wx.onMenuShareTimeline({
             title,
