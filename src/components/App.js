@@ -158,7 +158,6 @@ class App extends React.Component {
         </CSSTransitionFirstChild>
         {!this.props.myself.id || this.props.isLoading ? null :
           <div>
-            <Redirect push from={`${settings.publicPath}index.html`} to={`${settings.publicPath}`}/>
             <TransitionRoute
               path={`${settings.publicPath}users/:id`}
               key="/users"
