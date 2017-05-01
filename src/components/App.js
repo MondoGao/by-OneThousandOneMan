@@ -47,9 +47,6 @@ class App extends React.Component {
     if (prevProps.myself.id !== this.props.myself.id && this.props.myself.id) {
       this.loadAssets()
     }
-    if (this.props.myself.id && this.props.users[this.props.myself.id] && !prevProps.users[this.props.myself.id]) {
-      this.configWechat()
-    }
   }
   
   configWechat() {
@@ -77,8 +74,10 @@ class App extends React.Component {
           
           if (userId) {
             user = self.props.users[userId]
-            title = `没想到朋友们认为${user ? user.nickname : '我'}单身的原因是...`
-            imgUrl = user.headimgurl
+            if (user) {
+              title = `没想到朋友们认为${user.nickname}单身的原因是...`
+              imgUrl = user.headimgurl
+            }
           } else if (myself) {
             link = `${link}/users/${self.props.myself.id}`.replace(/single\/{2}/, 'single\/')
             title = `没想到朋友们认为${myself.nickname}单身的原因是...`
@@ -119,6 +118,7 @@ class App extends React.Component {
         }
       })
       .then(() => {
+        this.configWechat()
         return loadingAssets(loadingList)
       })
       .then(() => {

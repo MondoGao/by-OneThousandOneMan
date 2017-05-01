@@ -109,9 +109,9 @@ class UserPage extends React.Component {
     )
   }
   
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     this.loadUser()
-    if (this.props.myself.id !== this.props.user.id) {
+    if (prevProps.user.id !== this.props.user.id && this.props.myself.id !== this.props.user.id) {
       this.props.appendVisitor(this.props.user.id, this.props.myself.id)
     }
   }

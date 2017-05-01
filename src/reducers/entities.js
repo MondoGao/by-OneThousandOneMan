@@ -21,15 +21,16 @@ const users = (state = {}, action) => {
     case consts.APPEND_VISITOR: {
       const user = state[action.payload.userId]
       const visitor = state[action.payload.visitorId]
-  
+      const tmpVisitorHeadimgurls = [...new Set([
+        visitor.headimgurl,
+        ...user.visitorHeadimgurls
+      ])]
+      
       return {
         ...state,
         [action.payload.userId]: {
           ...user,
-          visitorHeadimgurls: [
-            visitor.headimgurl,
-            ...user[visitorHeadimgurls].slice(0, 5)
-          ]
+          visitorHeadimgurls: tmpVisitorHeadimgurls.slice(0, 6)
         }
       }
     }
