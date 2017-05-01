@@ -131,10 +131,6 @@ class App extends React.Component {
   }
   
   render() {
-    if (!this.props.myself.id) {
-      return null
-    }
-    
     const transitionSettings = {
       transitionName: {
         appear: 'fadeIn',
@@ -152,14 +148,14 @@ class App extends React.Component {
         animationDuration: '500ms'
       }
     }
-  
+    
     return (
       <div>
         <CSSTransitionFirstChild {...transitionSettings}>
           {this.props.isLoading ?
             <Loading key="loading" loadingComplete={this.props.loadingComplete} style={transitionSettings.style}/> : null}
         </CSSTransitionFirstChild>
-        {this.props.isLoading ? null :
+        {!this.props.myself.id || this.props.isLoading ? null :
           <div>
             <TransitionRoute
               path={`${settings.publicPath}users/:id`}
