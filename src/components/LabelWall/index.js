@@ -84,12 +84,10 @@ class LabelWall extends React.Component {
       ...this.state.labelQueue,
       ...this.props.user.labels
     ]
-    while (nextLabelQueue.length < 6) {
+    while (nextLabelQueue.length > 0 && nextLabelQueue.length < 6) {
       nextLabelQueue.push('')
     }
-  
-    console.log(nextLabelQueue)
-  
+    
     this.setState({
       labelQueue: nextLabelQueue
     })
@@ -107,9 +105,9 @@ class LabelWall extends React.Component {
     let labelText = null
     let newLabelQueueFlag = false
     
-    const again = () => {
+    const again = (timeout = (Math.random() * 500 + 500)) => {
       this.setState({
-        addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 500)
+        addTimer: setTimeout(this.createLabelWrapper, timeout)
       })
     }
     
@@ -143,7 +141,11 @@ class LabelWall extends React.Component {
       {labelText}
     </span>
   
-    again()
+    if (newLabelQueueFlag && this.state.labelQueue.length < 1) {
+      again(5000)
+    } else {
+      again()
+    }
     
     if (newLabelQueueFlag) {
       this.setState({
