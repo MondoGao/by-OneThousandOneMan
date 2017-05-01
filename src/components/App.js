@@ -164,7 +164,6 @@ class App extends React.Component {
               key="/users"
               transitionChildren={UserPageContainer}
               {...transitionSettings}/>
-            <Redirect push from={`${settings.publicPath}users`} to={`${settings.publicPath}`}/>
             <TransitionRoute
               exact={true}
               path={`${settings.publicPath}`}
