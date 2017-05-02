@@ -1,17 +1,16 @@
 import React from 'react'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 import styles from './LabelInput.scss'
 import labels from 'sources/labels'
 
 class LabelInput extends React.Component {
-  constructor(props) {
-    super(props)
-    
-    this.state = {
-      inputValue: '',
-      isLoading: false,
-      timer: null
-    }
+  state = {
+    inputValue: '',
+    isLoading: false,
+    timer: null,
+    alterLabels: this.getAlterLabels(),
+    sentNum: 0,
   }
   
   handleChange = e => {
@@ -41,9 +40,10 @@ class LabelInput extends React.Component {
       alert('不要发空气炮啦输一点弹幕吧！')
     }
     else if (!this.state.isLoading) {
-      this.setState({
-        isLoading: true
-      })
+      this.setState(prevState => ({
+        isLoading: true,
+        sentNum: prevState.sentNum + 1
+      }))
       this.props.appendNewLabel(this.props.userId, this.state.inputValue)
         .then(() => {
           this.setState(prevState => ({
@@ -60,32 +60,37 @@ class LabelInput extends React.Component {
     }
   }
   
-  getAlterLabels = (() => {
+  getAlterLabels = () => {
     const isLong = Math.random() > .5
     const labelNum = isLong ? 2 : 4
-    let labelIndexs = []
     const realLabels = labels[isLong ? 'long' : 'short']
-    
+    let labelIndexs = []
+  
     while (labelIndexs.length < labelNum) {
       let index = Math.round(Math.random() * (realLabels.length - 1))
       if (!labelIndexs.includes(index)) {
         labelIndexs.push(index)
       }
     }
-    
-    return () => {
-      return labelIndexs.map(index => realLabels[index])
+  
+    return labelIndexs.map(index => realLabels[index])
+  }
+  
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.sentNum !== this.state.sentNum && this.state.sentNum % 5 === 0) {
+      this.setState({
+        alterLabels: this.getAlterLabels()
+      })
     }
-  })()
+  }
   
   render() {
-    const alterLabelTexts = this.getAlterLabels()
-    const alterLabels = alterLabelTexts.map((text, input) => (
+    const alterLabels = this.state.alterLabels.map(text => (
       <AlternativeLabel
         active={text === this.state.inputValue}
         onClick={this.handleLabelClick}
-        key={input}
-        isLong={alterLabelTexts.length < 3}
+        key={text}
+        isLong={this.state.alterLabels.length < 3}
       >
         {text}
       </AlternativeLabel>
@@ -95,12 +100,34 @@ class LabelInput extends React.Component {
     for (let i = 1; i <= 12; ++i) {
       loadingSpinArr.push(<div key={i} className={`${styles['circle']} ${styles['circle' + i] ? styles['circle' + i] : ''}`}/>)
     }
+  
+    const transitionSettings = {
+      transitionName: {
+        appear: 'fadeInDown',
+        appearActive: 'animated',
+        enter: 'fadeInDown',
+        enterActive: 'animated',
+        leave: 'fade-out-absolute',
+        leaveActive: 'animated'
+      },
+      transitionAppear: true,
+      transitionAppearTimeout: 500,
+      transitionEnterTimeout: 500,
+      transitionLeaveTimeout: 500,
+      style: {
+        animationDuration: '500ms'
+      }
+    }
     
     return (
       <div className={`${styles['label-input-container']} ${this.state.isLoading ? styles['loading'] : ''}`}>
-        <p className={styles['alter-label-container']}>
+        <CSSTransitionGroup
+          {...transitionSettings}
+          component="p"
+          className={styles['alter-label-container']}
+        >
           {alterLabels}
-        </p>
+        </CSSTransitionGroup>
         <div className={styles['input-wrapper']}>
           <input
             className={styles['label-input']}
