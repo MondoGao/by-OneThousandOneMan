@@ -467,7 +467,7 @@ body {
   width: 100%;
   min-height: 100vh;
   padding-bottom: 0.8rem;
-  background: #57bdb6 url(/single/assets/decoration@2x.png?5d8a215) no-repeat center / cover;
+  background: #57bdb6 url(/single/assets/decoration@2x.png?5d8a215) no-repeat top / 100% 100vh;
   font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
   -webkit-user-select: none;
      -moz-user-select: none;
