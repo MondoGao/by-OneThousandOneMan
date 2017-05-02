@@ -114,13 +114,13 @@ class App extends React.Component {
       })
   }
   
-  loadUsers = () => {
-    this.props.loadUser(this.props.myself.id)
-    let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
-    if (params && params[1] && params[1] !== this.props.myself.id) {
-      this.props.loadUser(params[1])
-    }
-  }
+  // loadUsers = () => {
+  //   this.props.loadUser(this.props.myself.id)
+  //   let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
+  //   if (params && params[1] && params[1] !== this.props.myself.id) {
+  //     this.props.loadUser(params[1])
+  //   }
+  // }
   
   loadAssets = () => {
     this.props.loadUser(this.props.myself.id)
@@ -136,10 +136,10 @@ class App extends React.Component {
       })
       .then(() => {
         this.props.loadingComplete()
-        clearInterval(this.state.reloadTimer)
-        this.setState({
-          reloadTimer: setInterval(this.loadUsers, 10000)
-        })
+        // clearInterval(this.state.reloadTimer)
+        // this.setState({
+        //   reloadTimer: setInterval(this.loadUsers, 10000)
+        // })
       })
       .catch(err => {
         console.log(err)
