@@ -5,6 +5,22 @@ import styles from './LabelInput.scss'
 import labels from 'sources/labels'
 
 class LabelInput extends React.Component {
+  getAlterLabels = () => {
+    const isLong = Math.random() > .5
+    const labelNum = isLong ? 2 : 4
+    const realLabels = labels[isLong ? 'long' : 'short']
+    let labelIndexs = []
+    
+    while (labelIndexs.length < labelNum) {
+      let index = Math.round(Math.random() * (realLabels.length - 1))
+      if (!labelIndexs.includes(index)) {
+        labelIndexs.push(index)
+      }
+    }
+    
+    return labelIndexs.map(index => realLabels[index])
+  }
+  
   state = {
     inputValue: '',
     isLoading: false,
@@ -58,22 +74,6 @@ class LabelInput extends React.Component {
           }))
         })
     }
-  }
-  
-  getAlterLabels = () => {
-    const isLong = Math.random() > .5
-    const labelNum = isLong ? 2 : 4
-    const realLabels = labels[isLong ? 'long' : 'short']
-    let labelIndexs = []
-  
-    while (labelIndexs.length < labelNum) {
-      let index = Math.round(Math.random() * (realLabels.length - 1))
-      if (!labelIndexs.includes(index)) {
-        labelIndexs.push(index)
-      }
-    }
-  
-    return labelIndexs.map(index => realLabels[index])
   }
   
   componentDidUpdate(prevProps, prevState) {
