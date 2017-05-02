@@ -106,14 +106,12 @@ class LabelInput extends React.Component {
         appear: 'fadeInDown',
         appearActive: 'animated',
         enter: 'fadeInDown',
-        enterActive: 'animated',
-        leave: 'fade-out-absolute',
-        leaveActive: 'animated'
+        enterActive: 'animated'
       },
       transitionAppear: true,
       transitionAppearTimeout: 500,
       transitionEnterTimeout: 500,
-      transitionLeaveTimeout: 500,
+      transitionLeave: false,
       style: {
         animationDuration: '500ms'
       }
