@@ -59,7 +59,7 @@ class App extends React.Component {
     sources.jssdkConfig(window.location.href)
       .then(data => {
         wx.config({
-          debug: false,
+          debug: true,
           appId: data.appid,
           timestamp: data.timestamp,
           nonceStr: data.noncestr,
