@@ -5,7 +5,7 @@ import './App.css'
 import 'styles/transitions.css'
 import 'styles/animations.css'
 
-import { loadingAssets, getParameterByName } from 'scripts/utils'
+import { loadingAssets, getParameterByName, getCookie } from 'scripts/utils'
 import loadingList from 'assets/loadingList'
 import { settings } from 'sources'
 import * as sources from 'sources'
@@ -28,34 +28,58 @@ class App extends React.Component {
   }
   
   componentDidMount() {
+    this.authorizeHandler()
     this.configWechat()
-    if (!this.props.myself.id) {
-      let code = getParameterByName('code')
-      if (!code) {
-        window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(window.location.href)}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
-      } else {
+  }
+  
+  /**
+   * 判断四种进入状态进行反应
+   */
+  authorizeHandler = () => {
+    let key = getCookie('key')
+    let code = getParameterByName('code')
+  
+    if (key) {
+      if (code) {
+        // 有 key 有 code，证明为授权过期状态跳转回来
         this.props.login(code)
-          .then(() => {
-            this.props.history.replace(this.props.location.pathname)
-          })
-          .catch((err) => {
-            console.log(err)
-            window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(window.location.href.replace(/\?.*/, ''))}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
-          })
+          .then(() => this.loadAssets())
+          .catch(this.promiseCatch)
+      } else {
+        // 有 key 无 code，尝试加载用户信息, 已确认从 lS 读取 id 后判断
+        if (this.props.myself.id) {
+          this.props.loadUser(this.props.myself.id)
+            .then(() => this.loadAssets())
+            .catch(this.promiseCatch)
+        } else {
+          this.redirectToWx()
+        }
       }
-    } else {
-      this.loadAssets()
+    } else if(code) {
+      // 无 key 有 code，为初次加载跳转
+      this.props.login(code)
+        .then(() => this.loadAssets())
+        .catch(this.promiseCatch)
     }
+  
+    this.props.history.replace(this.props.location.pathname)
   }
   
-  componentDidUpdate(prevProps) {
-    if (prevProps.myself.id !== this.props.myself.id && this.props.myself.id) {
-      this.loadAssets()
+  promiseCatch = err => {
+    if (err.response && err.response.status === 401) {
+      this.redirectToWx()
     }
+    
+    console.log(err)
+    console.log(err.response)
+    alert('加载失败，请刷新重试')
   }
   
-  configWechat() {
-    let self = this
+  redirectToWx = () => {
+    window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(window.location.href.replace(window.location.search, ''))}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
+  }
+  
+  configWechat = () => {
     sources.jssdkConfig(window.location.href)
       .then(data => {
         wx.config({
@@ -66,29 +90,29 @@ class App extends React.Component {
           signature: data.signature,
           jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
         })
-        
+      
         wx.ready(() => {
-          let params = self.props.location.pathname.match(/\/users\/([\w-]+)/)
+          let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
           let userId = params && params[1]
-          const myself = self.props.users[self.props.myself.id]
+          const myself = this.props.users[this.props.myself.id]
           let user = null
         
           let link = window.location.href
           let title = `没想到朋友们认为我单身的原因是...`
           let imgUrl = ''
-          
+        
           if (userId) {
-            user = self.props.users[userId]
+            user = this.props.users[userId]
             if (user) {
               title = `没想到朋友们认为${user.nickname}单身的原因是...`
               imgUrl = user.headimgurl
             }
           } else if (myself) {
-            link = `${link}/users/${self.props.myself.id}`.replace(/single\/{2}/, 'single\/')
+            link = `${link}/users/${this.props.myself.id}`.replace(/single\/{2}/, 'single\/')
             title = `没想到朋友们认为${myself.nickname}单身的原因是...`
             imgUrl = myself.headimgurl
           }
-    
+        
           wx.onMenuShareTimeline({
             title,
             link,
@@ -110,7 +134,6 @@ class App extends React.Component {
             }
           })
         })
-      
       })
   }
   
@@ -122,18 +145,18 @@ class App extends React.Component {
   //   }
   // }
   
+  /**
+   * 确保已经有 myself.id 的情况下再调用进行加载
+   */
   loadAssets = () => {
-    this.props.loadUser(this.props.myself.id)
-      .then(() => {
-        let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
-        if (params && params[1]) {
-          return this.props.loadUser(params[1])
-        }
-      })
-      .then(() => {
-        this.configWechat()
-        return loadingAssets(loadingList)
-      })
+    let loadTask = [this.props.loadUser(this.props.myself.id), loadingAssets(loadingList)]
+    
+    let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
+    if (params && params[1]) {
+      loadTask.push(this.props.loadUser(params[1]))
+    }
+    
+    return Promise.all(...loadTask)
       .then(() => {
         this.props.loadingComplete()
         // clearInterval(this.state.reloadTimer)
@@ -141,10 +164,7 @@ class App extends React.Component {
         //   reloadTimer: setInterval(this.loadUsers, 10000)
         // })
       })
-      .catch(err => {
-        console.log(err)
-        alert('加载失败，请刷新重试')
-      })
+      .catch(this.promiseCatch)
   }
   
   render() {
