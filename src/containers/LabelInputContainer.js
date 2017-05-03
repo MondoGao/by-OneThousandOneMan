@@ -3,11 +3,13 @@ import LabelInput from 'components/LabelInput'
 
 import { appendLabel } from 'actions'
 
-const mapState = state => ({})
+const mapState = state => ({
+  myselfId: state.myself.id
+})
 
 const mapDispatch = dispatch => ({
-  appendNewLabel(userId, labelText) {
-    return dispatch(appendLabel(userId, labelText))
+  appendNewLabel(userId, writerId, labelText) {
+    return dispatch(appendLabel(userId, writerId, labelText))
   }
 })
 

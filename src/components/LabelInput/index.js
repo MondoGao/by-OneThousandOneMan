@@ -60,7 +60,7 @@ class LabelInput extends React.Component {
         isLoading: true,
         sentNum: prevState.sentNum + 1
       }))
-      this.props.appendNewLabel(this.props.userId, this.state.inputValue)
+      this.props.appendNewLabel(this.props.userId, this.props.myselfId, this.state.inputValue)
         .then(() => {
           this.setState(prevState => ({
             inputValue: '',

@@ -10,7 +10,7 @@ export const getUser = (id) => {
   return commonFetchGet(`${settings.publicPath}api/users/${id}`, user)
 }
 
-export const addLabel = (userId, labelText) => {
+export const addLabel = (userId, writerId, labelText) => {
   return fetch(`${settings.publicPath}api/users/${userId}/labels`, {
     method: 'PUT',
     credentials: 'same-origin',
@@ -18,6 +18,7 @@ export const addLabel = (userId, labelText) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
+      writerId,
       labelText
     })
   })

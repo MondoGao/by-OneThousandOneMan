@@ -29,11 +29,12 @@ export const refreshUser = id => (dispatch, getState) => {
 /**
  * {thunk} 增加新标签
  * @param {string} userId
+ * @param {string} writerId
  * @param {string} labelText
  * @return {Promise}
  */
-export const appendLabel = (userId, labelText) => dispatch => {
-  return sources.addLabel(userId, labelText)
+export const appendLabel = (userId, writerId, labelText) => dispatch => {
+  return sources.addLabel(userId, writerId, labelText)
     .then(() => {
       dispatch({
         type: consts.APPEND_LABEL,
