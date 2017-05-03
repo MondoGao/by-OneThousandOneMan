@@ -5,9 +5,10 @@ import './App.css'
 import 'styles/transitions.css'
 import 'styles/animations.css'
 
-import { loadingAssets, getParameterByName, getCookie } from 'scripts/utils'
+import { loadingAssets, getParameterByName, getCookie, redirectToWx } from 'scripts/utils'
 import loadingList from 'assets/loadingList'
 import { settings } from 'sources'
+import { promiseCatch } from 'sources/utils'
 import * as sources from 'sources'
 
 import UserPageContainer from 'containers/UserPageContainer'
@@ -44,39 +45,22 @@ class App extends React.Component {
         // 有 key 有 code，证明为授权过期状态跳转回来
         this.props.login(code)
           .then(() => this.loadAssets())
-          .catch(this.promiseCatch)
       } else {
         // 有 key 无 code，尝试加载用户信息, 已确认从 lS 读取 id 后判断
         if (this.props.myself.id) {
           this.props.loadUser(this.props.myself.id)
             .then(() => this.loadAssets())
-            .catch(this.promiseCatch)
         } else {
-          this.redirectToWx()
+          redirectToWx()
         }
       }
     } else if(code) {
       // 无 key 有 code，为初次加载跳转
       this.props.login(code)
         .then(() => this.loadAssets())
-        .catch(this.promiseCatch)
     }
   
     this.props.history.replace(this.props.location.pathname)
-  }
-  
-  promiseCatch = err => {
-    if (err.response && err.response.status === 401) {
-      this.redirectToWx()
-    }
-    
-    console.log(err)
-    console.log(err.response)
-    alert('加载失败，请刷新重试')
-  }
-  
-  redirectToWx = () => {
-    window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(window.location.href.replace(window.location.search, ''))}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
   }
   
   configWechat = () => {
@@ -164,7 +148,7 @@ class App extends React.Component {
         //   reloadTimer: setInterval(this.loadUsers, 10000)
         // })
       })
-      .catch(this.promiseCatch)
+      .catch(promiseCatch)
   }
   
   render() {

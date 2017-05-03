@@ -1,4 +1,4 @@
-import { commonFetchGet, checkStatus } from 'sources/utils'
+import { commonFetchGet, checkStatus, promiseCatch } from 'sources/utils'
 import { user } from 'sources/schemas'
 import { settings } from 'sources'
 
@@ -23,6 +23,7 @@ export const addLabel = (userId, writerId, labelText) => {
     })
   })
     .then(checkStatus)
+    .catch(promiseCatch)
 }
 
 export const addVisitor = (userId, visitorId) => {
@@ -37,6 +38,7 @@ export const addVisitor = (userId, visitorId) => {
     })
   })
     .then(checkStatus)
+    .catch(promiseCatch)
 }
 
 export const createWall = userId => {
@@ -51,6 +53,7 @@ export const createWall = userId => {
     })
   })
     .then(checkStatus)
+    .catch(promiseCatch)
 }
 
 /**
@@ -70,5 +73,6 @@ export const login = code => (
     })
   })
     .then(checkStatus)
+    .catch(promiseCatch)
     .then(data => data.json())
 )
