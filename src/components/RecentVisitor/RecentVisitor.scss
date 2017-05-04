@@ -1,8 +1,6 @@
 .recent-visitor {
-  overflow-x: hidden;
-  overflow-y: visible;
   h4 {
-    margin-bottom: 40px;
+    margin-bottom: 32px;
     color: #fffbcb;
     font-size: 36px;
     .header-text {
@@ -29,8 +27,9 @@
 
 .avatar-list {
   margin-right: -14px;
+  width: 100%;
   height: 100px;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .avatar {
