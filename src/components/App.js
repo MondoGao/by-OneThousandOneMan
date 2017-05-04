@@ -72,7 +72,7 @@ class App extends React.Component {
           timestamp: data.timestamp,
           nonceStr: data.noncestr,
           signature: data.signature,
-          jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareQZone']
+          jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareQZone', 'showMenuItems']
         })
       
         wx.ready(() => {
@@ -137,6 +137,13 @@ class App extends React.Component {
             success() {
               console.log('分享成功')
             }
+          })
+          
+          wx.showMenuItems({
+            menuList: [
+              'menuItem:share:appMessage',
+              'menuItem:share:timeline'
+            ] // 要显示的菜单项，所有menu项见附录3
           })
         })
       })
