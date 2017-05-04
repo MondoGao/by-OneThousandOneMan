@@ -1,3 +1,5 @@
+import { settings } from 'sources'
+
 /**
  * 删除数组中存在的元素，返回新数组
  * @param {Array} arr
@@ -71,4 +73,11 @@ export const getParameterByName = (name, url = window.location.href) => {
   if (!results) return null
   if (!results[2]) return ''
   return decodeURIComponent(results[2].replace(/\+/g, " "))
+}
+
+/**
+ * 跳转微信验证
+ */
+export const redirectToWx = () => {
+  window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(window.location.href.replace(window.location.search, ''))}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
 }

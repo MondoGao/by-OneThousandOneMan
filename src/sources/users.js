@@ -1,4 +1,4 @@
-import { commonFetchGet, checkStatus } from 'sources/utils'
+import { commonFetchGet, checkStatus, promiseCatch } from 'sources/utils'
 import { user } from 'sources/schemas'
 import { settings } from 'sources'
 
@@ -10,7 +10,7 @@ export const getUser = (id) => {
   return commonFetchGet(`${settings.publicPath}api/users/${id}`, user)
 }
 
-export const addLabel = (userId, labelText) => {
+export const addLabel = (userId, writerId, labelText) => {
   return fetch(`${settings.publicPath}api/users/${userId}/labels`, {
     method: 'PUT',
     credentials: 'same-origin',
@@ -18,10 +18,12 @@ export const addLabel = (userId, labelText) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
+      writerId,
       labelText
     })
   })
     .then(checkStatus)
+    .catch(promiseCatch)
 }
 
 export const addVisitor = (userId, visitorId) => {
@@ -36,6 +38,7 @@ export const addVisitor = (userId, visitorId) => {
     })
   })
     .then(checkStatus)
+    .catch(promiseCatch)
 }
 
 export const createWall = userId => {
@@ -50,6 +53,7 @@ export const createWall = userId => {
     })
   })
     .then(checkStatus)
+    .catch(promiseCatch)
 }
 
 /**
@@ -69,5 +73,6 @@ export const login = code => (
     })
   })
     .then(checkStatus)
+    .catch(promiseCatch)
     .then(data => data.json())
 )
