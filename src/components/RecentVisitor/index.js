@@ -5,7 +5,7 @@ import styles from './RecentVisitor.scss'
 import TitleOrnament from 'components/TitleOrnament'
 import UserAvatar from 'components/UserAvatar'
 
-const RecentVisitor = ({ visitorAvatarSrcs = [], visitorNum = 0 }) => {
+const RecentVisitor = ({ visitorAvatarSrcs = [] }) => {
   const hasVisitor = visitorAvatarSrcs.length > 0
   let blurLevel = 0
   
