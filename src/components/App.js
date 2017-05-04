@@ -84,6 +84,7 @@ class App extends React.Component {
           let link = window.location.href
           let title = `没想到朋友们认为我单身的原因是...`
           let imgUrl = ''
+          let desc = '快来发送弹幕，告诉Ta单身这么久究竟因为啥！'
         
           if (userId) {
             user = this.props.users[userId]
@@ -108,11 +109,31 @@ class App extends React.Component {
         
           wx.onMenuShareAppMessage({
             title,
-            desc: '快来发送弹幕，告诉Ta单身这么久究竟因为啥！',
+            desc,
             link,
             imgUrl,
             type: 'link',
             dataUrl: '',
+            success() {
+              console.log('分享成功')
+            }
+          })
+  
+          wx.onMenuShareQQ({
+            title,
+            desc,
+            link,
+            imgUrl,
+            success() {
+              console.log('分享成功')
+            }
+          })
+  
+          wx.onMenuShareQZone({
+            title,
+            desc,
+            link,
+            imgUrl,
             success() {
               console.log('分享成功')
             }
