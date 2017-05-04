@@ -20,12 +20,12 @@ class LabelWall extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     if (nextProps.user.newLabels && nextProps.user.newLabels.length > 0) {
-      this.setState({
+      this.setState(prevState => ({
         newLabelQueue: [
-          ...this.state.newLabelQueue,
+          ...prevState.newLabelQueue,
           ...nextProps.user.newLabels
         ]
-      })
+      }))
       this.props.finishShowNewLabel(nextProps.user.id)
     }
   }

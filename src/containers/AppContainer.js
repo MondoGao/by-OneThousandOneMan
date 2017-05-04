@@ -17,6 +17,9 @@ const mapDispatch = dispatch => ({
   },
   login(code) {
     return dispatch(actions.login(code))
+  },
+  refreshLabels(userId) {
+    return dispatch(actions.refreshNewLabel(userId))
   }
 })
 

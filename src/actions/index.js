@@ -28,8 +28,8 @@ export const refreshUser = id => (dispatch, getState) => {
 
 /**
  * {thunk} 增加新标签
- * @param {string} userId
- * @param {string} writerId
+ * @param {string} userId - 目标对象 id
+ * @param {string} writerId - 发表评论者 id
  * @param {string} labelText
  * @return {Promise}
  */
@@ -46,6 +46,11 @@ export const appendLabel = (userId, writerId, labelText) => dispatch => {
     })
 }
 
+/**
+ * 向服务器添加访客
+ * @param userId - 被访用户 id
+ * @param visitorId - 访问用户 id
+ */
 export const appendVisitor = (userId, visitorId) => (dispatch, getState) => {
   return sources.addVisitor(userId, visitorId)
     .then(() => {
@@ -59,6 +64,10 @@ export const appendVisitor = (userId, visitorId) => (dispatch, getState) => {
     })
 }
 
+/**
+ * 将用户标记为已建墙状态
+ * @param userId
+ */
 export const createWall = userId => dispatch => {
   return sources.createWall(userId)
     .then(() => {
@@ -96,3 +105,20 @@ export const showedNewLabel = userId => ({
     userId
   }
 })
+
+/**
+ * {thunk} 向服务器请求新的用户信息以更新标签墙
+ * @param userId
+ */
+export const refreshNewLabel = userId => dispatch => {
+  return sources.getUser(id)
+    .then(normalizedData => {
+      dispatch({
+        type: consts.REFRESH_NEW_BABEL,
+        payload: {
+          userId,
+          labels: normalizedData.entities.users[userId].labels
+        }
+      })
+    })
+}

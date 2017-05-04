@@ -142,13 +142,13 @@ class App extends React.Component {
       })
   }
   
-  // loadUsers = () => {
-  //   this.props.loadUser(this.props.myself.id)
-  //   let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
-  //   if (params && params[1] && params[1] !== this.props.myself.id) {
-  //     this.props.loadUser(params[1])
-  //   }
-  // }
+  loadNewLabels = () => {
+    this.props.refreshLabels(this.props.myself.id)
+    let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
+    if (params && params[1] && params[1] !== this.props.myself.id) {
+      this.props.refreshLabels(params[1])
+    }
+  }
   
   /**
    * 确保已经有 myself.id 的情况下再调用进行加载
@@ -164,10 +164,10 @@ class App extends React.Component {
     return Promise.all(loadTask)
       .then(() => {
         this.props.loadingComplete()
-        // clearInterval(this.state.reloadTimer)
-        // this.setState({
-        //   reloadTimer: setInterval(this.loadUsers, 10000)
-        // })
+        clearInterval(this.state.reloadTimer)
+        this.setState({
+          reloadTimer: setInterval(this.loadNewLabels, 15000)
+        })
       })
       .catch(promiseCatch)
   }
