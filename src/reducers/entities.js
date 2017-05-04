@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import * as consts from 'actions/consts'
+import { removeFromArray } from 'scripts/utils'
 
 const users = (state = {}, action) => {
   switch (action.type) {
@@ -17,23 +18,6 @@ const users = (state = {}, action) => {
           ]
         }
       }
-    }
-    case consts.APPEND_VISITOR: {
-      // const user = state[action.payload.userId]
-      // const visitor = state[action.payload.visitorId]
-      // const tmpVisitorHeadimgurls = [...new Set([
-      //   visitor.headimgurl,
-      //   ...user.visitorHeadimgurls
-      // ])]
-      //
-      // return {
-      //   ...state,
-      //   [action.payload.userId]: {
-      //     ...user,
-      //     visitorHeadimgurls: tmpVisitorHeadimgurls.slice(0, 6)
-      //   }
-      // }
-      return state
     }
     case consts.CREATE_WALL: {
       const user = state[action.payload.userId]
@@ -58,6 +42,27 @@ const users = (state = {}, action) => {
             ...user.newLabels
           ],
           newLabels: []
+        }
+      }
+    }
+    case consts.REFRESH_NEW_BABEL: {
+      const user = state[action.payload.userId]
+      const newLabels = user.newLabels ? user.newLabels : []
+      const originLabels = user.labels.concat(newLabels)
+      let newLabelFromServer = action.payload.labels
+      
+      for (let label of originLabels) {
+        newLabelFromServer = removeFromArray(newLabelFromServer, true, label)
+      }
+      
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...user,
+          newLabels: [
+            ...newLabels,
+            ...newLabelFromServer
+          ]
         }
       }
     }
