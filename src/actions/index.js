@@ -117,7 +117,8 @@ export const refreshNewLabel = userId => dispatch => {
         type: consts.REFRESH_NEW_BABEL,
         payload: {
           userId,
-          labels: normalizedData.entities.users[userId].labels
+          labels: normalizedData.entities.users[userId].labels,
+          visitorHeadimgurls: normalizedData.entities.users[userId].visitorHeadimgurls
         }
       })
     })

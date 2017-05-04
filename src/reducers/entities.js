@@ -62,7 +62,8 @@ const users = (state = {}, action) => {
           newLabels: [
             ...newLabels,
             ...newLabelFromServer
-          ]
+          ],
+          visitorHeadimgurls: action.payload.visitorHeadimgurls
         }
       }
     }
