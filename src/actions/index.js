@@ -111,7 +111,7 @@ export const showedNewLabel = userId => ({
  * @param userId
  */
 export const refreshNewLabel = userId => dispatch => {
-  return sources.getUser(id)
+  return sources.getUser(userId)
     .then(normalizedData => {
       dispatch({
         type: consts.REFRESH_NEW_BABEL,
