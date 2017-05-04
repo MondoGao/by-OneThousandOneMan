@@ -140,7 +140,7 @@ class App extends React.Component {
       loadTask.push(this.props.loadUser(params[1]))
     }
     
-    return Promise.all(...loadTask)
+    return Promise.all(loadTask)
       .then(() => {
         this.props.loadingComplete()
         // clearInterval(this.state.reloadTimer)
