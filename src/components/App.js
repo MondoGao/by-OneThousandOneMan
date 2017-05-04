@@ -151,10 +151,10 @@ class App extends React.Component {
   
   loadNewLabels = () => {
     this.props.refreshLabels(this.props.myself.id)
-    let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
-    if (params && params[1] && params[1] !== this.props.myself.id) {
-      this.props.refreshLabels(params[1])
-    }
+    // let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
+    // if (params && params[1] && params[1] !== this.props.myself.id) {
+    //   this.props.refreshLabels(params[1])
+    // }
   }
   
   /**
