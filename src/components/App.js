@@ -72,7 +72,7 @@ class App extends React.Component {
           timestamp: data.timestamp,
           nonceStr: data.noncestr,
           signature: data.signature,
-          jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
+          jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareQZone']
         })
       
         wx.ready(() => {
