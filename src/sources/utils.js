@@ -26,6 +26,7 @@ export const promiseCatch = err => {
   } else {
     console.log(err)
     console.log(err.response)
+    alert(err)
     alert('加载失败，请刷新重试')
   }
 }
