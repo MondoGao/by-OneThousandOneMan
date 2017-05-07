@@ -90,12 +90,12 @@ class App extends React.Component {
             user = this.props.users[userId]
             if (user) {
               title = `没想到朋友们认为${user.nickname}单身的原因是...`
-              imgUrl = user.headimgurl
+              imgUrl = window.location.origin + user.headimgurl
             }
           } else if (myself) {
             link = `${link}/users/${this.props.myself.id}`.replace(/single\/{2}/, 'single\/')
             title = `没想到朋友们认为${myself.nickname}单身的原因是...`
-            imgUrl = myself.headimgurl
+            imgUrl = window.location.origin + myself.headimgurl
           }
         
           wx.onMenuShareTimeline({
