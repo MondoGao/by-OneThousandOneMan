@@ -111,7 +111,7 @@ class UserPage extends React.Component {
   
   componentDidUpdate(prevProps) {
     if (prevProps.user.id !== this.props.user.id) {
-      this.loadUser()
+      this.props.loadUser(this.props.user.id)
     }
     if (prevProps.user.id !== this.props.user.id && this.props.myself.id !== this.props.user.id) {
       this.props.appendVisitor(this.props.user.id, this.props.myself.id)
@@ -119,7 +119,7 @@ class UserPage extends React.Component {
   }
   
   componentDidMount() {
-    this.loadUser()
+    this.props.loadUser(this.props.user.id)
       .then(() => document.title = `${this.props.user.nickname}的单身原因`)
     if (this.props.myself.id !== this.props.user.id) {
       this.props.appendVisitor(this.props.user.id, this.props.myself.id)
