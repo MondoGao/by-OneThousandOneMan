@@ -23,12 +23,11 @@ export const checkStatus = (response) => {
 export const promiseCatch = err => {
   if (err.response && err.response.status === 401) {
     redirectToWx()
+  } else {
+    console.log(err)
+    console.log(err.response)
+    alert('加载失败，请刷新重试')
   }
-  
-  console.log(err)
-  console.log(err.response)
-  alert('load fail：'  + err)
-  alert('加载失败，请刷新重试')
 }
 
 /**
