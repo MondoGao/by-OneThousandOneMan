@@ -130,7 +130,7 @@ class LabelInput extends React.Component {
           <input
             className={styles['label-input']}
             type="text"
-            placeholder="来啊！输入弹幕啊！"
+            placeholder="快告诉TA为什么单身吧~"
             value={this.state.inputValue}
             onChange={this.handleChange}
             onKeyPress={this.handleKeyPress}
