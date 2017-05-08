@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-cmn-Hans">
 <head>
     <script>
       "use strict";var getCookie=function(a){var b="; "+document.cookie,c=b.split("; "+a+"=");if(2===c.length)return c.pop().split(";").shift()},getParameterByName=function(a){var b=1<arguments.length&&arguments[1]!==void 0?arguments[1]:window.location.href;a=a.replace(/[\[\]]/g,"\\$&");var c=new RegExp("[?&]"+a+"(=([^&#]*)|&|#|$)"),d=c.exec(b);return d?d[2]?decodeURIComponent(d[2].replace(/\+/g," ")):"":null},redirectToWx=function(){window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+settings.appId+"&redirect_uri="+encodeURIComponent(window.location.href.replace(window.location.search,""))+"&response_type=code&scope="+settings.scope+"&state=STATE#wechat_redirect"},settings={appId:"wx690cda5c2ea251b2",scope:"snsapi_userinfo"},code=getParameterByName("code"),key=getCookie("key");key||code||redirectToWx();
