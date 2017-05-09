@@ -126,6 +126,10 @@ class UserPage extends React.Component {
       this.props.appendVisitor(this.props.user.id, this.props.myself.id)
     }
   }
+  
+  componentWillUnmount() {
+    document.title = '一千个单身理由'
+  }
 }
 
 UserPage.defaultProps = {
