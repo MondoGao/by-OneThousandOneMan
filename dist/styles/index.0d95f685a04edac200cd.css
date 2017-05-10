@@ -3889,7 +3889,18 @@ span a {
 }
 
 .UserPage__btn-myself-2WI_E {
-  margin: 1.706667rem 0 1.893333rem;
+  margin: 0.506667rem 0 1.893333rem;
+}
+
+.UserPage__myself-num-tip-1COKI {
+  margin-top: 0.906667rem;
+  font-size: 0.32rem;
+  color: #f9f5c0;
+}
+
+.UserPage__myself-num-tip-1COKI span {
+  font-size: 0.346667rem;
+  color: #cb3867;
 }
 
 .UserPage__avatar-1_xr6 {
@@ -4178,7 +4189,7 @@ span a {
 .RecentVisitor__blur-tip-2IV2m {
   display: block;
   margin-top: 0.293333rem;
-  font-size: 0.213333rem;
+  font-size: 0.266667rem;
   color: #fffbcb;
 }
 
@@ -4305,6 +4316,15 @@ span a {
     -webkit-transform: translateY(0);
             transform: translateY(0);
   }
+}
+
+.LabelInput__refresh-labels-Ys6kO {
+  position: absolute;
+  top: 0.08rem;
+  right: 0.106667rem;
+  width: 0.573333rem;
+  height: 0.613333rem;
+  background: url(/single/assets/refresh@2x.png?ec10a7d) no-repeat center/contain;
 }
 
 .LabelInput__alter-label-2Keaz {
