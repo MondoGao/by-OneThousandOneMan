@@ -4,7 +4,7 @@ import * as actions from 'actions'
 
 const mapState = (state, ownProps) => ({
   user: state.entities.users[ownProps.match.params.id],
-  myself: state.entities.users[state.myself.id]
+  myself: state.myself
 })
 
 const mapDispatch = dispatch => ({
