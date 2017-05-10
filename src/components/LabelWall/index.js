@@ -40,7 +40,7 @@ class LabelWall extends React.Component {
     let flag = false
     
     Array.from(document.getElementsByClassName(styles[`track-${trackNum}`])).map(el => {
-      if (el && this.state.wallRight - el.getBoundingClientRect().right < textLength * 28) {
+      if (el && this.state.wallRight - el.getBoundingClientRect().right < textLength * 24) {
         flag = true
       }
     })
@@ -105,7 +105,7 @@ class LabelWall extends React.Component {
     let labelText = null
     let newLabelQueueFlag = false
     
-    const again = (timeout = (Math.random() * 500 + 500)) => {
+    const again = (timeout = (Math.random() * 500 + 200)) => {
       this.setState({
         addTimer: setTimeout(this.createLabelWrapper, timeout)
       })
@@ -191,7 +191,7 @@ class LabelWall extends React.Component {
   
   componentDidMount() {
     this.setState({
-      addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 500),
+      addTimer: setTimeout(this.createLabelWrapper, Math.random() * 500 + 200),
       wallRight: this.wall.getBoundingClientRect().right,
       wallLeft: this.wall.getBoundingClientRect().left
     })
