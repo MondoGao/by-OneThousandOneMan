@@ -84,7 +84,28 @@ class UserPage extends React.Component {
             }}>
             <section style={transitionSettings.style}>
               {isMyself ?
-                <Button className={styles['btn-myself']} onClick={this.toggleShare}>呼朋唤友求弹幕</Button> :
+                [
+                  <p
+                    key="tip"
+                    className={styles['myself-num-tip']}
+                  >
+                    已有
+                    <span>
+                      {this.props.user.visitorNum || this.props.user.visitorHeadimgurls.length}
+                      </span>
+                    人来访，共收到弹幕
+                    <span>
+                      {this.props.user.labelNum || this.props.user.labels.length}
+                    </span>
+                    条
+                  </p>,
+                  <Button
+                    key="btn"
+                    className={styles['btn-myself']}
+                    onClick={this.toggleShare}>
+                    呼朋唤友求弹幕
+                  </Button>
+                ] :
                 [
                   <LabelInputContainer key="input" userId={this.props.user.id}/>,
                   <Button key="btn" className={styles['btn-other']}>
