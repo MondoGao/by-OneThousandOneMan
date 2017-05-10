@@ -76,13 +76,19 @@ class LabelInput extends React.Component {
     }
   }
   
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.sentNum !== this.state.sentNum && this.state.sentNum % 5 === 0) {
-      this.setState({
-        alterLabels: this.getAlterLabels()
-      })
-    }
+  handleRefreshClick = e => {
+    this.setState({
+      alterLabels: this.getAlterLabels()
+    })
   }
+  
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.sentNum !== this.state.sentNum && this.state.sentNum % 5 === 0) {
+  //     this.setState({
+  //       alterLabels: this.getAlterLabels()
+  //     })
+  //   }
+  // }
   
   render() {
     const alterLabels = this.state.alterLabels.map(text => (
@@ -125,6 +131,10 @@ class LabelInput extends React.Component {
           className={styles['alter-label-container']}
         >
           {alterLabels}
+          <span
+            className={styles['refresh-labels']}
+            onClick={this.handleRefreshClick}
+          />
         </CSSTransitionGroup>
         <div className={styles['input-wrapper']}>
           <input

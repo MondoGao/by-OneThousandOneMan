@@ -30,6 +30,15 @@
   }
 }
 
+.refresh-labels {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 43px;
+  height: 46px;
+  background: url("assets/refresh@2x.png") no-repeat center / contain;
+}
+
 .alter-label {
   display: inline-block;
   margin-right: 29px;
