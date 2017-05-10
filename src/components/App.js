@@ -60,7 +60,8 @@ class App extends React.Component {
         .then(() => this.loadAssets())
     }
   
-    this.props.history.replace(this.props.location.pathname)
+    // this.props.history.replace(this.props.location.pathname)
+    window.history.replaceState({}, '', window.location.pathname)
   }
   
   configWechat = () => {
