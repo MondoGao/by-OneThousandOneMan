@@ -133,7 +133,7 @@ class UserPage extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.user) {
       document.title = `${this.props.user.nickname}的单身原因`
-      if (this.props.myself.id !== this.props.user.id) {
+      if (!prevProps.user && this.props.myself.id !== this.props.user.id) {
         this.props.appendVisitor(this.props.user.id, this.props.myself.id)
       }
     }
