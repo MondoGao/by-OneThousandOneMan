@@ -95,7 +95,7 @@ class LabelInput extends React.Component {
       <AlternativeLabel
         active={text === this.state.inputValue}
         onClick={this.handleLabelClick}
-        key={Date.now() + index + Math.random()}
+        key={text + index}
         isLong={this.state.alterLabels.length < 3}
       >
         {text}
