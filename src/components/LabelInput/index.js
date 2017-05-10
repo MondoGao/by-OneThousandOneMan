@@ -91,11 +91,11 @@ class LabelInput extends React.Component {
   // }
   
   render() {
-    const alterLabels = this.state.alterLabels.map(text => (
+    const alterLabels = this.state.alterLabels.map((text, index) => (
       <AlternativeLabel
         active={text === this.state.inputValue}
         onClick={this.handleLabelClick}
-        key={Date.now()}
+        key={Date.now() + index + Math.random()}
         isLong={this.state.alterLabels.length < 3}
       >
         {text}
