@@ -3895,10 +3895,12 @@ span a {
 .UserPage__myself-num-tip-1COKI {
   margin-top: 0.906667rem;
   font-size: 0.32rem;
+  font-weight: bold;
   color: #f9f5c0;
 }
 
 .UserPage__myself-num-tip-1COKI span {
+  padding: 0.106667rem;
   font-size: 0.346667rem;
   color: #cb3867;
 }
