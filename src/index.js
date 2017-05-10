@@ -40,7 +40,7 @@ const render = (Component) => {
 };
 
 render(
-  <Router>
+  <Router forceRefresh>
     <Route path="/" component={App}/>
   </Router>
 );
@@ -48,14 +48,14 @@ render(
 if (module.hot) {
   module.hot.accept('components/App', () => {
     render(
-      <Router>
+      <Router forceRefresh>
         <Route path="/" component={App}/>
       </Router>
     )
   })
   module.hot.accept('containers/AppContainer', () => {
     render(
-      <Router>
+      <Router forceRefresh>
         <Route path="/" component={App}/>
       </Router>
     )
