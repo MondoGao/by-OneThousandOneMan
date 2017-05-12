@@ -4283,6 +4283,7 @@ span a {
 
 .LabelInput__alter-label-container-37mQ1 {
   position: relative;
+  height: 0.96rem;
   padding-left: 0.24rem;
 }
 
@@ -4327,6 +4328,11 @@ span a {
   width: 0.693333rem;
   height: 0.72rem;
   background: url(/single/assets/refresh@2x.png?6f03ff0) no-repeat center/contain;
+  transition: opacity .3s;
+}
+
+.LabelInput__refresh-labels-Ys6kO .LabelInput__cooling-2qIki {
+  opacity: .8;
 }
 
 .LabelInput__alter-label-2Keaz {
