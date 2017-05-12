@@ -73,7 +73,7 @@ class App extends React.Component {
           timestamp: data.timestamp,
           nonceStr: data.noncestr,
           signature: data.signature,
-          jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareQZone', 'showMenuItems']
+          jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareQZone']
         })
       
         wx.ready(() => {
@@ -139,13 +139,6 @@ class App extends React.Component {
               console.log('分享成功')
             }
           })
-          
-          wx.showMenuItems({
-            menuList: [
-              'menuItem:share:appMessage',
-              'menuItem:share:timeline'
-            ] // 要显示的菜单项，所有menu项见附录3
-          })
         })
       })
   }
@@ -165,17 +158,21 @@ class App extends React.Component {
     let loadTask = [this.props.loadUser(this.props.myself.id), loadingAssets(loadingList)]
     
     let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
-    if (params && params[1]) {
+    if (params && params[1] && params[1] !== this.props.myself.id) {
       loadTask.push(this.props.loadUser(params[1]))
     }
     
     return Promise.all(loadTask)
       .then(() => {
         this.props.loadingComplete()
-        clearInterval(this.state.reloadTimer)
-        this.setState({
-          reloadTimer: setInterval(this.loadNewLabels, 15000)
-        })
+        
+        // 如果访问的是主人页，定期更新
+        if (params[1] === this.props.myself.id) {
+          clearInterval(this.state.reloadTimer)
+          this.setState({
+            reloadTimer: setInterval(this.loadNewLabels, 15000)
+          })
+        }
       })
       .catch(promiseCatch)
   }
@@ -199,10 +196,12 @@ class App extends React.Component {
       }
     }
     
+    const isFirst = !localStorage.getItem('myselfId')
+    
     return (
       <div>
         <CSSTransitionFirstChild {...transitionSettings}>
-          {this.props.isLoading ?
+          {this.props.isLoading && isFirst ?
             <Loading key="loading" loadingComplete={this.props.loadingComplete} style={transitionSettings.style}/> : null}
         </CSSTransitionFirstChild>
         {!this.props.myself.id || this.props.isLoading ? null :

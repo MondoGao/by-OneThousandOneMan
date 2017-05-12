@@ -17,17 +17,7 @@ class UserPage extends React.Component {
     isShowShare: false
   }
   
-  loadUser = () => {
-    if (!this.props.user) {
-      this.props.loadUser(this.props.match.params.id)
-        .catch(err => {
-          alert('加载失败，请刷新重试')
-        })
-    }
-  }
-  
   toggleShare = () => {
-    console.log(this.state)
     this.setState((prevState) => ({
       isShowShare: !prevState.isShowShare
     }))
@@ -130,38 +120,12 @@ class UserPage extends React.Component {
     )
   }
   
-  componentDidUpdate(prevProps) {
-    if (this.props.user) {
-      document.title = `${this.props.user.nickname}的单身原因`
-      if (!prevProps.user && this.props.myself.id !== this.props.user.id) {
-        this.props.appendVisitor(this.props.user.id, this.props.myself.id)
-      }
-    }
-    
-    if (prevProps.user) {
-      if (prevProps.user.id !== this.props.user.id) {
-        this.props.loadUser(this.props.user.id)
-          .then(() => document.title = `${this.props.user.nickname}的单身原因`)
-      }
-      if (prevProps.user.id !== this.props.user.id && this.props.myself.id !== this.props.user.id) {
-        this.props.appendVisitor(this.props.user.id, this.props.myself.id)
-      }
-    }
-  }
-  
   componentDidMount() {
-    if (!this.props.user) {
-      this.props.loadUser(this.props.match.params.id)
-    } else {
-      document.title = `${this.props.user.nickname}的单身原因`
-      if (this.props.myself.id !== this.props.user.id) {
-        this.props.appendVisitor(this.props.user.id, this.props.myself.id)
-      }
+    document.title = `${this.props.user.nickname}的单身原因`
+    
+    if (this.props.myself.id !== this.props.user.id) {
+      this.props.appendVisitor(this.props.user.id, this.props.myself.id)
     }
-  }
-  
-  componentWillUnmount() {
-    document.title = '一千个单身理由'
   }
 }
 
