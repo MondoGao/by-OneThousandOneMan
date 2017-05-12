@@ -4283,7 +4283,7 @@ span a {
 
 .LabelInput__alter-label-container-37mQ1 {
   position: relative;
-  padding-left: 0.386667rem;
+  padding-left: 0.24rem;
 }
 
 @-webkit-keyframes LabelInput__bling-3PBW6 {
@@ -4322,16 +4322,16 @@ span a {
 
 .LabelInput__refresh-labels-Ys6kO {
   position: absolute;
-  top: 0.08rem;
-  right: 0.106667rem;
-  width: 0.573333rem;
-  height: 0.613333rem;
-  background: url(/single/assets/refresh@2x.png?ec10a7d) no-repeat center/contain;
+  top: 0;
+  right: 0.16rem;
+  width: 0.693333rem;
+  height: 0.72rem;
+  background: url(/single/assets/refresh@2x.png?6f03ff0) no-repeat center/contain;
 }
 
 .LabelInput__alter-label-2Keaz {
   display: inline-block;
-  margin-right: 0.386667rem;
+  margin-right: 0.24rem;
   height: 0.96rem;
   width: 1.813333rem;
   padding-top: 0.213333rem;
