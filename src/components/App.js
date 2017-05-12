@@ -19,7 +19,8 @@ import TransitionRoute from 'components/TransitionRoute'
 
 class App extends React.Component {
   state = {
-    reloadTimer: null
+    reloadTimer: null,
+    isFirst: !localStorage.getItem('myselfId')
   }
   
   componentWillReceiveProps(nextProps) {
@@ -196,12 +197,10 @@ class App extends React.Component {
       }
     }
     
-    const isFirst = !localStorage.getItem('myselfId')
-    
     return (
       <div>
         <CSSTransitionFirstChild {...transitionSettings}>
-          {this.props.isLoading && isFirst ?
+          {this.props.isLoading && this.state.isFirst ?
             <Loading key="loading" loadingComplete={this.props.loadingComplete} style={transitionSettings.style}/> : null}
         </CSSTransitionFirstChild>
         {!this.props.myself.id || this.props.isLoading ? null :
