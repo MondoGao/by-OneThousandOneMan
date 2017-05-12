@@ -15,7 +15,7 @@
 
 .alter-label-container {
   position: relative;
-  padding-left: 29px;
+  padding-left: 18px;
 }
 
 @keyframes bling {
@@ -32,16 +32,16 @@
 
 .refresh-labels {
   position: absolute;
-  top: 6px;
-  right: 8px;
-  width: 43px;
-  height: 46px;
+  top: 0;
+  right: 12px;
+  width: 52px;
+  height: 54px;
   background: url("assets/refresh@2x.png") no-repeat center / contain;
 }
 
 .alter-label {
   display: inline-block;
-  margin-right: 29px;
+  margin-right: 18px;
   height: 72px;
   width: 136px;
   padding-top: 16px;
