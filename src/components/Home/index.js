@@ -61,9 +61,18 @@ const Home = ({ style = {}, myself = {}, createWall }) => {
             <Button
               className={styles['btn']}
               type="flatten"
-              onClick={() => createWall(myself.id)}
             >
-              <Link to={`${settings.publicPath}users/${myself.id}`}>
+              <Link
+                to={`${settings.publicPath}users/${myself.id}`}
+                onClick={e => {
+                  e.preventDefault()
+                  
+                  createWall(myself.id)
+                    .then(() => {
+                      window.location.href = `${window.location.origin}${settings.publicPath}users/${myself.id}`
+                    })
+                }}
+              >
                 {myself.hasWall ? '查看弹幕墙' : '生成弹幕墙'}
               </Link>
             </Button>
