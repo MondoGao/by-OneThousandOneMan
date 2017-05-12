@@ -24,6 +24,7 @@ class LabelInput extends React.Component {
   state = {
     inputValue: '',
     isLoading: false,
+    isRefreshCooling: false,
     timer: null,
     alterLabels: this.getAlterLabels(),
     sentNum: 0,
@@ -77,18 +78,22 @@ class LabelInput extends React.Component {
   }
   
   handleRefreshClick = e => {
-    this.setState({
-      alterLabels: this.getAlterLabels()
-    })
+    if (!this.state.isRefreshCooling) {
+      this.setState({
+        alterLabels: this.getAlterLabels(),
+        isRefreshCooling: true,
+        timer: setTimeout(this.refreshButtonReload, 800)
+      })
+    }
   }
   
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.sentNum !== this.state.sentNum && this.state.sentNum % 5 === 0) {
-  //     this.setState({
-  //       alterLabels: this.getAlterLabels()
-  //     })
-  //   }
-  // }
+  refreshButtonReload = () => {
+    if (this.state.isRefreshCooling) {
+      this.setState({
+        isRefreshCooling: false
+      })
+    }
+  }
   
   render() {
     const alterLabels = this.state.alterLabels.map((text, index) => (
@@ -115,8 +120,8 @@ class LabelInput extends React.Component {
         enterActive: 'animated'
       },
       transitionAppear: true,
-      transitionAppearTimeout: 500,
-      transitionEnterTimeout: 500,
+      transitionAppearTimeout: 800,
+      transitionEnterTimeout: 800,
       transitionLeave: false,
       style: {
         animationDuration: '500ms'
@@ -132,7 +137,7 @@ class LabelInput extends React.Component {
         >
           {alterLabels}
           <span
-            className={styles['refresh-labels']}
+            className={`${styles['refresh-labels']} ${this.state.isRefreshCooling ? styels['cooling'] : ''}`}
             onClick={this.handleRefreshClick}
           />
         </CSSTransitionGroup>

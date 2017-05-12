@@ -17,7 +17,6 @@
   position: relative;
   height: 72px;
   padding-left: 18px;
-  overflow: hidden;
 }
 
 @keyframes bling {
@@ -39,6 +38,10 @@
   width: 52px;
   height: 54px;
   background: url("assets/refresh@2x.png") no-repeat center / contain;
+  transition: opacity .3s;
+  .cooling {
+    opacity: .8;
+  }
 }
 
 .alter-label {
