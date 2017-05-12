@@ -167,7 +167,7 @@ class App extends React.Component {
         this.props.loadingComplete()
         
         // 如果访问的是主人页，定期更新
-        if (params[1] === this.props.myself.id) {
+        if (params && params[1] && params[1] === this.props.myself.id) {
           clearInterval(this.state.reloadTimer)
           this.setState({
             reloadTimer: setInterval(this.loadNewLabels, 15000)
