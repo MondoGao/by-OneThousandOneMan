@@ -2,7 +2,7 @@ const { resolve } = require('path')
 const Webpack = require('webpack')
 const WebpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ImageminPlugin = require('imagemin-webpack-plugin')
+const ImageminPlugin = require('imagemin-webpack-plugin').default
 const baseConfig = require('./webpack.base.config')
 
 module.exports = WebpackMerge(baseConfig, {
