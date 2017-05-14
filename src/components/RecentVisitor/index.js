@@ -24,12 +24,11 @@ const RecentVisitor = ({ visitorAvatarSrcs = [] }) => {
         <span className={styles['header-text']}>最近访客</span>
         <TitleOrnament isReversed/>
       </h4>
+      {hasVisitor ? <span className={styles['blur-tip']}>来访的朋友越多 访客头像越清晰</span> : null}
       {hasVisitor ? <div className={styles['avatar-list']}>
         {visitorAvatars}
       </div> : null}
-      {hasVisitor ?
-        <span className={styles['blur-tip']}>来访的朋友越多 访客头像越清晰</span> :
-      <span className={styles['empty-tip']}>呜呜呜！暂无访客</span>}
+      {hasVisitor ? null : <span className={styles['empty-tip']}>呜呜呜！暂无访客</span>}
     </div>
   )
 }
