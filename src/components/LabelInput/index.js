@@ -81,10 +81,12 @@ class LabelInput extends React.Component {
   
   handleRefreshClick = e => {
     if (!this.state.isRefreshCooling) {
+      let refreshTimer = setTimeout(this.refreshButtonReload, 800)
+      
       this.setState({
         alterLabels: this.getAlterLabels(),
         isRefreshCooling: true,
-        timer: setTimeout(this.refreshButtonReload, 800)
+        timer: refreshTimer
       })
       trackEvent(this.props.myselfId, '刷新预设标签按钮单击', '', this.props.myselfId)
     }
@@ -140,7 +142,7 @@ class LabelInput extends React.Component {
         >
           {alterLabels}
           <span
-            className={`${styles['refresh-labels']} ${this.state.isRefreshCooling ? styels['cooling'] : ''}`}
+            className={`${styles['refresh-labels']} ${this.state.isRefreshCooling ? styles['cooling'] : ''}`}
             onClick={this.handleRefreshClick}
           />
         </CSSTransitionGroup>
