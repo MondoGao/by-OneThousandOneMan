@@ -28,7 +28,7 @@ export const promiseCatch = err => {
     console.log(err.response)
     alert(`${err}
     ${err.message}
-    ${err.slack}`)
+    ${err.stack}`)
     alert('加载失败，请刷新重试')
   }
 }
