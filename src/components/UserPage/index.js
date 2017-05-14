@@ -26,6 +26,10 @@ class UserPage extends React.Component {
   
   handleCheatClick = () => {
     trackEvent(this.props.myself.id, '脱单秘籍单击', '', this.props.myself.id)
+    
+    let start = Date.now()
+    
+    while (Date.now() - start < 300) {}
   }
   
   render() {
