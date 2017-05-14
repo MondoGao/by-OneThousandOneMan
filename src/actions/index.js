@@ -118,7 +118,8 @@ export const refreshNewLabel = userId => dispatch => {
         payload: {
           userId,
           labels: normalizedData.entities.users[userId].labels,
-          visitorHeadimgurls: normalizedData.entities.users[userId].visitorHeadimgurls
+          visitorHeadimgurls: normalizedData.entities.users[userId].visitorHeadimgurls,
+          visitorNum: normalizedData.entities.users[userId].visitorNum
         }
       })
     })
