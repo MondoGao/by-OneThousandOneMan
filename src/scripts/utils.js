@@ -83,7 +83,7 @@ export const redirectToWx = () => {
 }
 
 export const getCurrentPageName = myselfId => {
-  let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
+  let params = window.location.pathname.match(/\/users\/([\w-]+)/)
   let userId = params && params[1]
   
   return userId ? (userId === myselfId ? '主人页' : '访客页') : '首页'
