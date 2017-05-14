@@ -4170,7 +4170,6 @@ span a {
   font-size: 0.533333rem;
   background-image: url(/single/assets/btn-flatten@2x.png?8411bff);
 }.RecentVisitor__recent-visitor-w0Hfl h4 {
-  margin-bottom: 0.426667rem;
   color: #fffbcb;
   font-size: 0.48rem;
 }
@@ -4190,8 +4189,8 @@ span a {
 
 .RecentVisitor__blur-tip-2IV2m {
   display: block;
-  margin-top: 0.293333rem;
-  font-size: 0.266667rem;
+  margin: 0.2rem 0;
+  font-size: 0.32rem;
   color: #fffbcb;
 }
 
@@ -4376,7 +4375,7 @@ span a {
   top: 0.12rem;
   width: 0.973333rem;
   height: 0.813333rem;
-  background: url(/single/assets/btn-ok-bg@2x.png?2d05773) no-repeat center/100% 100%;
+  background: url(/single/assets/btn-ok-bg@2x.png?a2ac262) no-repeat center/100% 100%;
 }
 
 .LabelInput__input-wrapper-2CHVH > span::before {
