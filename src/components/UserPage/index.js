@@ -4,6 +4,7 @@ import { CSSTransitionGroup } from 'react-transition-group'
 
 import styles from './UserPage.scss'
 import { settings } from 'sources'
+import { trackEvent } from 'scripts/utils'
 
 import LabelWallContainer from 'containers/LabelWallContainer'
 import Button from 'components/Button'
@@ -21,6 +22,10 @@ class UserPage extends React.Component {
     this.setState((prevState) => ({
       isShowShare: !prevState.isShowShare
     }))
+  }
+  
+  handleCheatClick = () => {
+    trackEvent(this.props.myself.id, '脱单秘籍单击', '', this.props.myself.id)
   }
   
   render() {
@@ -92,7 +97,9 @@ class UserPage extends React.Component {
                   <Button
                     key="btn"
                     className={styles['btn-myself']}
-                    onClick={this.toggleShare}>
+                    onClick={this.toggleShare}
+                    onCheatClick={this.handleCheatClick}
+                  >
                     呼朋唤友求弹幕
                   </Button>
                 ] :

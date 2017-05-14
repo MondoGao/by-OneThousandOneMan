@@ -81,3 +81,14 @@ export const getParameterByName = (name, url = window.location.href) => {
 export const redirectToWx = () => {
   window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${settings.appId}&redirect_uri=${encodeURIComponent(window.location.href.replace(window.location.search, ''))}&response_type=code&scope=${settings.scope}&state=STATE#wechat_redirect`
 }
+
+export const getCurrentPageName = myselfId => {
+  let params = this.props.location.pathname.match(/\/users\/([\w-]+)/)
+  let userId = params && params[1]
+  
+  return userId ? (userId === myselfId ? '主人页' : '访客页') : '首页'
+}
+
+export const trackEvent = (myselfId, action, label, value) => {
+  _czc.push(['_trackEvent', getCurrentPageName(myselfId), action, label, value])
+}

@@ -5,7 +5,7 @@ import './App.css'
 import 'styles/transitions.css'
 import 'styles/animations.css'
 
-import { loadingAssets, getParameterByName, getCookie, redirectToWx } from 'scripts/utils'
+import { loadingAssets, getParameterByName, getCookie, redirectToWx, trackEvent } from 'scripts/utils'
 import loadingList from 'assets/loadingList'
 import { settings } from 'sources'
 import { promiseCatch } from 'sources/utils'
@@ -87,25 +87,36 @@ class App extends React.Component {
           let title = `没想到朋友们认为我单身的原因是...`
           let imgUrl = ''
           let desc = '快来发送弹幕，告诉Ta单身这么久究竟因为啥！'
+          let label = ''
         
           if (userId) {
             user = this.props.users[userId]
             if (user) {
               title = `没想到朋友们认为${user.nickname}单身的原因是...`
               imgUrl = window.location.origin + user.headimgurl
+              
+              if (user.visitorNum < 13) {
+                label = '前 12 转发'
+              }
             }
           } else if (myself) {
             link = `${link}/users/${this.props.myself.id}`.replace(/single\/{2}/, 'single\/')
             title = `没想到朋友们认为${myself.nickname}单身的原因是...`
             imgUrl = window.location.origin + myself.headimgurl
+            
+            if (myself.visitorNum < 13) {
+              label = '前 12 转发'
+            }
           }
         
+          let self = this
+          
           wx.onMenuShareTimeline({
             title,
             link,
             imgUrl,
             success() {
-              console.log('分享成功')
+              trackEvent(self.props.myself.id, '分享成功', ['朋友圈', label].join(','), self.props.myself.id)
             }
           })
         
@@ -117,7 +128,7 @@ class App extends React.Component {
             type: 'link',
             dataUrl: '',
             success() {
-              console.log('分享成功')
+              trackEvent(self.props.myself.id, '分享成功', ['微信', label].join(','), self.props.myself.id)
             }
           })
   
@@ -127,7 +138,7 @@ class App extends React.Component {
             link,
             imgUrl,
             success() {
-              console.log('分享成功')
+              trackEvent(self.props.myself.id, '分享成功', ['QQ', label].join(','), self.props.myself.id)
             }
           })
   
@@ -137,7 +148,7 @@ class App extends React.Component {
             link,
             imgUrl,
             success() {
-              console.log('分享成功')
+              trackEvent(self.props.myself.id, '分享成功', ['空间', label].join(','), self.props.myself.id)
             }
           })
         })

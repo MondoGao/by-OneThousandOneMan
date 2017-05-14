@@ -3,6 +3,7 @@ import { CSSTransitionGroup } from 'react-transition-group'
 
 import styles from './LabelInput.scss'
 import labels from 'sources/labels'
+import { trackEvent } from 'scripts/utils'
 
 class LabelInput extends React.Component {
   getAlterLabels = () => {
@@ -43,6 +44,7 @@ class LabelInput extends React.Component {
       this.setState({
         inputValue: e.target.innerText
       })
+      trackEvent(this.props.myselfId, '预设标签单击', '', this.props.myselfId)
     }
   }
   
@@ -84,6 +86,7 @@ class LabelInput extends React.Component {
         isRefreshCooling: true,
         timer: setTimeout(this.refreshButtonReload, 800)
       })
+      trackEvent(this.props.myselfId, '刷新预设标签按钮单击', '', this.props.myselfId)
     }
   }
   
