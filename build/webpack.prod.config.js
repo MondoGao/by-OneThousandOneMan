@@ -2,6 +2,7 @@ const { resolve } = require('path')
 const Webpack = require('webpack')
 const WebpackMerge = require('webpack-merge')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ImageminPlugin = require('imagemin-webpack-plugin')
 const baseConfig = require('./webpack.base.config')
 
 module.exports = WebpackMerge(baseConfig, {
@@ -20,7 +21,7 @@ module.exports = WebpackMerge(baseConfig, {
           ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [
-              'css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]',
+              'css-loader?minimize&modules&localIdentName=[name]__[local]-[hash:base64:5]',
               'postcss-loader',
               'sass-loader'
             ]
@@ -32,7 +33,7 @@ module.exports = WebpackMerge(baseConfig, {
           ExtractTextPlugin.extract({
             fallback: 'style-loader',
             use: [
-              'css-loader',
+              'css-loader?minimize',
               'postcss-loader'
             ]
           })
@@ -56,6 +57,7 @@ module.exports = WebpackMerge(baseConfig, {
     }),
     new Webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
-    })
+    }),
+    new ImageminPlugin()
   ]
 })
