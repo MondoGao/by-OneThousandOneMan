@@ -2,7 +2,7 @@ import React from 'react'
 import PhotoMosaic from 'scripts/photomosaic'
 
 import styles from './UserAvatar.scss'
-import defaultAvatar from 'assets/default-avatar.jpeg'
+import defaultAvatar from 'assets/default-avatar.jpg'
 
 class UserAvatar extends React.Component {
   handleImgLoad = e => {
