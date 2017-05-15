@@ -20,7 +20,7 @@ import TransitionRoute from 'components/TransitionRoute'
 class App extends React.Component {
   state = {
     reloadTimer: null,
-    isFirst: !localStorage.getItem('myselfId')
+    isFirst: !sessionStorage.getItem('isFirstLoading')
   }
   
   componentWillReceiveProps(nextProps) {

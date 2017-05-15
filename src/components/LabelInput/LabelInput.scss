@@ -109,7 +109,7 @@ input.label-input {
   display: inline-block;
   width: 48px;
   height: 27px;
-  //background: url("assets/btn-ok-text@2x.png") no-repeat center / contain;
+  white-space: nowrap;
   vertical-align: middle;
   &::before {
     content: '发送';

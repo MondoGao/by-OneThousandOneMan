@@ -32,11 +32,11 @@ export const promiseCatch = err => {
     redirectToWx()
   } else {
     console.log(err)
-    console.log(err.response)
-    alert(`${err}
-    ${err.message}
-    ${err.stack}`)
-    alert('加载失败，请刷新重试')
+    
+    alert(`一不小心加载失败啦！可以先刷新试试哦！如反复出现可以将本提示截图发给开发者微信号：458990789 哦！错误信息如下：
+      ${err}+
+      ${err.message}+
+      ${err.stack}`)
   }
 }
 
