@@ -10,7 +10,12 @@ export const checkStatus = (response) => {
   if (response.status >= 200 && response.status < 300) {
     return response
   } else {
-    alert(response.status + response.statusText + response)
+    let str = ``
+    
+    for (let key in response) {
+      str += `${key}: ${response[key]}`
+    }
+    alert(str)
     
     let error = new Error(response.statusText)
     error.response = response
