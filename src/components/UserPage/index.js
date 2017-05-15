@@ -26,10 +26,11 @@ class UserPage extends React.Component {
   
   handleCheatClick = e => {
     e.preventDefault()
+    const href = e.target.href
     
     trackEvent(this.props.myself.id, '脱单秘籍单击', '', this.props.myself.id)
     
-    setTimeout(() => window.location.href = e.target.href, 500)
+    setTimeout(() => window.location.href = href, 500)
   }
   
   render() {
