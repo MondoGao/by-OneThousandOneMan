@@ -2,6 +2,7 @@ import React from 'react'
 import PhotoMosaic from 'scripts/photomosaic'
 
 import styles from './UserAvatar.scss'
+import defaultAvatar from 'assets/default-avatar.jpeg'
 
 class UserAvatar extends React.Component {
   handleImgLoad = e => {
@@ -33,7 +34,7 @@ class UserAvatar extends React.Component {
 }
 
 UserAvatar.defaultProps = {
-  src: '#',
+  src: defaultAvatar,
   bordered: false,
   className: '',
   blurLevel: 0
