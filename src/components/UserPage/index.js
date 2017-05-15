@@ -24,12 +24,12 @@ class UserPage extends React.Component {
     }))
   }
   
-  handleCheatClick = () => {
+  handleCheatClick = e => {
+    e.preventDefault()
+    
     trackEvent(this.props.myself.id, '脱单秘籍单击', '', this.props.myself.id)
     
-    let start = Date.now()
-    
-    while (Date.now() - start < 300) {}
+    setTimeout(() => window.location.href = e.target.href, 500)
   }
   
   render() {
@@ -109,7 +109,11 @@ class UserPage extends React.Component {
                 ] :
                 [
                   <LabelInputContainer key="input" userId={this.props.user.id}/>,
-                  <Button key="btn" className={styles['btn-other']}>
+                  <Button
+                    key="btn"
+                    className={styles['btn-other']}
+                    onCheatClick={this.handleCheatClick}
+                  >
                     {this.props.myself.hasWall ?
                       <Link to={`${settings.publicPath}users/${this.props.myself.id}`}>查看我的弹幕墙</Link> :
                       <Link to={`${settings.publicPath}`}>我也要建弹幕墙</Link>}
