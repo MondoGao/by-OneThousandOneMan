@@ -143,6 +143,12 @@ class UserPage extends React.Component {
       this.props.appendVisitor(this.props.user.id, this.props.myself.id)
     }
   }
+  
+  componentDidUpdate() {
+    if (!this.props.user) {
+      window.location.reload()
+    }
+  }
 }
 
 UserPage.defaultProps = {
