@@ -1,3 +1,5 @@
+import { normalize } from 'normalizr'
+
 import { commonFetchGet, checkStatus, promiseCatch } from 'sources/utils'
 import { user } from 'sources/schemas'
 import { settings } from 'sources'
@@ -8,6 +10,15 @@ export const getUser = (id) => {
   }
 
   return commonFetchGet(`${settings.publicPath}api/users/${id}`, user)
+}
+
+export const refreshLabels = id => {
+  return fetch(`${settings.publicPath}api/users/${id}`, {
+    credentials: 'same-origin'
+  })
+    .catch(err => console.log(err))
+    .then(data => data.json())
+    .then(data => normalize(data, user))
 }
 
 export const addLabel = (userId, writerId, labelText) => {
