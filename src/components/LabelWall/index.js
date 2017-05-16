@@ -40,7 +40,7 @@ class LabelWall extends React.Component {
     let flag = false
     
     Array.from(document.getElementsByClassName(styles[`track-${trackNum}`])).map(el => {
-      if (el && this.state.wallRight - el.getBoundingClientRect().right < textLength * 24) {
+      if (el && this.state.wallRight - el.getBoundingClientRect().right < textLength * 18) {
         flag = true
       }
     })
