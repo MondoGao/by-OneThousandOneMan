@@ -25,7 +25,7 @@ class UserAvatar extends React.Component {
     return (
       <span className={`${styles['avatar-wrapper']} ${this.props.bordered ? styles['bordered'] : ''} ${this.props.blurLevel < 1 ? styles['no-blur'] : ''} ${this.props.className}`}>
       <div className={styles['avatar']} ref={el => this.avatarDiv = el}>
-        <img src={this.props.src} alt="Avatar" onLoad={this.handleImgLoad}/>
+        <img src={this.props.src ? this.props.src : defaultAvatar} alt="Avatar" onLoad={this.handleImgLoad}/>
       </div>
         {this.props.bordered ? <span className={styles['border-wrapper']}/> : null}
     </span>
