@@ -86,7 +86,7 @@ class App extends React.Component {
         
           let link = window.location.href
           let title = `没想到朋友们认为我单身的原因是...`
-          let imgUrl = logo
+          let imgUrl = window.location.origin + logo
           let desc = '快来发送弹幕，告诉Ta单身这么久究竟因为啥！'
           let label = ''
         
