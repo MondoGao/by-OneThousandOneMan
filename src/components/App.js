@@ -10,6 +10,7 @@ import loadingList from 'assets/loadingList'
 import { settings } from 'sources'
 import { promiseCatch } from 'sources/utils'
 import * as sources from 'sources'
+import logo from 'assets/logo.jpg'
 
 import UserPageContainer from 'containers/UserPageContainer'
 import Loading from 'components/Loading'
@@ -85,7 +86,7 @@ class App extends React.Component {
         
           let link = window.location.href
           let title = `没想到朋友们认为我单身的原因是...`
-          let imgUrl = ''
+          let imgUrl = logo
           let desc = '快来发送弹幕，告诉Ta单身这么久究竟因为啥！'
           let label = ''
         
@@ -93,7 +94,10 @@ class App extends React.Component {
             user = this.props.users[userId]
             if (user) {
               title = `没想到朋友们认为${user.nickname}单身的原因是...`
-              imgUrl = window.location.origin + user.headimgurl
+              
+              if (user.headimgurl) {
+                imgUrl = window.location.origin + user.headimgurl
+              }
               
               if (user.visitorNum < 13) {
                 label = '前 12 转发'
@@ -102,7 +106,10 @@ class App extends React.Component {
           } else if (myself) {
             link = `${link}/users/${this.props.myself.id}`.replace(/single\/{2}/, 'single\/')
             title = `没想到朋友们认为${myself.nickname}单身的原因是...`
-            imgUrl = window.location.origin + myself.headimgurl
+            
+            if (myself.headimgurl) {
+              imgUrl = window.location.origin + myself.headimgurl
+            }
             
             if (myself.visitorNum < 13) {
               label = '前 12 转发'
