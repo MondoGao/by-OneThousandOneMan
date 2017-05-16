@@ -184,7 +184,8 @@ class App extends React.Component {
     return Promise.all(loadTask)
       .then(() => {
         this.props.loadingComplete()
-        
+        this.configWechat()
+  
         // 如果访问的是主人页，定期更新
         if (params && params[1] && params[1] === this.props.myself.id) {
           clearInterval(this.state.reloadTimer)
