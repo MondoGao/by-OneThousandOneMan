@@ -40,8 +40,8 @@ $shakeRange: 8px;
     color: #ed5485;
     white-space: normal;
     background: url("assets/cheat-bg@2x.png") no-repeat center / contain;
-    animation: shake 5s infinite;
-    animation-delay: 1000ms;
+    animation: shake 2.8s infinite;
+    animation-delay: -.7s;
     &::before {
       display: inline-block;
       vertical-align: middle;
