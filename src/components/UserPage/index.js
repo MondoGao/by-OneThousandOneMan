@@ -12,6 +12,7 @@ import RecentVisitor from 'components/RecentVisitor'
 import UserAvatar from 'components/UserAvatar'
 import LabelInputContainer from 'containers/LabelInputContainer'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
+import Popup from 'components/Popup'
 
 class UserPage extends React.Component {
   state = {
@@ -106,7 +107,13 @@ class UserPage extends React.Component {
                     onCheatClick={this.handleCheatClick}
                   >
                     呼朋唤友求弹幕
-                  </Button>
+                  </Button>,
+                  <p className={styles['guide-tip']}>
+                    想知道访客列表和弹幕狂魔吗？戳我！
+                  </p>,
+                  <Popup>
+                    
+                  </Popup>
                 ] :
                 [
                   <LabelInputContainer key="input" userId={this.props.user.id}/>,
