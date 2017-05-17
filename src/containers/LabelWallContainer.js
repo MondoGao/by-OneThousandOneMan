@@ -3,7 +3,9 @@ import LabelWall from 'components/LabelWall'
 
 import { showedNewLabel } from 'actions'
 
-const mapState = state => ({})
+const mapState = state => ({
+  myself: state.entities.users[state.myself.id]
+})
 
 const mapDispatch = dispatch => ({
   finishShowNewLabel(userId) {
