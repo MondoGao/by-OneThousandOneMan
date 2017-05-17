@@ -1,3 +1,17 @@
+@keyframes shake {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(0, -15px, 0);
+  }
+  
+  20%, 40%, 60%, 80% {
+    transform: translate3d(0, 15px, 0);
+  }
+}
+
 .button {
   display: inline-block;
   vertical-align: top;
@@ -24,6 +38,8 @@
     color: #ed5485;
     white-space: normal;
     background: url("assets/cheat-bg@2x.png") no-repeat center / contain;
+    animation: shake 1s 8;
+    animation-delay: 1000ms;
     &::before {
       display: inline-block;
       vertical-align: middle;
