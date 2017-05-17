@@ -88,9 +88,9 @@ class LabelWall extends React.Component {
       nextLabelQueue.push('')
     }
     
-    if (this.props.user.id === this.props.myself.id) {
+    // if (this.props.user.id === this.props.myself.id) {
       nextLabelQueue.reverse()
-    }
+    // }
     
     this.setState({
       labelQueue: nextLabelQueue
