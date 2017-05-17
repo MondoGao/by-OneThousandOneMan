@@ -1,14 +1,16 @@
+$shakeRange: 8px;
+
 @keyframes shake {
-  from, to {
+  from, to, 25%, 75% {
     transform: translate3d(0, 0, 0);
   }
   
-  10%, 30%, 50%, 70%, 90% {
-    transform: translate3d(0, -15px, 0);
+  30%, 40%, 50%, 60%, 70% {
+    transform: translate3d(0, -$shakeRange, 0);
   }
   
-  20%, 40%, 60%, 80% {
-    transform: translate3d(0, 15px, 0);
+  35%, 45%, 55%, 65% {
+    transform: translate3d(0, $shakeRange, 0);
   }
 }
 
@@ -38,7 +40,7 @@
     color: #ed5485;
     white-space: normal;
     background: url("assets/cheat-bg@2x.png") no-repeat center / contain;
-    animation: shake 1s 8;
+    animation: shake 5s infinite;
     animation-delay: 1000ms;
     &::before {
       display: inline-block;
