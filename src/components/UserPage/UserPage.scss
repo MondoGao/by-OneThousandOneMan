@@ -69,8 +69,54 @@
 .guide-tip {
   margin: 24px 0 70px;
   padding-bottom: 10px;
-  border: 2px dashed #d64070;
+  border-bottom: 2px dashed #d64070;
   color: #d64070;
   font-size: 24px;
   font-weight: bold;
+}
+
+.popup {
+  text-align: center;
+  
+  .stars-wrapper {
+    position: absolute;
+    top: 130px;
+    left: 130px;
+    
+    span {
+      display: inline-block;
+      background: url("assets/star@2x.png") no-repeat center / contain;
+    }
+    
+    .big {
+      position: relative;
+      width: 30px;
+      height: 48px;
+      top: 27px;
+    }
+    
+    .little {
+      width: 21px;
+      height: 33px;
+    }
+  }
+  
+  .guide-face {
+    margin: 9px 0 30px;
+    width: 102px;
+    height: 102px;
+  }
+  
+  .guide-p {
+    margin-bottom: 28px;
+    color: #57d1c9;
+    font-size: 28px;
+  }
+  
+  .guide-link {
+    margin: 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #ed5485;
+    color: #ed5485;
+  }
 }

@@ -6,6 +6,8 @@ import styles from './UserPage.scss'
 import { settings } from 'sources'
 import { trackEvent } from 'scripts/utils'
 
+import imgGuideFace from 'assets/guide-face@2x.png'
+
 import LabelWallContainer from 'containers/LabelWallContainer'
 import Button from 'components/Button'
 import RecentVisitor from 'components/RecentVisitor'
@@ -16,7 +18,8 @@ import Popup from 'components/Popup'
 
 class UserPage extends React.Component {
   state = {
-    isShowShare: false
+    isShowShare: false,
+    isShowGuide: false
   }
   
   toggleShare = () => {
@@ -32,6 +35,31 @@ class UserPage extends React.Component {
     trackEvent(this.props.myself.id, '脱单秘籍单击', '', this.props.myself.id)
     
     setTimeout(() => window.location.href = href, 500)
+  }
+  
+  handleGuideLinkClick = e => {
+    e.preventDefault()
+    const href = e.target.href
+  
+    trackEvent(this.props.myself.id, '戳这里点击', '', this.props.myself.id)
+  
+    setTimeout(() => window.location.href = href, 500)
+  }
+  
+  handleGuideClick = e => {
+    this.setState(prevState => ({
+      isShowGuide: !prevState.isShowGuide
+    }))
+    
+    trackEvent(this.props.myself.id, '引流提示单击', '', this.props.myself.id)
+  }
+  
+  handleGuideCloseClick = e => {
+    this.setState(prevState => ({
+      isShowGuide: !prevState.isShowGuide
+    }))
+    
+    trackEvent(this.props.myself.id, '引流提示关闭', '', this.props.myself.id)
   }
   
   render() {
@@ -110,10 +138,31 @@ class UserPage extends React.Component {
                   </Button>,
                   <p className={styles['guide-tip']}>
                     想知道访客列表和弹幕狂魔吗？戳我！
-                  </p>,
-                  <Popup>
-                    
-                  </Popup>
+                    {this.state.isShowGuide ?
+                      <Popup
+                        className={styles['popup']}
+                        onClose={this.handleGuideCloseClick}
+                      >
+                        <img className={styles['guide-face']} src={imgGuideFace} alt="爱你"/>
+                        <div className={styles['stars-wrapper']}>
+                          <span className={styles['big']}/>
+                          <span className={styles['little']}/>
+                        </div>
+                        <p className={styles['guide-p']}>
+                          戳
+                          <a
+                            className={styles['guide-link']}
+                            href={settings.wechatHref}
+                            onClick={this.handleGuideLinkClick}>
+                            这里
+                          </a>
+                          关注华科脱单
+                        </p>
+                        <p>
+                          后台回复【单身理由】获取查询方式
+                        </p>
+                      </Popup> : null}
+                  </p>
                 ] :
                 [
                   <LabelInputContainer key="input" userId={this.props.user.id}/>,

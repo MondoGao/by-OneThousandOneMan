@@ -4,7 +4,7 @@ import styles from './Popup.scss'
 
 import { CSSTransitionFirstChild } from 'components/FirstChild'
 
-const Popup = ({children, onClose}) => {
+const Popup = ({children, onClose, className = ''}) => {
   const transitionSettings = {
     transitionName: {
       appear: 'fadeIn',
@@ -24,7 +24,11 @@ const Popup = ({children, onClose}) => {
   }
   
   return (
-    <div className={styles['popup-wrapper']}>
+    <div className={`${styles['popup-wrapper']} ${className}`} onClick={e => {
+      e.stopPropagation()
+  
+      onClose(e)
+    }}>
       <CSSTransitionFirstChild {...transitionSettings}>
         <div
           className={styles['popup']}
