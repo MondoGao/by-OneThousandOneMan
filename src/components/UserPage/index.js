@@ -136,7 +136,7 @@ class UserPage extends React.Component {
                   >
                     呼朋唤友求弹幕
                   </Button>,
-                  <p className={styles['guide-tip']}>
+                  <p className={styles['guide-tip']} onClick={this.handleGuideClick}>
                     想知道访客列表和弹幕狂魔吗？戳我！
                     {this.state.isShowGuide ?
                       <Popup
