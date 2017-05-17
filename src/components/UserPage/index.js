@@ -137,7 +137,7 @@ class UserPage extends React.Component {
                     呼朋唤友求弹幕
                   </Button>,
                   <p className={styles['guide-tip']} onClick={this.handleGuideClick}>
-                    想知道访客列表和弹幕狂魔吗？戳我！
+                    <span className={styles['guide-tip-text']}>想知道访客列表和弹幕狂魔吗？戳我！</span>
                     {this.state.isShowGuide ?
                       <Popup
                         className={styles['popup']}
@@ -158,7 +158,7 @@ class UserPage extends React.Component {
                           </a>
                           关注华科脱单
                         </p>
-                        <p>
+                        <p className={styles['guide-p']}>
                           后台回复【单身理由】获取查询方式
                         </p>
                       </Popup> : null}
