@@ -8,11 +8,12 @@
 
 .popup {
   position: relative;
-  margin: 320px auto;
+  margin: 320px auto 0;
   width: 620px;
   padding: 26px;
-  background: #f5ffff;
+  background: rgba(#f5ffff, .95);
   border-radius: 22px;
+  box-shadow: 0 2px 15px rgba(#6f6f6f, .15);
 }
 
 .close {

@@ -24,12 +24,13 @@ const Popup = ({children, onClose, className = ''}) => {
   }
   
   return (
-    <div className={`${styles['popup-wrapper']} ${className}`} onClick={e => {
-      e.stopPropagation()
-  
-      onClose(e)
-    }}>
-      <CSSTransitionFirstChild {...transitionSettings}>
+    <CSSTransitionFirstChild {...transitionSettings}>
+      <div
+        className={`${styles['popup-wrapper']} ${className}`}
+        onClick={e => {
+          e.stopPropagation()
+          onClose(e)
+        }}>
         <div
           className={styles['popup']}
           style={transitionSettings.style}
@@ -41,8 +42,8 @@ const Popup = ({children, onClose, className = ''}) => {
           />
           {children}
         </div>
-      </CSSTransitionFirstChild>
-    </div>
+      </div>
+    </CSSTransitionFirstChild>
   )
 }
 
