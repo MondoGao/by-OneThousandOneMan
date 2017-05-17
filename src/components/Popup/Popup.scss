@@ -1,0 +1,25 @@
+.popup-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.popup {
+  position: relative;
+  margin: 320px auto;
+  width: 620px;
+  padding: 26px;
+  background: #f5ffff;
+  border-radius: 22px;
+}
+
+.close {
+  position: absolute;
+  top: 26px;
+  right: 26px;
+  width: 48px;
+  height: 48px;
+  background: url("assets/popup-close@2x.png") no-repeat center / contain;
+}
