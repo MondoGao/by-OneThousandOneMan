@@ -1,4 +1,5 @@
 export * from 'sources/users'
+export * from 'sources/secret'
 import { checkStatus } from 'sources/utils'
 
 export const settings = {
