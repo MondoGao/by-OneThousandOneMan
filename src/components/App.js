@@ -15,6 +15,7 @@ import logo from 'assets/logo.jpg'
 import UserPageContainer from 'containers/UserPageContainer'
 import Loading from 'components/Loading'
 import HomeContainer from 'containers/HomeContainer'
+import VisitorList from 'components/VisitorList'
 import { CSSTransitionFirstChild } from 'components/FirstChild'
 import TransitionRoute from 'components/TransitionRoute'
 
@@ -235,6 +236,10 @@ class App extends React.Component {
               key="/home"
               transitionChildren={HomeContainer}
               {...transitionSettings}/>
+            
+            <Route
+              path={`${settings.publicPath}secret`}
+              component={VisitorList}/>
             
             <Route
               path={`${settings.publicPath}index.html`}
