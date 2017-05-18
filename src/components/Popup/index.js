@@ -30,10 +30,11 @@ const Popup = ({children, onClose, className = ''}) => {
         onClick={e => {
           e.stopPropagation()
           onClose(e)
-        }}>
+        }}
+        style={transitionSettings.style}
+      >
         <div
           className={styles['popup']}
-          style={transitionSettings.style}
           onClick={e => e.stopPropagation()}
         >
           <span
