@@ -1,0 +1,62 @@
+.board {
+  position: relative;
+  margin: 0 auto;
+  width: 706px;
+  height: 1168px;
+  padding: 35px 38px;
+  background: url("assets/board@2x.png") no-repeat center / contain;
+  text-align: center;
+  font-weight: bold;
+  .wrapper {
+    height: 100%;
+    background: #fbf5bc;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+.title {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  margin-left: -109px;
+  width: 218px;
+  height: 88px;
+  background: url("assets/title-list-@2x.png") no-repeat center / contain;
+  z-index: 2;
+}
+
+.visitors {
+  padding-top: 60px;
+  p {
+    margin-bottom: 28px;
+    color: rgb(237, 84, 133);
+    font-size: 30px;
+  }
+}
+
+.lovers {
+  padding-top: 40px;
+  .title {
+    background-image: url("assets/title-top@2x.png");
+  }
+  img {
+    margin-bottom: 28px;
+    width: 50px;
+    height: 40px;
+  }
+  .nickname {
+    margin-top: 80px;
+    margin-bottom: 22px;
+    color: rgb(237, 84, 133);
+    font-size: 32px;
+  }
+  .label-num {
+    font-size: 30px;
+    color: rgb(65, 65, 65);
+    span {
+      margin: 0 8px;
+      color: rgb(237, 84, 133);
+    }
+  }
+}
