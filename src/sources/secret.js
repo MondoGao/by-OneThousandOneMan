@@ -18,7 +18,7 @@ export const getVisitorList = (id, token, type = 1) => {
       switch (err.response && err.response.status) {
         case 401: {
           redirectToWx()
-          break
+          return
         }
         case 400: {
           // token 错误
@@ -39,6 +39,8 @@ export const getVisitorList = (id, token, type = 1) => {
             ${err.stack}`)
         }
       }
+      
+      window.location.href = window.location.origin + `/single`
     })
     .then(data => data.json())
 }
